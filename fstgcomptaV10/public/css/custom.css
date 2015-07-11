@@ -1,0 +1,152 @@
+/* Auth Page Content ***********************************************************************************/
+hr{
+    background-color:#9C5223; /* la coleur brown du cadi Ayyad university */
+}
+.homepage{
+    background : url("../images/homepage.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+.authentication{
+    margin: 30px;
+    background: rgba(255, 255, 255, 0.7); /* 70% opaque red */
+    border-radius: 10px;
+}
+
+.header-content
+{
+    margin-bottom: 40px;
+}
+.authentication-box
+{
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.authentication-box input
+{
+    background: none;
+}
+
+.button-cadi-brown{
+    background-color:#9C5223; /* la coleur brown du cadi Ayyad university */
+    color: #ffffff;
+}
+
+/* End of Auth Page Content ***********************************************************************************/
+#sidebar-wrapper{
+    background: none;
+}
+.sidebar2 {
+    max-width: 100%;
+    height: 100%;
+    width: 100%;
+}
+
+.sidebar2 li a {
+    color: #727272;
+    font-size: 14px;
+    padding: 5px 5px 5px 50px;
+}
+
+.sidebar2 li a:hover{
+    background: #BF5A15;
+}
+
+.sidebar2 li.active a
+{
+    background-color:#9C5223; /* la coleur brown du cadi Ayyad university */
+}
+
+.d-menu {
+    max-width: 100%;
+}
+
+/*********************************************************************************************************/
+
+.app-bar .app-bar-menu > li:hover,.app-bar .app-bar-menu > li > a:hover
+{
+    background-color:#9C5223; /* la coleur brown du cadi Ayyad university */
+}
+
+.app-bar .app-bar-element:hover{
+    background-color:#9C5223; /* la coleur brown du cadi Ayyad university */
+}
+
+.mysetting
+{
+    margin-bottom: 20px;
+}
+
+.navigation-bar{
+    margin-bottom: 20px;
+}
+
+/**************************************************************************************************************/
+.mes_titres
+{
+    font-size: 22px;
+
+}
+
+/**** PANEL SETTING *******************************************************************************/
+.panel{
+    border-radius: inherit;
+    border-color: #E8DBB0;
+}
+
+.panel-model>.panel-heading{
+    color: #bf5a15;
+    border-color :#bf5a15;
+    background-color: #E8DBB0;
+    font-weight: 900;
+    border-radius: inherit;
+}
+
+/*******BUTTON SETTING*******************************************************************/
+/*input[type="submit"] {
+
+    padding: inherit;
+    height: inherit;
+    text-align: inherit;
+    background-color: inherit;
+    border: inherit;
+    color: inherit;
+    cursor: inherit;
+    display: inherit;
+    outline: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    margin: inherit;
+    position: inherit;
+    vertical-align: inherit;
+}*/
+
+.btn{
+    border-radius: inherit;
+}
+
+.btn-standard{
+    background-color: #9C5223;
+    color: #ffffff;
+}
+.btn-standard:hover{
+    background-color: #bf5a15;
+    color: #ffffff;
+}
+
+
+/********INPUT ***************************************/
+.form-control{
+   height: 30px;
+   border-radius: inherit;
+    padding : 0px 12px;
+}
+
+.input-group-addon{
+    border-radius: inherit;
+}
+
+/*************PAGINATION**************************/
+.pagination{
+    display: inline-block;
+}

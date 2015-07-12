@@ -12,28 +12,7 @@
                         @foreach($profiles as $profile)
                         <tr>
                             <td>{!! $profile->name !!}</td>
-			<td>
- @if($profile->access==0)
-                        Administrateur
-                     @elseif($profile->access==1)
-                        Administrateur-adjoint
-                         @elseif($profile->access==2)
-                            Responsable
-
-                          @elseif($profile->access==3)
-                          Consultant
-
-                          @else
-                          Aucun
-
-                     @endif
-
-               
-
-
-
-
-            </td>
+			<td>{!! $profile->role !!}</td>
                             <td>
                                 <div class="pull-right">
                                 <a href="{!! route('profiles.show', [$profile->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-eye-open"  aria-hidden="true"></span></a>

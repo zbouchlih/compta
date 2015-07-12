@@ -4,7 +4,6 @@ use App\Http\Requests;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Libraries\Repositories\UserRepository;
-use App\Libraries\Repositories\ProfileRepository;
 use Flash;
 use DB;
 //use Mitul\Controller\AppBaseController as Controller;
@@ -15,7 +14,6 @@ class UserController extends Controller
 
 	/** @var  UserRepository */
 	private $userRepository;
-	private $profileRepository;
 
 
 	function __construct(UserRepository $userRepo)
@@ -33,16 +31,11 @@ class UserController extends Controller
 	 */
 	public function index()
 	{
-		//$users_paginate = $this->userRepository->paginate(2);
 
-        
-        //$profiles=$this->profileRepository->getById();
 
         $users = DB::table('profiles')
                ->Join('users', 'profiles.id', '=', 'users.idProfile')
                ->paginate(7);
-
-               //var_dump($users);
 
         $links = str_replace('/?', '?', $users->render());
 

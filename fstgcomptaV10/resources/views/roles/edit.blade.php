@@ -4,11 +4,11 @@
 
     @include('common.errors')
     <div class="panel panel-default panel-model">
-        <div class="panel-heading">Modifier $MODEL_NAME$</div>
+        <div class="panel-heading">Modifier rôle</div>
             <div class="panel-body">
-   				 {!! Form::model($$MODEL_NAME_CAMEL$, ['route' => ['$MODEL_NAME_PLURAL_CAMEL$.update', $$MODEL_NAME_CAMEL$->id], 'method' => 'patch']) !!}
+   				 {!! Form::model($role, ['route' => ['roles.update', $role->id], 'method' => 'patch']) !!}
 
-        @include('$MODEL_NAME_PLURAL_CAMEL$.fields')
+        @include('roles.fields')
 
         <!--- Submit Field --->
         <div class="col-md-12">

@@ -54,3 +54,26 @@ Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',
 ]);
+
+Route::resource('roles', 'RoleController');
+
+Route::get('roles/{id}/delete', [
+    'as' => 'roles.delete',
+    'uses' => 'RoleController@destroy',
+]);
+
+
+Route::resource('rights', 'RightController');
+
+Route::get('rights/{id}/delete', [
+    'as' => 'rights.delete',
+    'uses' => 'RightController@destroy',
+]);
+
+
+Route::resource('roleRights', 'RoleRightController');
+
+Route::get('roleRights/{id}/delete', [
+    'as' => 'roleRights.delete',
+    'uses' => 'RoleRightController@destroy',
+]);

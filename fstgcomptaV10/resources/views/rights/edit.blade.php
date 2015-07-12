@@ -4,13 +4,13 @@
 
     @include('common.errors')
     <div class="panel panel-default panel-model">
-        <div class="panel-heading">Modifier $MODEL_NAME$</div>
+        <div class="panel-heading">Modifier droit</div>
             <div class="panel-body">
-   				 {!! Form::model($$MODEL_NAME_CAMEL$, ['route' => ['$MODEL_NAME_PLURAL_CAMEL$.update', $$MODEL_NAME_CAMEL$->id], 'method' => 'patch']) !!}
+   				 {!! Form::model($right, ['route' => ['rights.update', $right->id], 'method' => 'patch']) !!}
 
-        @include('$MODEL_NAME_PLURAL_CAMEL$.fields')
+        @include('rights.fields')
 
-        <!--- Submit Field --->
+        
         <div class="col-md-12">
             {!! Form::submit('Modifier', ['class' => 'btn btn-standard']) !!}
         </div>

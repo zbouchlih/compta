@@ -4,13 +4,13 @@
 
 @include('flash::message')
 <div class="panel panel-default panel-model">
-                <div class="panel-heading">Liste des $MODEL_NAME_PLURAL$</div>
+                <div class="panel-heading">Liste des Rôles</div>
                 <div class="panel-body">
 
                     <div class="row">
                         <div class="col-md-4">
-                            <a href="{!! route('$MODEL_NAME_PLURAL_CAMEL$.create') !!}" class="btn btn-default btn-sm">
-                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter $MODEL_NAME$
+                            <a href="{!! route('roles.create') !!}" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter rôle
                             </a>
                         </div>
 
@@ -29,10 +29,10 @@
                         </div>
                     </div>
                     <div class="resultat">
-                     @if($$MODEL_NAME_PLURAL_CAMEL$->isEmpty())
-                        <div class="well text-center">Pas de $MODEL_NAME_PLURAL$ trouvé.</div>
+                     @if($roles->isEmpty())
+                        <div class="well text-center">Aucun rôle trouvé.</div>
                      @else
-                        @include('$MODEL_NAME_PLURAL_CAMEL$.table')
+                        @include('roles.table')
                      @endif
                    
                     </div>

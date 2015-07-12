@@ -6,7 +6,7 @@
 
 <!-- Access Field -->
 <div class="form-group">
-    {!! Form::label('access', 'Role:') !!}
-    <p>{!! $profile->access !!}</p>
+    {!! Form::label('idRole', 'Role:') !!}
+    <p>{!! $profile->role !!}</p>
 </div>
 

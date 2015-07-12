@@ -5,11 +5,11 @@
     @include('common.errors')
 
     <div class="panel panel-default panel-model">
-                <div class="panel-heading">Ajouter un nouveau $MODEL_NAME$</div>
+                <div class="panel-heading">Ajouter un nouveau droit</div>
                 <div class="panel-body">
-   					{!! Form::open(['route' => '$MODEL_NAME_PLURAL_CAMEL$.store']) !!}
-     				   @include('$MODEL_NAME_PLURAL_CAMEL$.fields')
-     				   <!--- Submit Field --->
+   					{!! Form::open(['route' => 'rights.store']) !!}
+     				   @include('rights.fields')
+     				 
                        <div class="col-md-12">
                            {!! Form::submit('Ajouter', ['class' => 'btn btn-standard']) !!}
                        </div>

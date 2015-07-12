@@ -1,9 +1,9 @@
 <?php namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
-use App\Models\Profile;
+use App\Models\Right;
 
-class UpdateProfileRequest extends Request {
+class UpdateRightRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -22,11 +22,7 @@ class UpdateProfileRequest extends Request {
 	 */
 	public function rules()
 	{
-		$id = $this->segment(2);
-        return [
-            'idRole' => 'required',
-            'name' => 'required|max:255|unique:profiles,name,' . $id,
-        ];
+		return Right::$rules;
 	}
 
 }

@@ -8,7 +8,17 @@
             <div class="panel-body">
    				 {!! Form::model($profile, ['route' => ['profiles.update', $profile->id], 'method' => 'patch']) !!}
 
-        @include('profiles.fields')
+       
+<div class="form-group col-md-6">
+    {!! Form::label('name', 'Name:') !!}
+    {!! Form::text('name', null, ['class' => 'form-control']) !!}
+</div>
+
+
+<div class="form-group col-md-6">
+    {!! Form::label('idRole', 'Role:') !!}
+    {!! Form::select('idRole',$roles, $profile->idRole, ['class' => 'form-control']) !!}
+</div>
         <div class="col-md-12">
             {!! Form::submit('Modifier', ['class' => 'btn btn-standard']) !!}
         </div>

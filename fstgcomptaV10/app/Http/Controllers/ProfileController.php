@@ -7,6 +7,7 @@ use App\Libraries\Repositories\ProfileRepository;
 use Flash;
 //use Mitul\Controller\AppBaseController as Controller;
 use Response;
+use DB;
 
 class ProfileController extends Controller
 {
@@ -27,11 +28,21 @@ class ProfileController extends Controller
 	 */
 	public function index()
 	{
-		$profiles = $this->profileRepository->paginate(7);
+
+		//$test = DB::table('roles')->select('id', 'name as role')->get();
+		$profiles = DB::table('roles')
+               ->Join('profiles', 'roles.id', '=', 'profiles.idRole')
+               ->paginate(7);
+
+               //var_dump($test);
 
 			$links = str_replace('/?', '?', $profiles->render());
 
         return view('profiles.index', compact('profiles', 'links'));
+
+         
+
+       
 	}
 
 	/**
@@ -41,7 +52,8 @@ class ProfileController extends Controller
 	 */
 	public function create()
 	{
-		return view('profiles.create');
+		$roles = DB::table('roles')->lists('role','id');
+		return view('profiles.create', compact('roles'));
 	}
 
 	/**
@@ -71,8 +83,9 @@ class ProfileController extends Controller
 	 */
 	public function show($id)
 	{
-		$profile = $this->profileRepository->find($id);
-
+		//$profile = $this->profileRepository->find($id);
+		$profile = DB::table('roles')
+               ->Join('profiles', 'profiles.idRole', '=', 'roles.id')->where('profiles.id','=',$id)->first();
 		if(empty($profile))
 		{
 			Flash::error('profile que vous cherchez n est pas disponible');
@@ -93,6 +106,7 @@ class ProfileController extends Controller
 	public function edit($id)
 	{
 		$profile = $this->profileRepository->find($id);
+		$roles = DB::table('roles')->lists('role','id');
 
 		if(empty($profile))
 		{
@@ -101,7 +115,7 @@ class ProfileController extends Controller
 			return redirect(route('profiles.index'));
 		}
 
-		return view('profiles.edit')->with('profile', $profile);
+		return view('profiles.edit')->with('profile', $profile)->with('roles',$roles);
 	}
 
 	/**
@@ -155,24 +169,4 @@ class ProfileController extends Controller
 		return redirect(route('profiles.index'));
 	}
 
-	public function getAccess($access)
-{
-    switch($access) {
-        case '0':
-            return 'Aucun';
-            break;
-        case '1':
-            return 'Aucun';
-            break;
-        case '2':
-            return 'Aucun';
-            break;
-        case '3':
-            return 'Aucun';
-            break;
-        case '4':
-           return 'Aucun';
-            break;
-    }
-}
 }

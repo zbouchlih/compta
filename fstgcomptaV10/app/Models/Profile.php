@@ -11,7 +11,7 @@ class Profile extends Model
 
 	public $fillable = [
 	    "name",
-		"access"
+		"idRole"
 	];
 
     /**
@@ -21,17 +21,23 @@ class Profile extends Model
      */
     protected $casts = [
         "name" => "string",
-		"access" => "integer"
+		"idRole" => "integer"
     ];
 
 	public static $rules = [
 	    "name" => "required|unique:profiles",
-		"access" => "required"
+		"idRole" => "required"
 	];
 
 	public function users()
 	{
 		return $this->hasMany('User');
 	}
+
+	public function roles()
+	{
+		return $this->belongsTo('Role');
+	}
+
 
 }

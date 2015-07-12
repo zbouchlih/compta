@@ -22,9 +22,17 @@ class CreateUsersTable extends Migration
 			$table->string('email2',100)->unique();
 			$table->string('tel');
 			$table->integer('idProfile')->unsigned();
+			$table->foreign('idProfile')
+				  ->references('id')
+				  ->on('profiles')
+				  ->onDelete('restrict')
+				  ->onUpdate('restrict');
 			$table->string('password',60);
 			$table->timestamps();
 			$table->rememberToken();
+
+			
+        });
 
 		});
 	}
@@ -36,6 +44,10 @@ class CreateUsersTable extends Migration
 	 */
 	public function down()
 	{
+		Schema::table('users', function(Blueprint $table) {
+			$table->dropForeign('users_idProfile_foreign');
+		});
+
 		Schema::drop('users');
 	}
 

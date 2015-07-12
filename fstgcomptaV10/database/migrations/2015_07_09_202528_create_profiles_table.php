@@ -18,7 +18,10 @@ class CreateProfilesTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('name', 200)->unique();
-            $table->integer('access');
+            $table->integer('idRole')->unsigned();;
+            $table->foreign('idRole')->references('id')->on('roles')
+                        ->onDelete('restrict')
+                        ->onUpdate('restrict');
         });
 	}
 
@@ -29,6 +32,9 @@ class CreateProfilesTable extends Migration
 	 */
 	public function down()
 	{
+		Schema::table('profiles', function(Blueprint $table) {
+            $table->dropForeign('profiles_idRole_foreign');
+        });
 		Schema::drop('profiles');
 	}
 

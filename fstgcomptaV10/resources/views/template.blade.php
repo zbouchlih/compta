@@ -63,6 +63,8 @@
                 <ul class="d-menu" data-role="dropdown">
                     <li><a href="{{ url('users') }}">Utilisateurs</a></li>
                     <li><a href="{{ url('profiles') }}">Gestion des profils</a></li>
+                    <li><a href="{{ url('roles') }}">Gestion des rôles</a></li>
+                    <li><a href="{{ url('rights') }}">Gestion des droits</a></li>
                 </ul>
             </li>
 

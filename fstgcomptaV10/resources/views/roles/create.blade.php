@@ -9,7 +9,6 @@
                 <div class="panel-body">
    					{!! Form::open(['route' => 'roles.store']) !!}
      				   @include('roles.fields')
-     				   <!--- Submit Field --->
                        <div class="col-md-12">
                            {!! Form::submit('Ajouter', ['class' => 'btn btn-standard']) !!}
                        </div>

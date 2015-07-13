@@ -4,9 +4,11 @@ use App\Http\Requests;
 use App\Http\Requests\CreateRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
 use App\Libraries\Repositories\RoleRepository;
+use App\Libraries\Repositories\RightRepository;
 use Flash;
 //use Mitul\Controller\AppBaseController as Controller;
 use Response;
+use DB;
 
 class RoleController extends Controller
 {
@@ -40,7 +42,9 @@ class RoleController extends Controller
 	 */
 	public function create()
 	{
-		return view('roles.create');
+		$rights = DB::table('rights')->get();
+		
+		return view('roles.create',compact('rights'));
 	}
 
 	/**
@@ -50,12 +54,19 @@ class RoleController extends Controller
 	 *
 	 * @return Response
 	 */
-	public function store(CreateRoleRequest $request)
+	public function store(CreateRoleRequest $request, RightRepository $rightRepository )
 	{
 		$input = $request->all();
 
+		//var_dump($input);
+
 		$role = $this->roleRepository->create($input);
 
+		if(isset($input['rights'])) 
+		{
+			$rightRepository->store($role, $input['rights']);
+		}
+		
 		Flash::success('le rôle est enregistré avec succès.');
 
 		return redirect(route('roles.index'));
@@ -91,6 +102,7 @@ class RoleController extends Controller
 	 */
 	public function edit($id)
 	{
+		$rights = DB::table('rights')->get();
 		$role = $this->roleRepository->find($id);
 
 		if(empty($role))
@@ -100,7 +112,7 @@ class RoleController extends Controller
 			return redirect(route('roles.index'));
 		}
 
-		return view('roles.edit')->with('role', $role);
+		return view('roles.edit')->with('role', $role)->with('rights',$rights);
 	}
 
 	/**

@@ -1,7 +1,7 @@
 <?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model as Model;
-
+use App\Models\Right;
 class Role extends Model
 {
     
@@ -33,7 +33,7 @@ class Role extends Model
 
      public function rights()
     {
-        return $this->belongsToMany('Right');
+        return $this->belongsToMany('App\Models\Right');
     }
 
 }

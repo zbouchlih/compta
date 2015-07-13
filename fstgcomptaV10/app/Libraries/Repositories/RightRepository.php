@@ -63,4 +63,15 @@ class RightRepository extends Repository
 
         return $model->delete();
     }
+
+public function store($role, $rights)
+    {
+        
+
+        foreach ($rights as $right) {
+
+                $role->rights()->attach($right);
+    }
+
+}
 }

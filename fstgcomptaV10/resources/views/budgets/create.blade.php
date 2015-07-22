@@ -5,10 +5,10 @@
     @include('common.errors')
 
     <div class="panel panel-default panel-model">
-                <div class="panel-heading">Ajouter un nouveau BudgetFonctionnement</div>
+                <div class="panel-heading">Ajouter un nouveau Budget</div>
                 <div class="panel-body">
-   					{!! Form::open(['route' => 'budgetFonctionnements.store']) !!}
-     				   @include('budgetFonctionnements.fields')
+   					{!! Form::open(['route' => 'budgets.store']) !!}
+     				   @include('budgets.fields')
      				   <!--- Submit Field --->
                        <div class="col-md-12">
                            {!! Form::submit('Ajouter', ['class' => 'btn btn-standard']) !!}

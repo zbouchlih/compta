@@ -61,9 +61,7 @@
                 <ul class="d-menu" data-role="dropdown">
                     <li><a href="{{ url('typeBudgets') }}">Type de Budget</a></li>
                     <li><a href="{{ url('anneeBudgetaires') }}">Année budgétaire</a></li>
-                    <li><a href="{{ url('budgetFonctionnements') }}">budget Fonctionnements</a></li>
-                    <li><a href="{{ url('budgetInvestissements') }}">budget Investissement</a></li>
-                    <li><a href="{{ url('budgetInitials') }}">budget annuel</a></li>
+                    <li><a href="{{ url('budgets') }}">budgets</a></li>
                     <li><a href="{{ url('repartitions') }}">répartition</a></li>
                 </ul>
             </li>

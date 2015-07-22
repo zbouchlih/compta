@@ -34,23 +34,29 @@ class RepartitionController extends Controller
 		if(!isset($idAnnee))
 		{
 
-			$idAnnee=3;
+			$idAnnee=35;
 		}
 		echo $idAnnee;
 		//$repartitions = $this->repartitionRepository->paginate(20);
 		$annees = DB::table('anneeBudgetaires')->lists('annee','id');
-		$budgetFonctionnements = DB::select('select * from budgetfonctionnements where idAnnee = :idAnnee', ['idAnnee' => $idAnnee]);
-		$budgetInvestissements = DB::select('select * from budgetInvestissements where idAnnee = :idAnnee', ['idAnnee' => $idAnnee]);
+		$budgets = DB::select('select * from budgets where idAnnee = :idAnnee', ['idAnnee' => $idAnnee]);
+		//$budgetInvestissements = DB::select('select * from budgetInvestissements where idAnnee = :idAnnee', ['idAnnee' => $idAnnee]);
 
-        $repartitions = DB::table('profiles')
-               ->Join('repartitions', 'profiles.id', '=', 'repartitions.idProfile')
+        $repartitions = DB::table('budgets')
+               ->Join('typeBudgets','budgets.idTypeBudget','=','typeBudgets.id')
+
+               ->Join('anneeBudgetaires','budgets.idAnnee','=','anneeBudgetaires.id')
+               ->Join('repartitions', 'budgets.id', '=', 'repartitions.idBudget')
+               ->Join('profiles','repartitions.idProfile','=','profiles.id')
                ->where('idAnnee','=',$idAnnee)
-               ->paginate(20);
-		$profiles = DB::select('select * from profiles');
+               ->orderBy('idProfile', 'asc')
+               ->select('repartitions.id','anneeBudgetaires.annee','profiles.name','typeBudgets.type','repartitions.budget')
+               ->paginate(40);
+		//$profiles = DB::select('select * from profiles');
 
 			$links = str_replace('/?', '?', $repartitions->render());
 
-        return view('repartitions.index', compact('repartitions', 'links' ,'annees' ,'budgetFonctionnements','budgetInvestissements','profiles'));
+        return view('repartitions.index', compact('repartitions', 'links' ,'annees' ,'budgets','profiles'));
 	}
 
 	/**

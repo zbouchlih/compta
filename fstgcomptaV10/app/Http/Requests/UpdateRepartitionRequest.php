@@ -26,8 +26,7 @@ class UpdateRepartitionRequest extends Request {
 
 		 return [
        
-		"budgetInvestissement" => "required",
-		"budgetFonctionnement" => "required"
+		"budget" => "required"
         ];
 	}
 

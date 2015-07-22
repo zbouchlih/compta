@@ -4,13 +4,13 @@
 
 @include('flash::message')
 <div class="panel panel-default panel-model">
-                <div class="panel-heading">Liste des BudgetFonctionnements</div>
+                <div class="panel-heading">Liste des Budgets</div>
                 <div class="panel-body">
 
                     <div class="row">
                         <div class="col-md-4">
-                            <a href="{!! route('budgetFonctionnements.create') !!}" class="btn btn-default btn-sm">
-                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter BudgetFonctionnement
+                            <a href="{!! route('budgets.create') !!}" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter Budget
                             </a>
                         </div>
 
@@ -29,10 +29,10 @@
                         </div>
                     </div>
                     <div class="resultat">
-                     @if($budgetFonctionnements->isEmpty())
-                        <div class="well text-center">Pas de BudgetFonctionnements trouvé.</div>
+                     @if($budgets->isEmpty())
+                        <div class="well text-center">Pas de Budgets trouvé.</div>
                      @else
-                        @include('budgetFonctionnements.table')
+                        @include('budgets.table')
                      @endif
                    
                     </div>

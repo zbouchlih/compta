@@ -3,8 +3,8 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRepartitionsTable extends Migration
-
+class CreateBudgetsTable extends Migration
+{
 
 	/**
 	 * Run the migrations.
@@ -13,19 +13,20 @@ class CreateRepartitionsTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('repartitions', function(Blueprint $table)
+		Schema::create('budgets', function(Blueprint $table)
 		{
 			$table->increments('id');
+			$table->integer('previsionnel');
+			$table->integer('initial');
+			$table->integer('modificatif');
 			$table->integer('idAnnee')->unsigned();
             $table->foreign('idAnnee')->references('id')->on('anneeBudgetaires')
                         ->onDelete('restrict')
                         ->onUpdate('restrict');
-			$table->integer('idProfile')->unsigned();
-			$table->foreign('idProfile')->references('id')->on('profiles')
+            $table->integer('idTypeBudget')->unsigned();
+            $table->foreign('idTypeBudget')->references('id')->on('typeBudgets')
                         ->onDelete('restrict')
                         ->onUpdate('restrict');
-			$table->integer('budgetInvestissement');
-			$table->integer('budgetFonctionnement');
 			$table->timestamps();
 		});
 	}
@@ -37,12 +38,11 @@ class CreateRepartitionsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::table('repartitions', function(Blueprint $table) {
-          
-            $table->dropForeign('repartitions_idProfile_foreign');
-            $table->dropForeign('repartitions_idAnnee_foreign');
+		Schema::table('budgets', function(Blueprint $table) {
+            $table->dropForeign('budgets_idAnnee_foreign');
+            $table->dropForeign('budgets_idTypeBudget_foreign');
         });
-		Schema::drop('repartitions');
+		Schema::drop('budgets');
 	}
 
 }

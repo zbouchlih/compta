@@ -113,11 +113,11 @@ Route::get('repartitions/{id}/delete', [
 ]);
 
 
-Route::resource('budgetFonctionnements', 'BudgetFonctionnementController');
+Route::resource('budgets', 'BudgetController');
 
-Route::get('budgetFonctionnements/{id}/delete', [
-    'as' => 'budgetFonctionnements.delete',
-    'uses' => 'BudgetFonctionnementController@destroy',
+Route::get('budgets/{id}/delete', [
+    'as' => 'budgets.delete',
+    'uses' => 'BudgetController@destroy',
 ]);
 
 

@@ -9,10 +9,9 @@ class Repartition extends Model
     
 
 	public $fillable = [
-	    "idAnnee",
+	    "idBudget",
 		"idProfile",
-		"budgetInvestissement",
-		"budgetFonctionnement"
+		"budget"
 	];
 
     /**
@@ -21,17 +20,15 @@ class Repartition extends Model
      * @var array
      */
     protected $casts = [
-        "idAnnee" => "integer",
+        "idBudget" => "integer",
 		"idProfile" => "integer",
-		"budgetInvestissement" => "integer",
-		"budgetFonctionnement" => "integer"
+		"budget" => "integer"
     ];
 
 	public static $rules = [
-	    "idAnnee" => "required",
+	    "idBudget" => "required",
 		"idProfile" => "required",
-		"budgetInvestissement" => "required",
-		"budgetFonctionnement" => "required"
+		"budget" => "required"
 	];
 
 }

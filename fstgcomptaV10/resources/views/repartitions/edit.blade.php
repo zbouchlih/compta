@@ -9,8 +9,8 @@
    				 {!! Form::model($repartition, ['route' => ['repartitions.update', $repartition->id], 'method' => 'patch']) !!}
 
 <div class="form-group col-md-6">
-    {!! Form::label('idAnnee', 'Idannee:') !!}
-    {!! Form::number('idAnnee', null, ['class' => 'form-control','disabled']) !!}
+    {!! Form::label('idBudget', 'IdBudget:') !!}
+    {!! Form::number('idBudget', null, ['class' => 'form-control','disabled']) !!}
 </div>
 
 
@@ -21,15 +21,10 @@
 
 
 <div class="form-group col-md-6">
-    {!! Form::label('budgetInvestissement', 'Budgetinvestissement:') !!}
-    {!! Form::number('budgetInvestissement', null, ['class' => 'form-control']) !!}
+    {!! Form::label('budget', 'Budget:') !!}
+    {!! Form::number('budget', null, ['class' => 'form-control']) !!}
 </div>
 
-
-<div class="form-group col-md-6">
-    {!! Form::label('budgetFonctionnement', 'Budgetfonctionnement:') !!}
-    {!! Form::number('budgetFonctionnement', null, ['class' => 'form-control']) !!}
-</div>
 
         
         <div class="col-md-12">

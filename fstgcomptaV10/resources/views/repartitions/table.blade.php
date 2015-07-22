@@ -1,10 +1,11 @@
                     <table class="table table-hover">
 
                         <thead>
-                       
             <th>profil</th>
-            <th>Budget de fonctionnement</th>
-            <th>Budget d'investissement'</th>
+            <th>id budget</th>            
+            
+           
+            <th>Budget</th>
                         
                             <th></th>
                         
@@ -13,10 +14,11 @@
                         <tbody>
                         @foreach($repartitions as $repartition)
                         <tr>
-                           
             <td>{!! $repartition->name !!}</td>
-            <td>{!! $repartition->budgetFonctionnement !!}</td>
-            <td>{!! $repartition->budgetInvestissement !!}</td>
+            <td>{!! $repartition->type!!}</td>                
+            
+           
+            <td>{!! $repartition->budget!!}</td>
                             <td>
                                 <div class="pull-right">
                                 <a href="{!! route('repartitions.show', [$repartition->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-eye-open"  aria-hidden="true"></span></a>

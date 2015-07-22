@@ -36,7 +36,7 @@
                     <div class="form-group col-md-2">
                      {!! Form::open(['route' => ['repartitions.index'], 'method' => 'get']) !!}
                    
-                        {!! Form::select('idAnnee',$annees, '3', ['class' => 'form-control']) !!}
+                        {!! Form::select('idAnnee',$annees, '35', ['class' => 'form-control']) !!}
                       
                        
                            {!! Form::submit('Afficher', ['class' => 'btn btn-standard']) !!}
@@ -51,15 +51,7 @@
 
                     </div>
                     <br> <br> <br> <br>
-                    <div>
-                        @foreach($budgetFonctionnements as $budgetFonctionnement)
-                    Budget : <br>Fonctionnement : prévisionnel  {!! $budgetFonctionnement->previsionnel !!}
-                     initial {!! $budgetFonctionnement->initial !!} modificatif {!! $budgetFonctionnement->modificatif !!}</br>
-                   @endForeach
-                      @foreach($budgetInvestissements as $budgetInvestissement)
-                    investissement : prévisionnel {!! $budgetInvestissement->previsionnel !!} initial {!! $budgetInvestissement->initial !!} modificatif {!! $budgetInvestissement->modificatif !!}
-                    @endForeach
-                    </div>
+                   
                         @include('repartitions.table')
                     @endif
                                        

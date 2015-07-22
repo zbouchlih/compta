@@ -1,7 +1,7 @@
 <!-- Idannee Field -->
 <div class="form-group col-md-6">
-    {!! Form::label('idAnnee', 'Idannee:') !!}
-    <p>{!! $repartition->idAnnee !!}</p>
+    {!! Form::label('idBudget', 'idBudget:') !!}
+    <p>{!! $repartition->idBudget !!}</p>
 </div>
 
 <!-- Idprofile Field -->
@@ -12,13 +12,9 @@
 
 <!-- Budgetinvestissement Field -->
 <div class="form-group col-md-6">
-    {!! Form::label('budgetInvestissement', 'Budgetinvestissement:') !!}
-    <p>{!! $repartition->budgetInvestissement !!}</p>
+    {!! Form::label('budget', 'Budget:') !!}
+    <p>{!! $repartition->budget!!}</p>
 </div>
 
-<!-- Budgetfonctionnement Field -->
-<div class="form-group col-md-6">
-    {!! Form::label('budgetFonctionnement', 'Budgetfonctionnement:') !!}
-    <p>{!! $repartition->budgetFonctionnement !!}</p>
-</div>
+
 

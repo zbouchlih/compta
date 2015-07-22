@@ -2,17 +2,18 @@
 
 use Illuminate\Database\Eloquent\Model as Model;
 
-class BudgetFonctionnement extends Model
+class Budget extends Model
 {
     
-	public $table = "budgetFonctionnements";
+	public $table = "budgets";
     
 
 	public $fillable = [
 	    "previsionnel",
 		"initial",
 		"modificatif",
-		"idAnnee"
+		"idAnnee",
+		"idTypeBudget"
 	];
 
     /**
@@ -24,14 +25,16 @@ class BudgetFonctionnement extends Model
         "previsionnel" => "integer",
 		"initial" => "integer",
 		"modificatif" => "integer",
-		"idAnnee" => "integer"
+		"idAnnee" => "integer",
+		"idTypeBudget" => "integer"
     ];
 
 	public static $rules = [
 	    "previsionnel" => "required",
 		"initial" => "required",
 		"modificatif" => "required",
-		"idAnnee" => "required"
+		"idAnnee" => "required",
+		"idTypeBudget" => "required"
 	];
 
 }

@@ -1,9 +1,9 @@
 <?php namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
-use App\Models\BudgetFonctionnement;
+use App\Models\Budget;
 
-class CreateBudgetFonctionnementRequest extends Request {
+class CreateBudgetRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -22,7 +22,7 @@ class CreateBudgetFonctionnementRequest extends Request {
 	 */
 	public function rules()
 	{
-		return BudgetFonctionnement::$rules;
+		return Budget::$rules;
 	}
 
 }

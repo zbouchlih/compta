@@ -1,11 +1,11 @@
 <?php namespace App\Libraries\Repositories;
 
-use App\Models\BudgetFonctionnement;
+use App\Models\Budget;
 use Bosnadev\Repositories\Eloquent\Repository;
 use Schema;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class BudgetFonctionnementRepository extends Repository
+class BudgetRepository extends Repository
 {
 
     /**
@@ -14,14 +14,14 @@ class BudgetFonctionnementRepository extends Repository
     **/
     public function model()
     {
-      return 'App\Models\BudgetFonctionnement';
+      return 'App\Models\Budget';
     }
 
 	public function search($input)
     {
-        $query = BudgetFonctionnement::query();
+        $query = Budget::query();
 
-        $columns = Schema::getColumnListing('budgetFonctionnements');
+        $columns = Schema::getColumnListing('budgets');
         $attributes = array();
 
         foreach($columns as $attribute)
@@ -46,7 +46,7 @@ class BudgetFonctionnementRepository extends Repository
 
         if(empty($model))
         {
-            throw new HttpException(1001, "BudgetFonctionnement not found");
+            throw new HttpException(1001, "Budget not found");
         }
 
         return $model;
@@ -58,7 +58,7 @@ class BudgetFonctionnementRepository extends Repository
 
         if(empty($model))
         {
-            throw new HttpException(1001, "BudgetFonctionnement not found");
+            throw new HttpException(1001, "Budget not found");
         }
 
         return $model->delete();

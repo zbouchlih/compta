@@ -19,5 +19,11 @@
 <!--- Idannee Field --->
 <div class="form-group col-md-6">
     {!! Form::label('idAnnee', 'Idannee:') !!}
-	 {!! Form::select('idAnnee',$annees, '3', ['class' => 'form-control']) !!}
+	 {!! Form::select('idAnnee',$annees, '35', ['class' => 'form-control']) !!}
 </div>
+<!--- Idannee Field --->
+<div class="form-group col-md-6">
+    {!! Form::label('idTypeBudget', 'idTypeBudget:') !!}
+	 {!! Form::select('idTypeBudget',$typeBudgets, '3', ['class' => 'form-control']) !!}
+</div>
+

@@ -61,7 +61,7 @@
                 <ul class="d-menu" data-role="dropdown">
                     <li><a href="{{ url('typeBudgets') }}">Type de Budget</a></li>
                     <li><a href="{{ url('anneeBudgetaires') }}">Année budgétaire</a></li>
-                    <li><a href="{{ url('budgets') }}">budgets</a></li>
+                    <li><a href="{{ url('budgets') }}">Budgets</a></li>
                     <li><a href="{{ url('repartitions') }}">répartition</a></li>
                 </ul>
             </li>

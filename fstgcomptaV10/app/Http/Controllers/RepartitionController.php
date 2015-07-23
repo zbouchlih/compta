@@ -36,7 +36,7 @@ class RepartitionController extends Controller
 
 			$idAnnee=35;
 		}
-		echo $idAnnee;
+		//echo $idAnnee;
 		//$repartitions = $this->repartitionRepository->paginate(20);
 		$annees = DB::table('anneeBudgetaires')->lists('annee','id');
 		$budgets = DB::select('select * from budgets where idAnnee = :idAnnee', ['idAnnee' => $idAnnee]);

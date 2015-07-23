@@ -86,4 +86,22 @@ public function destroy($role)
          
     }
 
+       public function selected($role,$rights)
+{
+    $checked=array();
+        foreach ($rights as $right) {
+            if(in_array($right->id, $role->getRightListAttribute()->toArray()))
+            {
+                $checked[$right->id]=1;
+            }
+            else
+            {
+                $checked[$right->id]=0;
+            }
+        }
+
+        return $checked;
+         
+    }
+
 }

@@ -14,7 +14,7 @@
                             </a-->
                         </div>
 
-                        <div class="col-md-offset-4 col-md-4">
+                        <!--div class="col-md-offset-4 col-md-4">
 
                             <form class="form-inline pull-right">
                                 <div class="form-group">
@@ -26,7 +26,7 @@
                                 <button type="submit" class="btn btn-standard btn-sm">OK</button>
                             </form>
 
-                        </div>
+                        </div-->
                     </div>
                     <div class="resultat">
                      @if($repartitions->isEmpty())

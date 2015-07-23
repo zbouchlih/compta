@@ -8,24 +8,17 @@
             <div class="panel-body">
    				 {!! Form::model($role, ['route' => ['roles.update', $role->id], 'method' => 'patch']) !!}
 
-       <div class="form-group col-md-1">
+       <div class="form-group col-md-6">
     {!! Form::label('role', 'Role:') !!}
     {!! Form::text('role', null, ['class' => 'form-control']) !!}
 </div>
-<div class="form-group col-md-11">
-     <?php var_dump($role->getRightListAttribute()->toArray()); ?>
+<div class="form-group col-md-6">
+
 
      @foreach($rights as $right)
-      <?php $checked = in_array($right->id, $role->getRightListAttribute()->toArray()) ?1:0;?>
-      <?php 
-
-      if ( is_null($checked) ) 
-        {$checked = $this->checkable('checkbox','rights', $right->id, $checked,$option);}
-    
-    echo $checked;
-    ?>
+         {!! Form::checkbox('rights[]', $right->id,$checked[$right->id]) !!}
         {!! Form::label('droit', $right->right) !!} 
-        {!! Form::checkbox('rights[]', $right->id,$checked) !!}
+       </br>
      @endforeach
 </div>
 

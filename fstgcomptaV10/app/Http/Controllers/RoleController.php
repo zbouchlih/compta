@@ -9,16 +9,19 @@ use Flash;
 //use Mitul\Controller\AppBaseController as Controller;
 use Response;
 use DB;
+use App\Models\Role;
 
 class RoleController extends Controller
 {
 
 	/** @var  RoleRepository */
 	private $roleRepository;
+	private $rightRepository;
 
-	function __construct(RoleRepository $roleRepo)
+	function __construct(RoleRepository $roleRepo,RightRepository $rightRepo)
 	{
 		$this->roleRepository = $roleRepo;
+		$this->rightRepository=$rightRepo;
 		$this->middleware('auth');
 	}
 
@@ -105,7 +108,14 @@ class RoleController extends Controller
 	{
 		$rights = DB::table('rights')->get();
 
+		$role = $this->roleRepository->find($id);
+		$checked= array();
 		
+		$checked=$this->rightRepository->selected($role,$rights);
+		
+
+
+
 		$role = $this->roleRepository->find($id);
 
 		if(empty($role))
@@ -115,7 +125,7 @@ class RoleController extends Controller
 			return redirect(route('roles.index'));
 		}
 
-		return view('roles.edit')->with('role', $role)->with('rights',$rights);
+		return view('roles.edit')->with('role', $role)->with('checked',$checked)->with('rights',$rights);
 	}
 
 	/**

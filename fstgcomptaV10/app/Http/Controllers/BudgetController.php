@@ -33,7 +33,7 @@ class BudgetController extends Controller
                ->Join('typeBudgets', 'typeBudgets.id', '=', 'budgets.idTypeBudget')
                ->Join('anneeBudgetaires', 'anneeBudgetaires.id', '=', 'budgets.idAnnee')
                ->orderBy('idAnnee', 'asc')
-               ->select('budgets.id','budgets.previsionnel','budgets.initial','budgets.modificatif','typeBudgets.type','anneeBudgetaires.annee')
+               ->select('budgets.id','budgets.previsionnel','budgets.initial','budgets.modificatif','typeBudgets.type','anneeBudgetaires.annee','anneeBudgetaires.etat')
                ->paginate(7);
 
 			$links = str_replace('/?', '?', $budgets->render());

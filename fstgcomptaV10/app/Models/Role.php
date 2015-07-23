@@ -35,5 +35,12 @@ class Role extends Model
     {
         return $this->belongsToMany('App\Models\Right');
     }
+    public function getRightListAttribute()
+    {
+
+        return $this->rights->lists('id');
+
+    }
+
 
 }

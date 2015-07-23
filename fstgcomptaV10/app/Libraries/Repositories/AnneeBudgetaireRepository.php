@@ -1,11 +1,11 @@
 <?php namespace App\Libraries\Repositories;
 
-use App\Models\AnneeBudgetaire;
+use App\Models\Anneebudgetaire;
 use Bosnadev\Repositories\Eloquent\Repository;
 use Schema;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class AnneeBudgetaireRepository extends Repository
+class AnneebudgetaireRepository extends Repository
 {
 
     /**
@@ -14,14 +14,14 @@ class AnneeBudgetaireRepository extends Repository
     **/
     public function model()
     {
-      return 'App\Models\AnneeBudgetaire';
+      return 'App\Models\Anneebudgetaire';
     }
 
 	public function search($input)
     {
-        $query = AnneeBudgetaire::query();
+        $query = Anneebudgetaire::query();
 
-        $columns = Schema::getColumnListing('anneeBudgetaires');
+        $columns = Schema::getColumnListing('anneebudgetaires');
         $attributes = array();
 
         foreach($columns as $attribute)
@@ -46,7 +46,7 @@ class AnneeBudgetaireRepository extends Repository
 
         if(empty($model))
         {
-            throw new HttpException(1001, "AnneeBudgetaire not found");
+            throw new HttpException(1001, "Anneebudgetaire not found");
         }
 
         return $model;
@@ -58,7 +58,7 @@ class AnneeBudgetaireRepository extends Repository
 
         if(empty($model))
         {
-            throw new HttpException(1001, "AnneeBudgetaire not found");
+            throw new HttpException(1001, "Anneebudgetaire not found");
         }
 
         return $model->delete();

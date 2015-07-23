@@ -6,7 +6,7 @@
     <div class="panel-heading">Détails</div>
         <div class="panel-body">
             <div class="resultat">
-                @include('typeBudgets.show_fields')
+                @include('typebudgets.show_fields')
             </div>
                    
         </div>

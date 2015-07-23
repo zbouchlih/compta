@@ -2,10 +2,10 @@
 
 use Illuminate\Database\Eloquent\Model as Model;
 
-class TypeBudget extends Model
+class Typebudget extends Model
 {
     
-	public $table = "typeBudgets";
+	public $table = "typebudgets";
     
 
 	public $fillable = [

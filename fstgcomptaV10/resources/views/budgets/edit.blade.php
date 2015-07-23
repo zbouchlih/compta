@@ -31,8 +31,8 @@
 </div>
 
 <div class="form-group col-md-6">
-    {!! Form::label('idTypeBudget', 'idTypeBudget:') !!}
-     {!! Form::select('idTypeBudget',$typeBudgets, '1', ['class' => 'form-control','disabled']) !!}
+    {!! Form::label('idTypebudget', 'idTypebudget:') !!}
+     {!! Form::select('idTypebudget',$typebudgets, '1', ['class' => 'form-control','disabled']) !!}
 </div>-->
 
         

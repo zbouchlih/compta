@@ -7,8 +7,8 @@
     <div class="panel panel-default panel-model">
                 <div class="panel-heading">Ajouter un nouveau Type de budget</div>
                 <div class="panel-body">
-   					{!! Form::open(['route' => 'typeBudgets.store']) !!}
-     				   @include('typeBudgets.fields')
+   					{!! Form::open(['route' => 'typebudgets.store']) !!}
+     				   @include('typebudgets.fields')
      				   <!--- Submit Field --->
                        <div class="col-md-12">
                            {!! Form::submit('Ajouter', ['class' => 'btn btn-standard']) !!}

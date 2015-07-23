@@ -5,10 +5,10 @@
     @include('common.errors')
 
     <div class="panel panel-default panel-model">
-                <div class="panel-heading">Ajouter une nouvelle Annee Budgetaire</div>
+                <div class="panel-heading">Ajouter une nouvelle Annee budgetaire</div>
                 <div class="panel-body">
-   					{!! Form::open(['route' => 'anneeBudgetaires.store']) !!}
-     				   @include('anneeBudgetaires.fields')
+   					{!! Form::open(['route' => 'anneebudgetaires.store']) !!}
+     				   @include('anneebudgetaires.fields')
      				   <!--- Submit Field --->
                        <div class="col-md-12">
                            {!! Form::submit('Ajouter', ['class' => 'btn btn-standard']) !!}

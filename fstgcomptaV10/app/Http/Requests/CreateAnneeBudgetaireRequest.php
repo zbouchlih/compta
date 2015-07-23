@@ -1,9 +1,9 @@
 <?php namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
-use App\Models\AnneeBudgetaire;
+use App\Models\Anneebudgetaire;
 
-class CreateAnneeBudgetaireRequest extends Request {
+class CreateAnneebudgetaireRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -22,7 +22,7 @@ class CreateAnneeBudgetaireRequest extends Request {
 	 */
 	public function rules()
 	{
-		return AnneeBudgetaire::$rules;
+		return Anneebudgetaire::$rules;
 	}
 
 }

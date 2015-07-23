@@ -13,7 +13,7 @@ class Budget extends Model
 		"initial",
 		"modificatif",
 		"idAnnee",
-		"idTypeBudget"
+		"idTypebudget"
 	];
 
     /**
@@ -26,7 +26,7 @@ class Budget extends Model
 		"initial" => "integer",
 		"modificatif" => "integer",
 		"idAnnee" => "integer",
-		"idTypeBudget" => "integer"
+		"idTypebudget" => "integer"
     ];
 
 	public static $rules = [
@@ -34,7 +34,7 @@ class Budget extends Model
 		"initial" => "required",
 		"modificatif" => "required",
 		"idAnnee" => "required",
-		"idTypeBudget" => "required"
+		"idTypebudget" => "required"
 	];
 
 }

@@ -20,11 +20,11 @@ class CreateBudgetsTable extends Migration
 			$table->integer('initial');
 			$table->integer('modificatif');
 			$table->integer('idAnnee')->unsigned();
-            $table->foreign('idAnnee')->references('id')->on('anneeBudgetaires')
+            $table->foreign('idAnnee')->references('id')->on('anneebudgetaires')
                         ->onDelete('restrict')
                         ->onUpdate('restrict');
-            $table->integer('idTypeBudget')->unsigned();
-            $table->foreign('idTypeBudget')->references('id')->on('typeBudgets')
+            $table->integer('idTypebudget')->unsigned();
+            $table->foreign('idTypebudget')->references('id')->on('typebudgets')
                         ->onDelete('restrict')
                         ->onUpdate('restrict');
 			$table->timestamps();
@@ -40,7 +40,7 @@ class CreateBudgetsTable extends Migration
 	{
 		Schema::table('budgets', function(Blueprint $table) {
             $table->dropForeign('budgets_idAnnee_foreign');
-            $table->dropForeign('budgets_idTypeBudget_foreign');
+            $table->dropForeign('budgets_idTypebudget_foreign');
         });
 		Schema::drop('budgets');
 	}

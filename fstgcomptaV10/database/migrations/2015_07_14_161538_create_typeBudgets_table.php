@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTypeBudgetsTable extends Migration
+class CreatetypebudgetsTable extends Migration
 {
 
 	/**
@@ -13,7 +13,7 @@ class CreateTypeBudgetsTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('typeBudgets', function(Blueprint $table)
+		Schema::create('typebudgets', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('type');
@@ -28,7 +28,7 @@ class CreateTypeBudgetsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('typeBudgets');
+		Schema::drop('typebudgets');
 	}
 
 }

@@ -30,10 +30,10 @@ class BudgetController extends Controller
 	{
 		
 		$budgets = DB::table('budgets')
-               ->Join('typeBudgets', 'typeBudgets.id', '=', 'budgets.idTypeBudget')
-               ->Join('anneeBudgetaires', 'anneeBudgetaires.id', '=', 'budgets.idAnnee')
+               ->Join('typebudgets', 'typebudgets.id', '=', 'budgets.idTypebudget')
+               ->Join('anneebudgetaires', 'anneebudgetaires.id', '=', 'budgets.idAnnee')
                ->orderBy('idAnnee', 'asc')
-               ->select('budgets.id','budgets.previsionnel','budgets.initial','budgets.modificatif','typeBudgets.type','anneeBudgetaires.annee','anneeBudgetaires.etat')
+               ->select('budgets.id','budgets.previsionnel','budgets.initial','budgets.modificatif','typebudgets.type','anneebudgetaires.annee','anneebudgetaires.etat')
                ->paginate(7);
 
 			$links = str_replace('/?', '?', $budgets->render());
@@ -48,9 +48,9 @@ class BudgetController extends Controller
 	 */
 	public function create()
 	{
-		$annees = DB::table('anneeBudgetaires')->lists('annee','id');
-		$typeBudgets = DB::table('typeBudgets')->lists('type','id');
-		return view('budgets.create', compact('annees','typeBudgets'));
+		$annees = DB::table('anneebudgetaires')->lists('annee','id');
+		$typebudgets = DB::table('typebudgets')->lists('type','id');
+		return view('budgets.create', compact('annees','typebudgets'));
 	}
 
 	/**
@@ -103,9 +103,9 @@ class BudgetController extends Controller
 	{
 		$budget = $this->budgetRepository->find($id);
 
-		$typeBudgets = DB::table('typeBudgets')->lists('type','id');
+		$typebudgets = DB::table('typebudgets')->lists('type','id');
 		
-		$annees = DB::table('anneeBudgetaires')->lists('annee','id');
+		$annees = DB::table('anneebudgetaires')->lists('annee','id');
 		if(empty($budget))
 		{
 			Flash::error('Budgetque vous cherchez n\'est pas disponible');
@@ -115,7 +115,7 @@ class BudgetController extends Controller
 
 		return view('budgets.edit')->with('budget', $budget)
 												->with('annees', $annees)
-												->with('typeBudgets', $typeBudgets);
+												->with('typebudgets', $typebudgets);
 	}
 
 	/**

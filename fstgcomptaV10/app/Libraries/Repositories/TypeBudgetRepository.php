@@ -1,11 +1,11 @@
 <?php namespace App\Libraries\Repositories;
 
-use App\Models\TypeBudget;
+use App\Models\Typebudget;
 use Bosnadev\Repositories\Eloquent\Repository;
 use Schema;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-class TypeBudgetRepository extends Repository
+class TypebudgetRepository extends Repository
 {
 
     /**
@@ -14,14 +14,14 @@ class TypeBudgetRepository extends Repository
     **/
     public function model()
     {
-      return 'App\Models\TypeBudget';
+      return 'App\Models\Typebudget';
     }
 
 	public function search($input)
     {
-        $query = TypeBudget::query();
+        $query = Typebudget::query();
 
-        $columns = Schema::getColumnListing('typeBudgets');
+        $columns = Schema::getColumnListing('typebudgets');
         $attributes = array();
 
         foreach($columns as $attribute)
@@ -46,7 +46,7 @@ class TypeBudgetRepository extends Repository
 
         if(empty($model))
         {
-            throw new HttpException(1001, "TypeBudget not found");
+            throw new HttpException(1001, "typebudget not found");
         }
 
         return $model;
@@ -58,7 +58,7 @@ class TypeBudgetRepository extends Repository
 
         if(empty($model))
         {
-            throw new HttpException(1001, "TypeBudget not found");
+            throw new HttpException(1001, "typebudget not found");
         }
 
         return $model->delete();

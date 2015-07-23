@@ -9,12 +9,12 @@
                         </thead>
 
                         <tbody>
-                        @foreach($anneeBudgetaires as $anneeBudgetaire)
+                        @foreach($anneebudgetaires as $anneebudgetaire)
                         <tr>
-                            <td>{!! $anneeBudgetaire->annee !!}</td>
+                            <td>{!! $anneebudgetaire->annee !!}</td>
 			<td>
 
-@if($anneeBudgetaire->etat == 1)
+@if($anneebudgetaire->etat == 1)
 En cours
 @else
 
@@ -24,11 +24,11 @@ En cours
             </td>
                             <td>
                                 <div class="pull-right">
-                                <a href="{!! route('anneeBudgetaires.show', [$anneeBudgetaire->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-eye-open"  aria-hidden="true"></span></a>
+                                <a href="{!! route('anneebudgetaires.show', [$anneebudgetaire->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-eye-open"  aria-hidden="true"></span></a>
 
-                                <a href="{!! route('anneeBudgetaires.edit', [$anneeBudgetaire->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span></a>
+                                <a href="{!! route('anneebudgetaires.edit', [$anneebudgetaire->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span></a>
 
-                                <a href="{!! route('anneeBudgetaires.delete', [$anneeBudgetaire->id]) !!}" onclick="return confirm('Etes-vous sur de vouloir supprimer AnneeBudgetaire?')" class="btn btn-danger btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-trash"  aria-hidden="true"></span></a>
+                                <a href="{!! route('anneebudgetaires.delete', [$anneebudgetaire->id]) !!}" onclick="return confirm('Etes-vous sur de vouloir supprimer Anneebudgetaire?')" class="btn btn-danger btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-trash"  aria-hidden="true"></span></a>
                                 </div>
                             </td>
                         </tr>

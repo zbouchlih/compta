@@ -9,7 +9,7 @@
 
                     <div class="row">
                         <div class="col-md-4">
-                            <a href="{!! route('typeBudgets.create') !!}" class="btn btn-default btn-sm">
+                            <a href="{!! route('typebudgets.create') !!}" class="btn btn-default btn-sm">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter un Type de budget
                             </a>
                         </div>
@@ -29,10 +29,10 @@
                         </div-->
                     </div>
                     <div class="resultat">
-                     @if($typeBudgets->isEmpty())
+                     @if($typebudgets->isEmpty())
                         <div class="well text-center">Aucun type de budget trouvé.</div>
                      @else
-                        @include('typeBudgets.table')
+                        @include('typebudgets.table')
                      @endif
                    
                     </div>

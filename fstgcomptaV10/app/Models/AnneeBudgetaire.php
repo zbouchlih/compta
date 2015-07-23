@@ -2,10 +2,10 @@
 
 use Illuminate\Database\Eloquent\Model as Model;
 
-class AnneeBudgetaire extends Model
+class Anneebudgetaire extends Model
 {
     
-	public $table = "anneeBudgetaires";
+	public $table = "anneebudgetaires";
     
 
 	public $fillable = [

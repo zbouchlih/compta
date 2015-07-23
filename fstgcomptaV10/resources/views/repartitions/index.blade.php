@@ -34,9 +34,10 @@
                      @else
 
                     <div class="form-group col-md-2">
+
                      {!! Form::open(['route' => ['repartitions.index'], 'method' => 'get']) !!}
                    
-                        {!! Form::select('idAnnee',$annees, '35', ['class' => 'form-control']) !!}
+                        {!! Form::select('idAnnee',$annees, $var, ['class' => 'form-control']) !!}
                       
                        
                            {!! Form::submit('Afficher', ['class' => 'btn btn-standard']) !!}

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAnneeBudgetairesTable extends Migration
+class CreateAnneebudgetairesTable extends Migration
 {
 
 	/**
@@ -13,7 +13,7 @@ class CreateAnneeBudgetairesTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('anneeBudgetaires', function(Blueprint $table)
+		Schema::create('anneebudgetaires', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('annee');
@@ -29,7 +29,7 @@ class CreateAnneeBudgetairesTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('anneeBudgetaires');
+		Schema::drop('anneebudgetaires');
 	}
 
 }

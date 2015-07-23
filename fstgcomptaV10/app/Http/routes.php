@@ -81,28 +81,22 @@ Route::get('roleRights/{id}/delete', [
 ]);
 
 
-Route::resource('typeBudgets', 'TypeBudgetController');
+Route::resource('typebudgets', 'TypebudgetController');
 
-Route::get('typeBudgets/{id}/delete', [
-    'as' => 'typeBudgets.delete',
-    'uses' => 'TypeBudgetController@destroy',
+Route::get('typebudgets/{id}/delete', [
+    'as' => 'typebudgets.delete',
+    'uses' => 'TypebudgetController@destroy',
 ]);
 
 
-Route::resource('anneeBudgetaires', 'AnneeBudgetaireController');
+Route::resource('anneebudgetaires', 'AnneebudgetaireController');
 
-Route::get('anneeBudgetaires/{id}/delete', [
-    'as' => 'anneeBudgetaires.delete',
-    'uses' => 'AnneeBudgetaireController@destroy',
+Route::get('anneebudgetaires/{id}/delete', [
+    'as' => 'anneebudgetaires.delete',
+    'uses' => 'AnneebudgetaireController@destroy',
 ]);
 
 
-Route::resource('budgetInitials', 'BudgetInitialController');
-
-Route::get('budgetInitials/{id}/delete', [
-    'as' => 'budgetInitials.delete',
-    'uses' => 'BudgetInitialController@destroy',
-]);
 
 
 Route::resource('repartitions', 'RepartitionController');
@@ -120,11 +114,4 @@ Route::get('budgets/{id}/delete', [
     'uses' => 'BudgetController@destroy',
 ]);
 
-
-Route::resource('budgetInvestissements', 'BudgetInvestissementController');
-
-Route::get('budgetInvestissements/{id}/delete', [
-    'as' => 'budgetInvestissements.delete',
-    'uses' => 'BudgetInvestissementController@destroy',
-]);
 

@@ -1,64 +1,64 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Requests\CreateAnneeBudgetaireRequest;
-use App\Http\Requests\UpdateAnneeBudgetaireRequest;
-use App\Libraries\Repositories\AnneeBudgetaireRepository;
+use App\Http\Requests\CreateAnneebudgetaireRequest;
+use App\Http\Requests\UpdateAnneebudgetaireRequest;
+use App\Libraries\Repositories\AnneebudgetaireRepository;
 use Flash;
 //use Mitul\Controller\AppBaseController as Controller;
 use Response;
 use DB;
 
-class AnneeBudgetaireController extends Controller
+class AnneebudgetaireController extends Controller
 {
 
-	/** @var  AnneeBudgetaireRepository */
-	private $anneeBudgetaireRepository;
+	/** @var  AnneebudgetaireRepository */
+	private $anneebudgetaireRepository;
 
-	function __construct(AnneeBudgetaireRepository $anneeBudgetaireRepo)
+	function __construct(AnneebudgetaireRepository $anneebudgetaireRepo)
 	{
-		$this->anneeBudgetaireRepository = $anneeBudgetaireRepo;
+		$this->anneebudgetaireRepository = $anneebudgetaireRepo;
 		$this->middleware('auth');
 	}
 
 	/**
-	 * Display a listing of the AnneeBudgetaire.
+	 * Display a listing of the Anneebudgetaire.
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-		$anneeBudgetaires = $this->anneeBudgetaireRepository->paginate(7);
+		$anneebudgetaires = $this->anneebudgetaireRepository->paginate(7);
 
-			$links = str_replace('/?', '?', $anneeBudgetaires->render());
+			$links = str_replace('/?', '?', $anneebudgetaires->render());
 
-        return view('anneeBudgetaires.index', compact('anneeBudgetaires', 'links'));
+        return view('anneebudgetaires.index', compact('anneebudgetaires', 'links'));
 	}
 
 	/**
-	 * Show the form for creating a new AnneeBudgetaire.
+	 * Show the form for creating a new Anneebudgetaire.
 	 *
 	 * @return Response
 	 */
 	public function create()
 	{
-		return view('anneeBudgetaires.create');
+		return view('anneebudgetaires.create');
 	}
 
 	/**
-	 * Store a newly created AnneeBudgetaire in storage.
+	 * Store a newly created Anneebudgetaire in storage.
 	 *
-	 * @param CreateAnneeBudgetaireRequest $request
+	 * @param CreateAnneebudgetaireRequest $request
 	 *
 	 * @return Response
 	 */
-	public function store(CreateAnneeBudgetaireRequest $request)
+	public function store(CreateAnneebudgetaireRequest $request)
 	{
 		$input = $request->all();
 		
-		$anneeBudgetaire = $this->anneeBudgetaireRepository->create($input);
+		$anneebudgetaire = $this->anneebudgetaireRepository->create($input);
 		$profiles = DB::select('select * from profiles');
-		$idAnnee=DB::table('anneeBudgetaires')->max('id');
+		$idAnnee=DB::table('anneebudgetaires')->max('id');
 		DB::table('budgets')->insert([
 				  'idTypeBudget' => 1,
 				  'idAnnee' => $idAnnee,
@@ -95,13 +95,13 @@ class AnneeBudgetaireController extends Controller
 		          'initial' => 0,
 		          'modificatif' => 0
 			]);*/
-		Flash::success('AnneeBudgetaire est enregistré avec succès.');
+		Flash::success('Anneebudgetaire est enregistré avec succès.');
 
-		return redirect(route('anneeBudgetaires.index'));
+		return redirect(route('anneebudgetaires.index'));
 	}
 
 	/**
-	 * Display the specified AnneeBudgetaire.
+	 * Display the specified Anneebudgetaire.
 	 *
 	 * @param  int $id
 	 *
@@ -109,20 +109,20 @@ class AnneeBudgetaireController extends Controller
 	 */
 	public function show($id)
 	{
-		$anneeBudgetaire = $this->anneeBudgetaireRepository->find($id);
+		$anneebudgetaire = $this->anneebudgetaireRepository->find($id);
 
-		if(empty($anneeBudgetaire))
+		if(empty($anneebudgetaire))
 		{
-			Flash::error('AnneeBudgetaire que vous cherchez n est pas disponible');
+			Flash::error('Anneebudgetaire que vous cherchez n est pas disponible');
 
-			return redirect(route('anneeBudgetaires.index'));
+			return redirect(route('anneebudgetaires.index'));
 		}
 
-		return view('anneeBudgetaires.show')->with('anneeBudgetaire', $anneeBudgetaire);
+		return view('anneebudgetaires.show')->with('anneebudgetaire', $anneebudgetaire);
 	}
 
 	/**
-	 * Show the form for editing the specified AnneeBudgetaire.
+	 * Show the form for editing the specified Anneebudgetaire.
 	 *
 	 * @param  int $id
 	 *
@@ -130,46 +130,46 @@ class AnneeBudgetaireController extends Controller
 	 */
 	public function edit($id)
 	{
-		$anneeBudgetaire = $this->anneeBudgetaireRepository->find($id);
+		$anneebudgetaire = $this->anneebudgetaireRepository->find($id);
 
-		if(empty($anneeBudgetaire))
+		if(empty($anneebudgetaire))
 		{
-			Flash::error('AnneeBudgetaire que vous cherchez n est pas disponible');
+			Flash::error('Anneebudgetaire que vous cherchez n est pas disponible');
 
-			return redirect(route('anneeBudgetaires.index'));
+			return redirect(route('anneebudgetaires.index'));
 		}
 
-		return view('anneeBudgetaires.edit')->with('anneeBudgetaire', $anneeBudgetaire);
+		return view('anneebudgetaires.edit')->with('anneebudgetaire', $anneebudgetaire);
 	}
 
 	/**
-	 * Update the specified AnneeBudgetaire in storage.
+	 * Update the specified Anneebudgetaire in storage.
 	 *
 	 * @param  int              $id
-	 * @param UpdateAnneeBudgetaireRequest $request
+	 * @param UpdateAnneebudgetaireRequest $request
 	 *
 	 * @return Response
 	 */
-	public function update($id, UpdateAnneeBudgetaireRequest $request)
+	public function update($id, UpdateAnneebudgetaireRequest $request)
 	{
-		$anneeBudgetaire = $this->anneeBudgetaireRepository->find($id);
+		$anneebudgetaire = $this->anneebudgetaireRepository->find($id);
 
-		if(empty($anneeBudgetaire))
+		if(empty($anneebudgetaire))
 		{
-			Flash::error('AnneeBudgetaire que vous cherchez n est pas disponible');
+			Flash::error('Anneebudgetaire que vous cherchez n est pas disponible');
 
-			return redirect(route('anneeBudgetaires.index'));
+			return redirect(route('anneebudgetaires.index'));
 		}
 
-		$anneeBudgetaire = $this->anneeBudgetaireRepository->updateRich($request->all(), $id);
+		$anneebudgetaire = $this->anneebudgetaireRepository->updateRich($request->all(), $id);
 
-		Flash::success('AnneeBudgetaire est modifié avec succés.');
+		Flash::success('Anneebudgetaire est modifié avec succés.');
 
-		return redirect(route('anneeBudgetaires.index'));
+		return redirect(route('anneebudgetaires.index'));
 	}
 
 	/**
-	 * Remove the specified AnneeBudgetaire from storage.
+	 * Remove the specified Anneebudgetaire from storage.
 	 *
 	 * @param  int $id
 	 *
@@ -177,19 +177,19 @@ class AnneeBudgetaireController extends Controller
 	 */
 	public function destroy($id)
 	{
-		$anneeBudgetaire = $this->anneeBudgetaireRepository->find($id);
+		$anneebudgetaire = $this->anneebudgetaireRepository->find($id);
 
-		if(empty($anneeBudgetaire))
+		if(empty($anneebudgetaire))
 		{
-			Flash::error('AnneeBudgetaire que vous cherchez n est pas disponible');
+			Flash::error('Anneebudgetaire que vous cherchez n est pas disponible');
 
-			return redirect(route('anneeBudgetaires.index'));
+			return redirect(route('anneebudgetaires.index'));
 		}
 
-		$this->anneeBudgetaireRepository->delete($id);
+		$this->anneebudgetaireRepository->delete($id);
 
-		Flash::success('AnneeBudgetaire est supprimé avec succès.');
+		Flash::success('Anneebudgetaire est supprimé avec succès.');
 
-		return redirect(route('anneeBudgetaires.index'));
+		return redirect(route('anneebudgetaires.index'));
 	}
 }

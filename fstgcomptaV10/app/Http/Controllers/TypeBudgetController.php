@@ -1,69 +1,69 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Http\Requests\CreateTypeBudgetRequest;
-use App\Http\Requests\UpdateTypeBudgetRequest;
-use App\Libraries\Repositories\TypeBudgetRepository;
+use App\Http\Requests\CreateTypebudgetRequest;
+use App\Http\Requests\UpdateTypebudgetRequest;
+use App\Libraries\Repositories\TypebudgetRepository;
 use Flash;
 //use Mitul\Controller\AppBaseController as Controller;
 use Response;
 
-class TypeBudgetController extends Controller
+class TypebudgetController extends Controller
 {
 
-	/** @var  TypeBudgetRepository */
-	private $typeBudgetRepository;
+	/** @var  TypebudgetRepository */
+	private $typebudgetRepository;
 
-	function __construct(TypeBudgetRepository $typeBudgetRepo)
+	function __construct(TypebudgetRepository $typebudgetRepo)
 	{
-		$this->typeBudgetRepository = $typeBudgetRepo;
+		$this->typebudgetRepository = $typebudgetRepo;
 		$this->middleware('auth');
 	}
 
 	/**
-	 * Display a listing of the TypeBudget.
+	 * Display a listing of the Typebudget.
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-		$typeBudgets = $this->typeBudgetRepository->paginate(7);
+		$typebudgets = $this->typebudgetRepository->paginate(7);
 
-			$links = str_replace('/?', '?', $typeBudgets->render());
+			$links = str_replace('/?', '?', $typebudgets->render());
 
-        return view('typeBudgets.index', compact('typeBudgets', 'links'));
+        return view('typebudgets.index', compact('typebudgets', 'links'));
 	}
 
 	/**
-	 * Show the form for creating a new TypeBudget.
+	 * Show the form for creating a new Typebudget.
 	 *
 	 * @return Response
 	 */
 	public function create()
 	{
-		return view('typeBudgets.create');
+		return view('typebudgets.create');
 	}
 
 	/**
-	 * Store a newly created TypeBudget in storage.
+	 * Store a newly created Typebudget in storage.
 	 *
-	 * @param CreateTypeBudgetRequest $request
+	 * @param CreateTypebudgetRequest $request
 	 *
 	 * @return Response
 	 */
-	public function store(CreateTypeBudgetRequest $request)
+	public function store(CreateTypebudgetRequest $request)
 	{
 		$input = $request->all();
 
-		$typeBudget = $this->typeBudgetRepository->create($input);
+		$typebudget = $this->typebudgetRepository->create($input);
 
 		Flash::success('Le type de budget est enregistré avec succès.');
 
-		return redirect(route('typeBudgets.index'));
+		return redirect(route('typebudgets.index'));
 	}
 
 	/**
-	 * Display the specified TypeBudget.
+	 * Display the specified Typebudget.
 	 *
 	 * @param  int $id
 	 *
@@ -71,20 +71,20 @@ class TypeBudgetController extends Controller
 	 */
 	public function show($id)
 	{
-		$typeBudget = $this->typeBudgetRepository->find($id);
+		$typebudget = $this->typebudgetRepository->find($id);
 
-		if(empty($typeBudget))
+		if(empty($typebudget))
 		{
 			Flash::error('Le Type de budget que vous cherchez n\'est pas disponible');
 
-			return redirect(route('typeBudgets.index'));
+			return redirect(route('typebudgets.index'));
 		}
 
-		return view('typeBudgets.show')->with('typeBudget', $typeBudget);
+		return view('typebudgets.show')->with('typebudget', $typebudget);
 	}
 
 	/**
-	 * Show the form for editing the specified TypeBudget.
+	 * Show the form for editing the specified Typebudget.
 	 *
 	 * @param  int $id
 	 *
@@ -92,46 +92,46 @@ class TypeBudgetController extends Controller
 	 */
 	public function edit($id)
 	{
-		$typeBudget = $this->typeBudgetRepository->find($id);
+		$typebudget = $this->typebudgetRepository->find($id);
 
-		if(empty($typeBudget))
+		if(empty($typebudget))
 		{
 			Flash::error('Le Type de budget que vous cherchez n\'est pas disponible');
 
-			return redirect(route('typeBudgets.index'));
+			return redirect(route('typebudgets.index'));
 		}
 
-		return view('typeBudgets.edit')->with('typeBudget', $typeBudget);
+		return view('typebudgets.edit')->with('typebudget', $typebudget);
 	}
 
 	/**
-	 * Update the specified TypeBudget in storage.
+	 * Update the specified Typebudget in storage.
 	 *
 	 * @param  int              $id
-	 * @param UpdateTypeBudgetRequest $request
+	 * @param UpdateTypebudgetRequest $request
 	 *
 	 * @return Response
 	 */
-	public function update($id, UpdateTypeBudgetRequest $request)
+	public function update($id, UpdateTypebudgetRequest $request)
 	{
-		$typeBudget = $this->typeBudgetRepository->find($id);
+		$typebudget = $this->typebudgetRepository->find($id);
 
-		if(empty($typeBudget))
+		if(empty($typebudget))
 		{
-			Flash::error('Le Type de Budget que vous cherchez n\'est pas disponible');
+			Flash::error('Le Type de budget que vous cherchez n\'est pas disponible');
 
-			return redirect(route('typeBudgets.index'));
+			return redirect(route('typebudgets.index'));
 		}
 
-		$typeBudget = $this->typeBudgetRepository->updateRich($request->all(), $id);
+		$typebudget = $this->typebudgetRepository->updateRich($request->all(), $id);
 
-		Flash::success('Le Type de Budget est modifié avec succés.');
+		Flash::success('Le Type de budget est modifié avec succés.');
 
-		return redirect(route('typeBudgets.index'));
+		return redirect(route('typebudgets.index'));
 	}
 
 	/**
-	 * Remove the specified TypeBudget from storage.
+	 * Remove the specified Typebudget from storage.
 	 *
 	 * @param  int $id
 	 *
@@ -139,19 +139,19 @@ class TypeBudgetController extends Controller
 	 */
 	public function destroy($id)
 	{
-		$typeBudget = $this->typeBudgetRepository->find($id);
+		$typebudget = $this->typebudgetRepository->find($id);
 
-		if(empty($typeBudget))
+		if(empty($typebudget))
 		{
-			Flash::error('Le Type de Budget que vous cherchez n\'est pas disponible');
+			Flash::error('Le Type de budget que vous cherchez n\'est pas disponible');
 
-			return redirect(route('typeBudgets.index'));
+			return redirect(route('typebudgets.index'));
 		}
 
-		$this->typeBudgetRepository->delete($id);
+		$this->typebudgetRepository->delete($id);
 
-		Flash::success('Le Type de Budget est supprimé avec succès.');
+		Flash::success('Le Type de budget est supprimé avec succès.');
 
-		return redirect(route('typeBudgets.index'));
+		return redirect(route('typebudgets.index'));
 	}
 }

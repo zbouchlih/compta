@@ -1,9 +1,9 @@
 <?php namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
-use App\Models\TypeBudget;
+use App\Models\Typebudget;
 
-class UpdateTypeBudgetRequest extends Request {
+class UpdateTypebudgetRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -22,7 +22,7 @@ class UpdateTypeBudgetRequest extends Request {
 	 */
 	public function rules()
 	{
-		return TypeBudget::$rules;
+		return Typebudget::$rules;
 	}
 
 }

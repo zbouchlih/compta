@@ -23,7 +23,7 @@
 </div>
 <!--- Idannee Field --->
 <div class="form-group col-md-6">
-    {!! Form::label('idTypeBudget', 'idTypeBudget:') !!}
-	 {!! Form::select('idTypeBudget',$typeBudgets, '3', ['class' => 'form-control']) !!}
+    {!! Form::label('idTypebudget', 'idTypebudget:') !!}
+	 {!! Form::select('idTypebudget',$typebudgets, '3', ['class' => 'form-control']) !!}
 </div>
 

@@ -6,9 +6,9 @@
     <div class="panel panel-default panel-model">
         <div class="panel-heading">Modifier Type de budget</div>
             <div class="panel-body">
-   				 {!! Form::model($typeBudget, ['route' => ['typeBudgets.update', $typeBudget->id], 'method' => 'patch']) !!}
+   				 {!! Form::model($typebudget, ['route' => ['typebudgets.update', $typebudget->id], 'method' => 'patch']) !!}
 
-        @include('typeBudgets.fields')
+        @include('typebudgets.fields')
 
         <!--- Submit Field --->
         <div class="col-md-12">

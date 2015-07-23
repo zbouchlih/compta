@@ -24,7 +24,7 @@
 
 <!-- Idannee Field -->
 <div class="form-group col-md-6">
-    {!! Form::label('idTypeBudget', 'idTypeBudget:') !!}
-    <p>{!! $budget->idTypeBudget !!}</p>
+    {!! Form::label('idTypebudget', 'idTypebudget:') !!}
+    <p>{!! $budget->idTypebudget !!}</p>
 </div>
 

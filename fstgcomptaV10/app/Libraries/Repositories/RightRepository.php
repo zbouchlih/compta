@@ -74,4 +74,16 @@ public function store($role, $rights)
     }
 
 }
+public function destroy($role)
+{
+        
+         $role->rights()->detach();
+    }
+
+    public function modify($role,$rights)
+{
+        $role->rights()->sync($rights);
+         
+    }
+
 }

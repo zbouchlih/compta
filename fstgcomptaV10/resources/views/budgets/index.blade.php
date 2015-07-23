@@ -8,11 +8,11 @@
                 <div class="panel-body">
 
                     <div class="row">
-                        <div class="col-md-4">
+                        <!--div class="col-md-4">
                             <a href="{!! route('budgets.create') !!}" class="btn btn-default btn-sm">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter Budget
                             </a>
-                        </div>
+                        </div-->
 
                         <div class="col-md-offset-4 col-md-4">
 

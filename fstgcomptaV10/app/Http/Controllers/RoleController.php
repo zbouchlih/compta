@@ -126,17 +126,21 @@ class RoleController extends Controller
 	 *
 	 * @return Response
 	 */
-	public function update($id, UpdateRoleRequest $request)
+	public function update($id, UpdateRoleRequest $request,RightRepository $rightRepository)
 	{
 		$role = $this->roleRepository->find($id);
-
+		$input = $request->all();
 		if(empty($role))
 		{
 			Flash::error('Le rôle que vous cherchez n\'est pas disponible');
 
 			return redirect(route('roles.index'));
 		}
-
+		if(isset($input['rights'])) 
+		{
+			$rightRepository->modify($role, $input['rights']);
+		}
+		
 		$role = $this->roleRepository->updateRich($request->all(), $id);
 
 		Flash::success('Le rôle est modifié avec succés.');
@@ -151,7 +155,7 @@ class RoleController extends Controller
 	 *
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($id, RightRepository $rightRepository)
 	{
 		$role = $this->roleRepository->find($id);
 
@@ -161,7 +165,7 @@ class RoleController extends Controller
 
 			return redirect(route('roles.index'));
 		}
-
+		$rightRepository->destroy($role);
 		$this->roleRepository->delete($id);
 
 		Flash::success('Le rôle le est supprimé avec succès.');

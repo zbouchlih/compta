@@ -68,6 +68,16 @@ class ProfileController extends Controller
 		$input = $request->all();
 
 		$profile = $this->profileRepository->create($input);
+		$budgets = DB::select('select * from budgets');
+		
+		foreach($budgets as $budget)
+		{
+			DB::table('repartitions')->insert([
+				  'idBudget' => $budget->id,
+		          'idProfile' => $profile['id'],
+		          'budget' => 0
+			]);
+		}
 
 		Flash::success('profile est enregistré avec succès.');
 

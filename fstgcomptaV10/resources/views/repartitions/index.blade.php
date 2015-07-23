@@ -51,7 +51,7 @@
 
                     </div>
                     <br> <br> <br> <br>
-                   
+                  
                         @include('repartitions.table')
                     @endif
                                        

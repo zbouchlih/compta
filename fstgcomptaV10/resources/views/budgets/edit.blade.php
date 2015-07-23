@@ -25,7 +25,7 @@
 </div>
 
 
-<div class="form-group col-md-6">
+<!--<div class="form-group col-md-6">
     {!! Form::label('idAnnee', 'Idannee:') !!}
      {!! Form::select('idAnnee',$annees, '35', ['class' => 'form-control','disabled']) !!}
 </div>
@@ -33,7 +33,7 @@
 <div class="form-group col-md-6">
     {!! Form::label('idTypeBudget', 'idTypeBudget:') !!}
      {!! Form::select('idTypeBudget',$typeBudgets, '1', ['class' => 'form-control','disabled']) !!}
-</div>
+</div>-->
 
         
         <div class="col-md-12">

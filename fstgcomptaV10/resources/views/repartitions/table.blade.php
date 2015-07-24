@@ -21,7 +21,7 @@
             <td>{!! $repartition->budget!!}</td>
                             <td>
                                 <div class="pull-right">
-                                <a href="{!! route('repartitions.show', [$repartition->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-eye-open"  aria-hidden="true"></span></a>
+                                <!--a href="{!! route('repartitions.show', [$repartition->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-eye-open"  aria-hidden="true"></span></a-->
 
                                 <a href="{!! route('repartitions.edit', [$repartition->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span></a>
 

@@ -8,16 +8,7 @@
             <div class="panel-body">
    				 {!! Form::model($repartition, ['route' => ['repartitions.update', $repartition->id], 'method' => 'patch']) !!}
 
-<div class="form-group col-md-6">
-    {!! Form::label('idBudget', 'IdBudget:') !!}
-    {!! Form::number('idBudget', null, ['class' => 'form-control','disabled']) !!}
-</div>
 
-
-<div class="form-group col-md-6">
-    {!! Form::label('idProfile', 'Idprofile:') !!}
-    {!! Form::number('idProfile', null, ['class' => 'form-control' ,'disabled']) !!}
-</div>
 
 
 <div class="form-group col-md-6">

@@ -63,6 +63,7 @@
                     <li><a href="{{ url('anneebudgetaires') }}">Année budgétaire</a></li>
                     <li><a href="{{ url('budgets') }}">Budgets</a></li>
                     <li><a href="{{ url('repartitions') }}">répartition</a></li>
+                    <li><a href="{{ url('comptes') }}">Comptes</a></li>
                 </ul>
             </li>
             <li><a href="#"><span class="mif-shopping-basket icon"></span>Gestion des Commandes</a></li>

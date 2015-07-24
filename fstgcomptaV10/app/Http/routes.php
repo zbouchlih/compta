@@ -115,3 +115,19 @@ Route::get('budgets/{id}/delete', [
 ]);
 
 
+
+
+Route::resource('comptes', 'CompteController');
+
+Route::get('comptes/{id}/delete', [
+    'as' => 'comptes.delete',
+    'uses' => 'CompteController@destroy',
+]);
+
+
+Route::resource('comptes', 'CompteController');
+
+Route::get('comptes/{id}/delete', [
+    'as' => 'comptes.delete',
+    'uses' => 'CompteController@destroy',
+]);

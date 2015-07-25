@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Session;
+use Auth;
 class HomeController extends Controller {
 
 	/*
@@ -30,6 +32,7 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
+	    //Session::put('user',Auth::user());
 		return view('home');
 	}
 

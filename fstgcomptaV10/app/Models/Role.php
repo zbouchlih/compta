@@ -28,7 +28,7 @@ class Role extends Model
 
     public function profiles()
     {
-        return $this->hasMany('Profile');
+        return $this->hasMany('App\Models\Profile','idRole','id');
     }
 
      public function rights()

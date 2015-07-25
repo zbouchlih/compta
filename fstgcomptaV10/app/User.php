@@ -56,7 +56,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function profile()
     {
-        return $this->belongsTo('Profile');
+        return $this->hasOne('App\Models\Profile','id','idProfile');
     }
 }
 

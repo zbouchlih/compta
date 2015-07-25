@@ -29,15 +29,14 @@ class Profile extends Model
 		"idRole" => "required"
 	];
 
-	public function users()
+	/*public function users()
 	{
 		return $this->hasMany('User');
-	}
+	}*/
 
-	public function roles()
+	public function role()
 	{
-		return $this->belongsTo('Role');
+		return $this->belongsTo('App\Models\Role','idRole','id');
 	}
-
 
 }

@@ -3,10 +3,11 @@
 @section('content')
 <div>
             <h3>BIENVENUE SUR LA PLATFORME COMPTABILITE <b>FSTG MARRAKECH</b></h3>
-            
-
+            @if(Session::get('user')->profile->role->id==1)
+                <p>haaaadaaa admin adjoint</p>
+            @endif
             <div class="tile-container">
-
+                
                 <div class="tile-wide bg-darkOrange fg-white" data-role="tile">
                     <div class="tile-content iconic">
                         <span class="icon mif-money"></span>
@@ -28,7 +29,7 @@
                         <span class="tile-label">Gestion des fournisseurs</span>
                     </div>
                 </div>
-
+                
                 <a href="{{ url('users') }}">
                 <div class="tile-wide bg-darkBrown fg-white" data-role="tile">
                     <div class="tile-content iconic">

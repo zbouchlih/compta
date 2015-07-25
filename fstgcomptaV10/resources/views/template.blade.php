@@ -68,6 +68,8 @@
             </li>
             <li><a href="#"><span class="mif-shopping-basket icon"></span>Gestion des Commandes</a></li>
             <li><a href="#"><span class="mif-shop icon"></span>Gestion des Fournisseurs</a></li>
+            
+            @if(Session::get('user')->profile->role->id==1)
             <li>
                 <a class="dropdown-toggle" href="#"><span class="mif-users icon"></span>Gestion des Utilisateurs</a>
                 <ul class="d-menu" data-role="dropdown">
@@ -77,7 +79,7 @@
                     <li><a href="{{ url('rights') }}">Gestion des droits</a></li>
                 </ul>
             </li>
-           
+            @endif
 
             <li class="disabled"><a href="#">Disabled item</a></li>
 
@@ -100,11 +102,17 @@
                 </ul>
 
                 <div class="app-bar-element place-right">
+                   
+                    {!! Session::get('user')->firstName;!!}
+                    {!! Session::get('user')->lastName;!!}
+                    
+
                     <a class="dropdown-toggle fg-white"><span class="mif-cog"></span> Paramètres</a>
                     <div class="app-bar-drop-container bg-white fg-dark place-right"
                          data-role="dropdown" data-no-close="true">
                         <div class="padding20">
                             <ul class="v-menu mysetting">
+
                                 <li class="menu-title">Paramètres du profil</li>
                                 <li><a href="#"><span class="mif-user icon"></span> Profile</a></li>
                                 <li><a href="#"><span class="mif-lock icon"></span> Changer mot de passe</a></li>
@@ -127,7 +135,7 @@
         <div class="contenu">
 
             @yield('content')
-
+{!! Session::get('user')->profile->role->rights;!!}
 
         </div>
         <!--End of contenu -->

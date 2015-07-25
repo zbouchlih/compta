@@ -5,6 +5,7 @@ use App\Http\Requests\CreateCompteRequest;
 use App\Http\Requests\UpdateCompteRequest;
 use App\Libraries\Repositories\CompteRepository;
 use Flash;
+use Session;
 //use Mitul\Controller\AppBaseController as Controller;
 use Response;
 use DB;
@@ -27,6 +28,8 @@ class CompteController extends Controller
 	 */
 	public function index()
 	{
+
+		//dd(Session::get('user')->tel);
 		extract($_GET);
 		if(!isset($idTypebudget))
 		{
@@ -87,6 +90,7 @@ class CompteController extends Controller
 	 */
 	public function show($id)
 	{
+
 		$compte = $this->compteRepository->find($id);
 
 		if(empty($compte))
@@ -108,6 +112,7 @@ class CompteController extends Controller
 	 */
 	public function edit($id)
 	{
+
 		$typebudgets = DB::table('typebudgets')->lists('type','id');
 		$compte = $this->compteRepository->find($id);
 
@@ -131,6 +136,7 @@ class CompteController extends Controller
 	 */
 	public function update($id, UpdateCompteRequest $request)
 	{
+
 		$compte = $this->compteRepository->find($id);
 
 		if(empty($compte))

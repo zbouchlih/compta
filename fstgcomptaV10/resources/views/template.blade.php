@@ -59,27 +59,42 @@
              <li>
                 <a class="dropdown-toggle" href="#"><span class="mif-money icon"></span>Gestion du budget</a>
                 <ul class="d-menu" data-role="dropdown">
+                    @if(in_array(13,Session::get('right_session')) )
                     <li><a href="{{ url('typebudgets') }}">Type de Budget</a></li>
+                    @endif
+                    @if(in_array(16,Session::get('right_session')) )
                     <li><a href="{{ url('anneebudgetaires') }}">Année budgétaire</a></li>
+                    @endif
+                    @if(in_array(19,Session::get('right_session')) )
                     <li><a href="{{ url('budgets') }}">Budgets</a></li>
+                    @endif
+                    @if(in_array(22,Session::get('right_session')) )
                     <li><a href="{{ url('repartitions') }}">répartition</a></li>
+                    @endif
+                    @if(in_array(25,Session::get('right_session')) )
                     <li><a href="{{ url('comptes') }}">Comptes</a></li>
+                    @endif
                 </ul>
             </li>
             <li><a href="#"><span class="mif-shopping-basket icon"></span>Gestion des Commandes</a></li>
             <li><a href="#"><span class="mif-shop icon"></span>Gestion des Fournisseurs</a></li>
-            
-            @if(Session::get('user')->profile->role->id==1)
             <li>
                 <a class="dropdown-toggle" href="#"><span class="mif-users icon"></span>Gestion des Utilisateurs</a>
                 <ul class="d-menu" data-role="dropdown">
-                    <li><a href="{{ url('users') }}">Utilisateurs</a></li>
-                    <li><a href="{{ url('profiles') }}">Gestion des profils</a></li>
-                    <li><a href="{{ url('roles') }}">Gestion des rôles</a></li>
-                    <li><a href="{{ url('rights') }}">Gestion des droits</a></li>
+                    @if(in_array(1,Session::get('right_session')) )
+                        <li><a href="{{ url('users') }}">Utilisateurs</a></li>
+                    @endif
+                    @if(in_array(4,Session::get('right_session')) )
+                        <li><a href="{{ url('profiles') }}">Gestion des profils</a></li>
+                    @endif
+                    @if(in_array(7,Session::get('right_session')) )
+                        <li><a href="{{ url('roles') }}">Gestion des rôles</a></li>
+                    @endif
+                    @if(in_array(10,Session::get('right_session')) )
+                        <li><a href="{{ url('rights') }}">Gestion des droits</a></li>
+                    @endif
                 </ul>
             </li>
-            @endif
 
             <li class="disabled"><a href="#">Disabled item</a></li>
 
@@ -105,6 +120,9 @@
                    
                     {!! Session::get('user')->firstName;!!}
                     {!! Session::get('user')->lastName;!!}
+                    @foreach(Session::get('user')->profile->role->rights as $right  )
+                           {!!$right->pivot->right_id;!!}
+                    @endforeach
                     
 
                     <a class="dropdown-toggle fg-white"><span class="mif-cog"></span> Paramètres</a>
@@ -135,7 +153,8 @@
         <div class="contenu">
 
             @yield('content')
-{!! Session::get('user')->profile->role->rights;!!}
+            {{--{!! Session::get('user')->profile->role->rights;!!}--}}
+
 
         </div>
         <!--End of contenu -->

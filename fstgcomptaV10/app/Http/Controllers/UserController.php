@@ -35,7 +35,7 @@ class UserController extends Controller
 
         $users = DB::table('profiles')
                ->Join('users', 'profiles.id', '=', 'users.idProfile')
-               ->paginate(7);
+               ->paginate(20);
 
         $links = str_replace('/?', '?', $users->render());
 

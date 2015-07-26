@@ -32,7 +32,7 @@ class ProfileController extends Controller
 		//$test = DB::table('roles')->select('id', 'name as role')->get();
 		$profiles = DB::table('roles')
                ->Join('profiles', 'roles.id', '=', 'profiles.idRole')
-               ->paginate(7);
+               ->paginate(20);
 
                //var_dump($test);
 

@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('content')
-
+@if(in_array(4,Session::get('right_session')) )
 @include('flash::message')
 <div class="panel panel-default panel-model">
                 <div class="panel-heading">Liste des profils</div>
@@ -9,9 +9,11 @@
 
                     <div class="row">
                         <div class="col-md-4">
-                            <a href="{!! route('profiles.create') !!}" class="btn btn-default btn-sm">
-                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter profil
-                            </a>
+                            @if(in_array(5,Session::get('right_session')) )
+                                <a href="{!! route('profiles.create') !!}" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter profil
+                                </a>
+                            @endif
                         </div>
 
 
@@ -40,5 +42,11 @@
                     <div class="align-center">{!! $links !!}</div>
                 </div>
             </div>
+@else
+        <div style="margin-left: 300px">
+            <img src="{{ url('images/acces-interdit.jpg')}}" alt="Acces interdit"/>
+        </div>
+
+@endif
 @endsection
              

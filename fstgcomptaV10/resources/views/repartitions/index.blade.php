@@ -1,7 +1,7 @@
 @extends('template')
 
 @section('content')
-
+@if(in_array(22,Session::get('right_session')) )
 @include('flash::message')
 <div class="panel panel-default panel-model">
                 <div class="panel-heading">Liste des Repartitions</div>
@@ -60,5 +60,11 @@
                     <div class="align-center">{!! $links !!}</div>
 </div>
 </div>
+@else
+    <div style="margin-left: 300px">
+        <img src="{{ url('images/acces-interdit.jpg')}}" alt="Acces interdit"/>
+    </div>
+
+@endif
 @endsection
              

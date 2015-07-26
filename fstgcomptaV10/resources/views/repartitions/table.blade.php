@@ -8,30 +8,27 @@
             <th>Budget</th>
                         
                             <th></th>
-                        
+
                         </thead>
 
                         <tbody>
                         @foreach($repartitions as $repartition)
                         <tr>
-            <td>{!! $repartition->name !!}</td>
-            <td>{!! $repartition->type!!}</td>                
-            
-           
-            <td>{!! $repartition->budget!!}</td>
+                            <td>{!! $repartition->name !!}</td>
+                            <td>{!! $repartition->type!!}</td>
+                            <td>{!! $repartition->budget!!}</td>
                             <td>
                                 <div class="pull-right">
                                 <!--a href="{!! route('repartitions.show', [$repartition->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-eye-open"  aria-hidden="true"></span></a-->
-
-                                <a href="{!! route('repartitions.edit', [$repartition->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span></a>
+                                @if(in_array(23,Session::get('right_session')) )
+                                   <a href="{!! route('repartitions.edit', [$repartition->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span></a>
+                                @endif
 
                                 <!--a href="{!! route('repartitions.delete', [$repartition->id]) !!}" onclick="return confirm('Etes-vous sur de vouloir supprimer Repartition?')" class="btn btn-danger btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-trash"  aria-hidden="true"></span></a-->
                                 </div>
                             </td>
                         </tr>
                            <!--tr><td>prévisionnel : 10</td><td>initial: 40</td><td>modificatif: 50</td><td>prévisionnel : 10</td><td>initial: 40</td><td>modificatif: 50</td></tr-->
-                           @endforeach
-                           
-                       
+                        @endforeach
                         </tbody>
                     </table>

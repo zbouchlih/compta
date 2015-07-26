@@ -32,7 +32,7 @@ class RoleController extends Controller
 	 */
 	public function index()
 	{
-		$roles = $this->roleRepository->paginate(7);
+		$roles = $this->roleRepository->paginate(20);
 
 			$links = str_replace('/?', '?', $roles->render());
 

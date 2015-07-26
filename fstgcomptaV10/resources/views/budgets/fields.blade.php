@@ -1,6 +1,6 @@
 <!--- Previsionnel Field --->
 <div class="form-group col-md-6">
-    {!! Form::label('previsionnel', 'Previsionnel:') !!}
+    {!! Form::label('previsionnel', 'Prévisionnel:') !!}
 	{!! Form::number('previsionnel', null, ['class' => 'form-control']) !!}
 </div>
 

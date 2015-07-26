@@ -5,7 +5,7 @@
     @include('common.errors')
 
     <div class="panel panel-default panel-model">
-                <div class="panel-heading">Ajouter un nouveau Compte</div>
+                <div class="panel-heading">Ajouter un nouveau compte</div>
                 <div class="panel-body">
    					{!! Form::open(['route' => 'comptes.store']) !!}
      				   @include('comptes.fields')

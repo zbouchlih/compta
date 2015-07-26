@@ -4,7 +4,7 @@
 @if(in_array(19,Session::get('right_session')) )
 @include('flash::message')
 <div class="panel panel-default panel-model">
-                <div class="panel-heading">Liste des Budgets</div>
+                <div class="panel-heading">Liste des budgets</div>
                 <div class="panel-body">
 
                     <div class="row">
@@ -30,7 +30,7 @@
                     </div>
                     <div class="resultat">
                      @if($budgets->isEmpty())
-                        <div class="well text-center">Pas de Budgets trouvé.</div>
+                        <div class="well text-center">Aucun budget trouvé.</div>
                      @else
                         @include('budgets.table')
                      @endif

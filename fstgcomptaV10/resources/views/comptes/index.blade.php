@@ -4,7 +4,7 @@
 @if(in_array(25,Session::get('right_session')) )
 @include('flash::message')
 <div class="panel panel-default panel-model">
-                <div class="panel-heading">Liste des Comptes</div>
+                <div class="panel-heading">Liste des comptes</div>
                 <div class="panel-body">
 
                     <div class="row">
@@ -12,12 +12,12 @@
 
                             @if(in_array(26,Session::get('right_session')) )
                                 <a href="{!! route('comptes.create') !!}" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter Compte
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter un compte
                                 </a>
                             @endif
                         </div>
 
-                        <div class="col-md-offset-4 col-md-4">
+                        <!--div class="col-md-offset-4 col-md-4">
 
                             <form class="form-inline pull-right">
                                 <div class="form-group">
@@ -29,11 +29,11 @@
                                 <button type="submit" class="btn btn-standard btn-sm">OK</button>
                             </form>
 
-                        </div>
+                        </div-->
                     </div>
                     <div class="resultat">
                      @if($comptes->isEmpty())
-                        <div class="well text-center">Pas de Comptes trouvé.</div>
+                        <div class="well text-center">Aucun compte trouvé.</div>
                      @else
                        <div class="form-group col-md-6">
 

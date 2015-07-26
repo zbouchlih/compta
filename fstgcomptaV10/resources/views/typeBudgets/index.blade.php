@@ -4,14 +4,14 @@
 @if(in_array(13,Session::get('right_session')) )
 @include('flash::message')
 <div class="panel panel-default panel-model">
-                <div class="panel-heading">Liste des Types de budgets</div>
+                <div class="panel-heading">Liste des types de budgets</div>
                 <div class="panel-body">
 
                     <div class="row">
                         <div class="col-md-4">
                             @if(in_array(14,Session::get('right_session')) )
                                 <a href="{!! route('typebudgets.create') !!}" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter un Type de budget
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter un type de budget
                                 </a>
                             @endif
                         </div>

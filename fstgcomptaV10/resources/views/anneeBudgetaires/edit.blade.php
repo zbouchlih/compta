@@ -4,7 +4,7 @@
 
     @include('common.errors')
     <div class="panel panel-default panel-model">
-        <div class="panel-heading">Modifier Annee budgetaire</div>
+        <div class="panel-heading">Modifier une année budgétaire</div>
             <div class="panel-body">
    				 {!! Form::model($anneebudgetaire, ['route' => ['anneebudgetaires.update', $anneebudgetaire->id], 'method' => 'patch']) !!}
 

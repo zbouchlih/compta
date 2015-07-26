@@ -5,7 +5,7 @@
     @include('common.errors')
 
     <div class="panel panel-default panel-model">
-                <div class="panel-heading">Ajouter une nouvelle Annee budgetaire</div>
+                <div class="panel-heading">Ajouter une nouvelle année budgétaire</div>
                 <div class="panel-body">
    					{!! Form::open(['route' => 'anneebudgetaires.store']) !!}
      				   @include('anneebudgetaires.fields')

@@ -4,7 +4,7 @@
 
     @include('common.errors')
     <div class="panel panel-default panel-model">
-        <div class="panel-heading">Modifier Type de budget</div>
+        <div class="panel-heading">Modifier type de budget</div>
             <div class="panel-body">
    				 {!! Form::model($typebudget, ['route' => ['typebudgets.update', $typebudget->id], 'method' => 'patch']) !!}
 

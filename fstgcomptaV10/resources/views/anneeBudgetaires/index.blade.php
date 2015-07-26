@@ -4,13 +4,13 @@
 @if(in_array(16,Session::get('right_session')) )
 @include('flash::message')
 <div class="panel panel-default panel-model">
-                <div class="panel-heading">Liste des Année budgetaires</div>
+                <div class="panel-heading">Liste des années budgétaires</div>
                 <div class="panel-body">
 
                     <div class="row">
                         <div class="col-md-4">
                             <a href="{!! route('anneebudgetaires.create') !!}" class="btn btn-default btn-sm">
-                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter Annee budgetaire
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter année budgétaire
                             </a>
                         </div>
 
@@ -30,7 +30,7 @@
                     </div>
                     <div class="resultat">
                      @if($anneebudgetaires->isEmpty())
-                        <div class="well text-center">Pas de Annee budgetaires trouvé.</div>
+                        <div class="well text-center">Aucune année budgétaires trouvée.</div>
                      @else
                         @include('anneebudgetaires.table')
                      @endif

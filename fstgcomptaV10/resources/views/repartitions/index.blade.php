@@ -4,7 +4,7 @@
 @if(in_array(22,Session::get('right_session')) )
 @include('flash::message')
 <div class="panel panel-default panel-model">
-                <div class="panel-heading">Liste des Repartitions</div>
+                <div class="panel-heading">Liste des répartitions</div>
                 <div class="panel-body">
 
                     <div class="row">
@@ -30,7 +30,7 @@
                     </div>
                     <div class="resultat">
                      @if($repartitions->isEmpty())
-                        <div class="well text-center">Pas de Repartitions trouvé.</div>
+                        <div class="well text-center">Aucune répartition trouvée.</div>
                      @else
 
                     <div class="form-group col-md-2">

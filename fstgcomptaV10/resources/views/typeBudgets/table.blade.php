@@ -18,7 +18,7 @@
                                         <a href="{!! route('typebudgets.edit', [$typebudget->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span> Modifier</a>
                                     @endif
                                     @if(in_array(15,Session::get('right_session')) )
-                                        <a href="{!! route('typebudgets.delete', [$typebudget->id]) !!}" onclick="return confirm('Etes-vous sur de vouloir supprimer typebudget?')" class="btn btn-danger btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-trash"  aria-hidden="true"></span> Supprimer</a>
+                                        <a href="{!! route('typebudgets.delete', [$typebudget->id]) !!}" onclick="return confirm('Etes-vous sur de vouloir supprimer ce type de budget?')" class="btn btn-danger btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-trash"  aria-hidden="true"></span> Supprimer</a>
                                     @endif
                                 </div>
                             </td>

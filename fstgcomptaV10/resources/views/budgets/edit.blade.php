@@ -4,12 +4,12 @@
 
     @include('common.errors')
     <div class="panel panel-default panel-model">
-        <div class="panel-heading">Modifier Budget</div>
+        <div class="panel-heading">Modifier un budget</div>
             <div class="panel-body">
    				 {!! Form::model($budget, ['route' => ['budgets.update', $budget->id], 'method' => 'patch']) !!}
 
 <div class="form-group col-md-6">
-    {!! Form::label('previsionnel', 'Previsionnel:') !!}
+    {!! Form::label('previsionnel', 'Prévisionnel:') !!}
     {!! Form::number('previsionnel', null, ['class' => 'form-control']) !!}
 </div>
 

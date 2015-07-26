@@ -4,13 +4,13 @@
 
     @include('common.errors')
     <div class="panel panel-default panel-model">
-        <div class="panel-heading">Modifier Compte</div>
+        <div class="panel-heading">Modifier un compte</div>
             <div class="panel-body">
    				 {!! Form::model($compte, ['route' => ['comptes.update', $compte->id], 'method' => 'patch']) !!}
 
         
 <div class="form-group col-md-6">
-    {!! Form::label('numero', 'Numero:') !!}
+    {!! Form::label('numero', 'Numéro:') !!}
     {!! Form::text('numero', null, ['class' => 'form-control']) !!}
 </div>
 
@@ -22,7 +22,7 @@
 
 
 <div class="form-group col-md-6">
-    {!! Form::label('idTypebudget', 'idTypebudget:') !!}
+    {!! Form::label('idTypebudget', 'Type de budget:') !!}
     {!! Form::select('idTypebudget',$typebudgets, $compte->idTypebudget, ['class' => 'form-control']) !!}
 
 </div>

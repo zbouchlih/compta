@@ -1,8 +1,8 @@
                     <table class="table table-hover">
 
                         <thead>
-            <th>profil</th>
-            <th>id budget</th>            
+            <th>Profil</th>
+            <th>Type de budget</th>            
             
            
             <th>Budget</th>
@@ -21,7 +21,7 @@
                                 <div class="pull-right">
                                 <!--a href="{!! route('repartitions.show', [$repartition->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-eye-open"  aria-hidden="true"></span></a-->
                                 @if(in_array(23,Session::get('right_session')) )
-                                   <a href="{!! route('repartitions.edit', [$repartition->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span></a>
+                                   <a href="{!! route('repartitions.edit', [$repartition->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span> Modifier</a>
                                 @endif
 
                                 <!--a href="{!! route('repartitions.delete', [$repartition->id]) !!}" onclick="return confirm('Etes-vous sur de vouloir supprimer Repartition?')" class="btn btn-danger btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-trash"  aria-hidden="true"></span></a-->

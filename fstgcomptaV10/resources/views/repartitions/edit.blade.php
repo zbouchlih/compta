@@ -4,7 +4,7 @@
 
     @include('common.errors')
     <div class="panel panel-default panel-model">
-        <div class="panel-heading">Modifier Repartition</div>
+        <div class="panel-heading">Modifier la répartition</div>
             <div class="panel-body">
    				 {!! Form::model($repartition, ['route' => ['repartitions.update', $repartition->id], 'method' => 'patch']) !!}
 

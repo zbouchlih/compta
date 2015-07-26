@@ -1,6 +1,6 @@
 <!--- Annee Field --->
 <div class="form-group col-md-6">
-    {!! Form::label('annee', 'Annee:') !!}
+    {!! Form::label('annee', 'Année:') !!}
 	{!! Form::text('annee', null, ['class' => 'form-control']) !!}
 </div>
 

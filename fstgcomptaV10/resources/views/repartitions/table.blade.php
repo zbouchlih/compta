@@ -20,10 +20,13 @@
                             <td>
                                 <div class="pull-right">
                                 <!--a href="{!! route('repartitions.show', [$repartition->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-eye-open"  aria-hidden="true"></span></a-->
-                                @if(in_array(23,Session::get('right_session')) )
-                                   <a href="{!! route('repartitions.edit', [$repartition->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span> Modifier</a>
+                                @if($repartition->etat!=-1)
+                                    @if(in_array(23,Session::get('right_session')) )
+                                       <a href="{!! route('repartitions.edit', [$repartition->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span> Modifier</a>
+                                    @endif
+                                @else
+                                Modification fermée
                                 @endif
-
                                 <!--a href="{!! route('repartitions.delete', [$repartition->id]) !!}" onclick="return confirm('Etes-vous sur de vouloir supprimer Repartition?')" class="btn btn-danger btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-trash"  aria-hidden="true"></span></a-->
                                 </div>
                             </td>

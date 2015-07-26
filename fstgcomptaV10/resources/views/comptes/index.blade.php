@@ -33,27 +33,20 @@
                     </div>
                     <div class="resultat">
                      @if($comptes->isEmpty())
+
                         <div class="well text-center">Aucun compte trouvé.</div>
+
                      @else
-                       <div class="form-group col-md-6">
+                        </br>
+                        <div class="form-group col-md-4">
+                             {!! Form::open(['route' => ['comptes.index'], 'method' => 'get']) !!}
+                                {!! Form::select('idTypebudget',$typebudgets, $var, ['class' => 'form-control']) !!}
+                                {!! Form::submit('Afficher', ['class' => 'btn btn-standard']) !!}
+                             {!! Form::close() !!}  
+                        </div>
 
-                     {!! Form::open(['route' => ['comptes.index'], 'method' => 'get']) !!}
-                   
-                        {!! Form::select('idTypebudget',$typebudgets, $var, ['class' => 'form-control']) !!}
-                      
-                       
-                           {!! Form::submit('Afficher', ['class' => 'btn btn-standard']) !!}
-                      
-                    {!! Form::close() !!}  
-
-
-                 
-
-                   
-                        
-
-                    </div>
                         @include('comptes.table')
+
                      @endif
                    
                     </div>

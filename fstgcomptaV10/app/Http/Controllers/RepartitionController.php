@@ -50,7 +50,7 @@ class RepartitionController extends Controller
                ->Join('profiles','repartitions.idProfile','=','profiles.id')
                ->where('idAnnee','=',$idAnnee)
                ->orderBy('idProfile', 'asc')
-               ->select('repartitions.id','anneebudgetaires.annee','profiles.name','typebudgets.type','repartitions.budget','budgets.idAnnee')
+               ->select('repartitions.id','anneebudgetaires.annee','profiles.name','typebudgets.type','repartitions.budget','budgets.idAnnee','anneebudgetaires.etat')
                ->paginate(40);
 		//$profiles = DB::select('select * from profiles');
 

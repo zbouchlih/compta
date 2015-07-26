@@ -36,7 +36,7 @@
                      @endif
                    
                     </div>
-                    <div class="align-center">{!! $links !!}</div>
+                    
                 </div>
             </div>
 @else

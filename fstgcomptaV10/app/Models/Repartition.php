@@ -31,4 +31,13 @@ class Repartition extends Model
 		"budget" => "required"
 	];
 
+	public function budgett()
+    {
+        return $this->belongsTo('App\Models\Budget','idBudget','id');
+    }
+    public function profile()
+    {
+        return $this->belongsTo('App\Models\Profile','idProfile','id');
+    }
+
 }

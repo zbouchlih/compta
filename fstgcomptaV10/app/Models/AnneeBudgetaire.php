@@ -21,11 +21,24 @@ class Anneebudgetaire extends Model
     protected $casts = [
         "annee" => "string",
 		"etat" => "integer"
+		
     ];
 
 	public static $rules = [
-	    "annee" => "required",
+	    "annee" => "required|unique:anneebudgetaires",
 		"etat" => "required"
 	];
+
+	public function budgets()
+	{
+		return $this->hasMany('App\Models\Budget','idAnnee','id');
+	}
+
+	 public function getBudgetListAttribute()
+    {
+
+        return $this->budgets->lists('id');
+
+    }
 
 }

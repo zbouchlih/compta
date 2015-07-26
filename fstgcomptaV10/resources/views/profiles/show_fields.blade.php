@@ -7,6 +7,6 @@
 <!-- Access Field -->
 <div class="form-group">
     {!! Form::label('idRole', 'Role:') !!}
-    <p>{!! $profile->role !!}</p>
+    <p>{!! $profile->roles->role !!}</p>
 </div>
 

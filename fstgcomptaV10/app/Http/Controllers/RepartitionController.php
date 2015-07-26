@@ -5,9 +5,10 @@ use App\Http\Requests\CreateRepartitionRequest;
 use App\Http\Requests\UpdateRepartitionRequest;
 use App\Libraries\Repositories\RepartitionRepository;
 use Flash;
-//use Mitul\Controller\AppBaseController as Controller;
 use Response;
 use DB;
+use App\Models\Anneebudgetaire;
+use App\Models\Repartition;
 
 class RepartitionController extends Controller
 {
@@ -29,34 +30,17 @@ class RepartitionController extends Controller
 	public function index()
 	{
 		extract($_GET);
-		//echo $id;
-		//echo $_GET['idAnnee'];
 		if(!isset($idAnnee))
 		{
-
 			$idAnnee=35;
 		}
-		//echo $idAnnee;
-		//$repartitions = $this->repartitionRepository->paginate(20);
+		$budgets = Anneebudgetaire::find($idAnnee)->budgets;
 		$annees = DB::table('anneebudgetaires')->lists('annee','id');
-		$budgets = DB::select('select * from budgets where idAnnee = :idAnnee', ['idAnnee' => $idAnnee]);
-		//$budgetInvestissements = DB::select('select * from budgetInvestissements where idAnnee = :idAnnee', ['idAnnee' => $idAnnee]);
-		$var=$idAnnee;
-        $repartitions = DB::table('budgets')
-               ->Join('typebudgets','budgets.idTypebudget','=','typebudgets.id')
+		$repartitions=Repartition::whereIn('idBudget',Anneebudgetaire::find($idAnnee)->getBudgetListAttribute())->orderBy('idProfile', 'asc')->paginate(40);
 
-               ->Join('anneebudgetaires','budgets.idAnnee','=','anneebudgetaires.id')
-               ->Join('repartitions', 'budgets.id', '=', 'repartitions.idBudget')
-               ->Join('profiles','repartitions.idProfile','=','profiles.id')
-               ->where('idAnnee','=',$idAnnee)
-               ->orderBy('idProfile', 'asc')
-               ->select('repartitions.id','anneebudgetaires.annee','profiles.name','typebudgets.type','repartitions.budget','budgets.idAnnee','anneebudgetaires.etat')
-               ->paginate(40);
-		//$profiles = DB::select('select * from profiles');
+			$links =str_replace('/?', '?', $repartitions->render());
 
-			$links = str_replace('/?', '?', $repartitions->render());
-
-        return view('repartitions.index', compact('repartitions', 'links' ,'annees' ,'budgets','profiles','var'));
+        return view('repartitions.index', compact('repartitions', 'links' ,'annees' ,'budgets','idAnnee'));
 	}
 
 	/**

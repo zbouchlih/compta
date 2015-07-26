@@ -5,14 +5,15 @@ use App\Http\Requests\CreateBudgetRequest;
 use App\Http\Requests\UpdateBudgetRequest;
 use App\Libraries\Repositories\BudgetRepository;
 use Flash;
-//use Mitul\Controller\AppBaseController as Controller;
 use Response;
 use DB;
+use App\Models\Budget;
+use App\Models\Anneebudgetaire;
 
 class BudgetController extends Controller
 {
 
-	/** @var  BudgetFonctionnementRepository */
+	/** @var  BudgetRepository */
 	private $budgetRepository;
 
 	function __construct(BudgetRepository $budgetRepo)
@@ -22,57 +23,51 @@ class BudgetController extends Controller
 	}
 
 	/**
-	 * Display a listing of the BudgetFonctionnement.
+	 * Display a listing of the Budget.
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-		
-		$budgets = DB::table('budgets')
-               ->Join('typebudgets', 'typebudgets.id', '=', 'budgets.idTypebudget')
-               ->Join('anneebudgetaires', 'anneebudgetaires.id', '=', 'budgets.idAnnee')
-               ->orderBy('idAnnee', 'asc')
-               ->select('budgets.id','budgets.previsionnel','budgets.initial','budgets.modificatif','typebudgets.type','anneebudgetaires.annee','anneebudgetaires.etat')
-               ->paginate(7);
-
+        
+        $budgets = $this->budgetRepository->paginate(20);
 			$links = str_replace('/?', '?', $budgets->render());
 
-        return view('budgets.index', compact('budgets', 'links'));
+        return view('budgets.index', compact('budgets','links'));
 	}
 
 	/**
-	 * Show the form for creating a new BudgetFonctionnement.
+	 * Show the form for creating a new Budget.
 	 *
 	 * @return Response
 	 */
 	public function create()
 	{
-		$annees = DB::table('anneebudgetaires')->lists('annee','id');
+		/*$annees = DB::table('anneebudgetaires')->lists('annee','id');
 		$typebudgets = DB::table('typebudgets')->lists('type','id');
-		return view('budgets.create', compact('annees','typebudgets'));
+		return view('budgets.create', compact('annees','typebudgets'));*/
 	}
 
 	/**
-	 * Store a newly created BudgetFonctionnement in storage.
+	 * Store a newly created Budget in storage.
 	 *
-	 * @param CreateBudgetFonctionnementRequest $request
+	 * @param CreateBudgetRequest $request
 	 *
 	 * @return Response
 	 */
 	public function store(CreateBudgetRequest $request)
 	{
-		$input = $request->all();
+		/*$input = $request->all();
 
 		$budget = $this->budgetRepository->create($input);
 
 		Flash::success('Budget est enregistré avec succès.');
 
-		return redirect(route('budgets.index'));
+		return redirect(route('budgets.index'));*/
 	}
 
 	/**
-	 * Display the specified BudgetFonctionnement.
+	 * Display the specified Budget.
 	 *
 	 * @param  int $id
 	 *
@@ -80,7 +75,7 @@ class BudgetController extends Controller
 	 */
 	public function show($id)
 	{
-		$budget = $this->budgetRepository->find($id);
+		/*$budget = $this->budgetRepository->find($id);
 
 		if(empty($budget))
 		{
@@ -89,11 +84,11 @@ class BudgetController extends Controller
 			return redirect(route('budgets.index'));
 		}
 
-		return view('budgets.show')->with('budget', $budget);
+		return view('budgets.show')->with('budget', $budget);*/
 	}
 
 	/**
-	 * Show the form for editing the specified BudgetFonctionnement.
+	 * Show the form for editing the specified Budget.
 	 *
 	 * @param  int $id
 	 *
@@ -108,7 +103,7 @@ class BudgetController extends Controller
 		$annees = DB::table('anneebudgetaires')->lists('annee','id');
 		if(empty($budget))
 		{
-			Flash::error('Budgetque vous cherchez n\'est pas disponible');
+			Flash::error('Le budget que vous cherchez n\'est pas disponible');
 
 			return redirect(route('budgets.index'));
 		}
@@ -119,10 +114,10 @@ class BudgetController extends Controller
 	}
 
 	/**
-	 * Update the specified BudgetFonctionnement in storage.
+	 * Update the specified Budget in storage.
 	 *
 	 * @param  int              $id
-	 * @param UpdateBudgetFonctionnementRequest $request
+	 * @param UpdateBudgetRequest $request
 	 *
 	 * @return Response
 	 */
@@ -132,20 +127,20 @@ class BudgetController extends Controller
 
 		if(empty($budget))
 		{
-			Flash::error('Budget que vous cherchez n\'est pas disponible');
+			Flash::error('Le budget que vous cherchez n\'est pas disponible');
 
 			return redirect(route('budgets.index'));
 		}
 
 		$budget = $this->budgetRepository->updateRich($request->all(), $id);
 
-		Flash::success('Budget est modifié avec succés.');
+		Flash::success('Le budget est modifié avec succés.');
 
 		return redirect(route('budgets.index'));
 	}
 
 	/**
-	 * Remove the specified BudgetFonctionnement from storage.
+	 * Remove the specified Budget from storage.
 	 *
 	 * @param  int $id
 	 *
@@ -157,14 +152,14 @@ class BudgetController extends Controller
 
 		if(empty($budget))
 		{
-			Flash::error('Budget que vous cherchez n\'est pas disponible');
+			Flash::error('Le budget que vous cherchez n\'est pas disponible');
 
 			return redirect(route('budgets.index'));
 		}
 
 		$this->budgetRepository->delete($id);
 
-		Flash::success('Budget est supprimé avec succès.');
+		Flash::success('le budget est supprimé avec succès.');
 
 		return redirect(route('budgets.index'));
 	}

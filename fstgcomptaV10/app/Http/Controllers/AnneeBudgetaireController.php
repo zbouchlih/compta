@@ -5,9 +5,9 @@ use App\Http\Requests\CreateAnneebudgetaireRequest;
 use App\Http\Requests\UpdateAnneebudgetaireRequest;
 use App\Libraries\Repositories\AnneebudgetaireRepository;
 use Flash;
-//use Mitul\Controller\AppBaseController as Controller;
 use Response;
 use DB;
+use App\Models\Anneebudgetaire;
 
 class AnneebudgetaireController extends Controller
 {
@@ -28,7 +28,7 @@ class AnneebudgetaireController extends Controller
 	 */
 	public function index()
 	{
-		$anneebudgetaires = $this->anneebudgetaireRepository->paginate(7);
+		$anneebudgetaires = $this->anneebudgetaireRepository->paginate(20);
 
 			$links = str_replace('/?', '?', $anneebudgetaires->render());
 
@@ -57,45 +57,12 @@ class AnneebudgetaireController extends Controller
 		$input = $request->all();
 		
 		$anneebudgetaire = $this->anneebudgetaireRepository->create($input);
-		$profiles = DB::select('select * from profiles');
-		$idAnnee=DB::table('anneebudgetaires')->max('id');
-		DB::table('budgets')->insert([
-				  'idTypeBudget' => 1,
-				  'idAnnee' => $idAnnee,
-		          'previsionnel' => 0,
-		          'initial' => 0,
-		          'modificatif' => 0
-			]);
-		DB::table('budgets')->insert([
-				  'idTypeBudget' => 2,
-				  'idAnnee' => $idAnnee,
-		          'previsionnel' => 0,
-		          'initial' => 0,
-		          'modificatif' => 0
-			]);
-		$idBudget=DB::table('budgets')->max('id');
-		$idBudgetNext=$idBudget-1;
-		foreach($profiles as $profile)
-		{
-			DB::table('repartitions')->insert([
-				  'idBudget' => $idBudget,
-		          'idProfile' => $profile->id,
-		          'budget' => 0
-			]);
-			DB::table('repartitions')->insert([
-				  'idBudget' => $idBudgetNext,
-		          'idProfile' => $profile->id,
-		          'budget' => 0
-			]);
-		}
 
-		/*DB::table('budgetInvestissements')->insert([
-				  'idAnnee' => $idAnnee,
-		          'previsionnel' => 0,
-		          'initial' => 0,
-		          'modificatif' => 0
-			]);*/
-		Flash::success('Anneebudgetaire est enregistré avec succès.');
+		
+		$this->anneebudgetaireRepository->createbudgets();
+		$this->anneebudgetaireRepository->createrepartitions();
+
+		Flash::success('La nouvelle année budgétaire est créée avec succès.');
 
 		return redirect(route('anneebudgetaires.index'));
 	}
@@ -113,7 +80,7 @@ class AnneebudgetaireController extends Controller
 
 		if(empty($anneebudgetaire))
 		{
-			Flash::error('Anneebudgetaire que vous cherchez n est pas disponible');
+			Flash::error('L\'année budgétaire que vous cherchez n\'est pas disponible');
 
 			return redirect(route('anneebudgetaires.index'));
 		}
@@ -134,7 +101,7 @@ class AnneebudgetaireController extends Controller
 
 		if(empty($anneebudgetaire))
 		{
-			Flash::error('Anneebudgetaire que vous cherchez n est pas disponible');
+			Flash::error('L\'année budgétaire que vous cherchez n\'est pas disponible');
 
 			return redirect(route('anneebudgetaires.index'));
 		}
@@ -156,14 +123,14 @@ class AnneebudgetaireController extends Controller
 
 		if(empty($anneebudgetaire))
 		{
-			Flash::error('Anneebudgetaire que vous cherchez n est pas disponible');
+			Flash::error('L\'année budgétaire que vous cherchez n\'est pas disponible');
 
 			return redirect(route('anneebudgetaires.index'));
 		}
 
 		$anneebudgetaire = $this->anneebudgetaireRepository->updateRich($request->all(), $id);
 
-		Flash::success('Anneebudgetaire est modifié avec succés.');
+		Flash::success('L\'année budgétaire est modifiée avec succés.');
 
 		return redirect(route('anneebudgetaires.index'));
 	}
@@ -181,14 +148,14 @@ class AnneebudgetaireController extends Controller
 
 		if(empty($anneebudgetaire))
 		{
-			Flash::error('Anneebudgetaire que vous cherchez n est pas disponible');
+			Flash::error('L\'année budgétaire que vous cherchez n\'est pas disponible');
 
 			return redirect(route('anneebudgetaires.index'));
 		}
 
 		$this->anneebudgetaireRepository->delete($id);
 
-		Flash::success('Anneebudgetaire est supprimé avec succès.');
+		Flash::success('L\'année budgétaire est supprimée avec succès.');
 
 		return redirect(route('anneebudgetaires.index'));
 	}

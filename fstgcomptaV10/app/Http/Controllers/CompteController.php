@@ -6,9 +6,9 @@ use App\Http\Requests\UpdateCompteRequest;
 use App\Libraries\Repositories\CompteRepository;
 use Flash;
 use Session;
-//use Mitul\Controller\AppBaseController as Controller;
 use Response;
 use DB;
+use App\Models\Compte;
 class CompteController extends Controller
 {
 
@@ -28,8 +28,6 @@ class CompteController extends Controller
 	 */
 	public function index()
 	{
-
-		//dd(Session::get('user')->tel);
 		extract($_GET);
 		if(!isset($idTypebudget))
 		{
@@ -39,16 +37,11 @@ class CompteController extends Controller
 
 		$typebudgets = DB::table('typebudgets')->lists('type','id');
 		
-		$var=$idTypebudget;
-        $comptes = DB::table('typebudgets')
-               ->Join('comptes','comptes.idTypebudget','=','typebudgets.id')
-               ->where('idTypebudget','=',$idTypebudget)
-               ->paginate(40);
-		
+        $comptes = Compte::where('idTypebudget','=',$idTypebudget)->paginate(40);
 
 			$links = str_replace('/?', '?', $comptes->render());
 
-        return view('comptes.index', compact('comptes', 'links' ,'typebudgets','var'));
+        return view('comptes.index', compact('comptes', 'links' ,'typebudgets','idTypebudget'));
 		
 	}
 

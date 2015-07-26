@@ -4,6 +4,7 @@ use App\Models\Profile;
 use Bosnadev\Repositories\Eloquent\Repository;
 use Schema;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use DB;
 
 class ProfileRepository extends Repository
 {
@@ -66,5 +67,19 @@ class ProfileRepository extends Repository
         }
 
         return $model->delete();
+    }
+
+     public function createrepartitions($profile)
+    {
+       
+        $budgets = DB::table('budgets')->get();
+        foreach($budgets as $budget)
+        {
+            DB::table('repartitions')->insert([
+                  'idBudget' => $budget->id,
+                  'idProfile' => $profile['id'],
+                  'budget' => 0
+            ]);
+        }
     }
 }

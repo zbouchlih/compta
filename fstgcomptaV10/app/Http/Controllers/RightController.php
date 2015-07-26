@@ -5,7 +5,6 @@ use App\Http\Requests\CreateRightRequest;
 use App\Http\Requests\UpdateRightRequest;
 use App\Libraries\Repositories\RightRepository;
 use Flash;
-//use Mitul\Controller\AppBaseController as Controller;
 use Response;
 
 class RightController extends Controller
@@ -27,7 +26,7 @@ class RightController extends Controller
 	 */
 	public function index()
 	{
-		$rights = $this->rightRepository->paginate(7);
+		$rights = $this->rightRepository->paginate(40);
 
 			$links = str_replace('/?', '?', $rights->render());
 

@@ -5,7 +5,7 @@ use App\Http\Requests\CreateTypebudgetRequest;
 use App\Http\Requests\UpdateTypebudgetRequest;
 use App\Libraries\Repositories\TypebudgetRepository;
 use Flash;
-//use Mitul\Controller\AppBaseController as Controller;
+use App\Models\Typebudget;
 use Response;
 
 class TypebudgetController extends Controller

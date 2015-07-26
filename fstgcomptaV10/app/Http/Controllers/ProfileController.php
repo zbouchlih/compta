@@ -5,7 +5,6 @@ use App\Http\Requests\CreateProfileRequest;
 use App\Http\Requests\UpdateProfileRequest;
 use App\Libraries\Repositories\ProfileRepository;
 use Flash;
-//use Mitul\Controller\AppBaseController as Controller;
 use Response;
 use DB;
 
@@ -28,14 +27,7 @@ class ProfileController extends Controller
 	 */
 	public function index()
 	{
-
-		//$test = DB::table('roles')->select('id', 'name as role')->get();
-		$profiles = DB::table('roles')
-               ->Join('profiles', 'roles.id', '=', 'profiles.idRole')
-               ->paginate(20);
-
-               //var_dump($test);
-
+		$profiles = $this->profileRepository->paginate(20);
 			$links = str_replace('/?', '?', $profiles->render());
 
         return view('profiles.index', compact('profiles', 'links'));
@@ -68,16 +60,8 @@ class ProfileController extends Controller
 		$input = $request->all();
 
 		$profile = $this->profileRepository->create($input);
-		$budgets = DB::select('select * from budgets');
+		$this->profileRepository->createrepartitions($profile);
 		
-		foreach($budgets as $budget)
-		{
-			DB::table('repartitions')->insert([
-				  'idBudget' => $budget->id,
-		          'idProfile' => $profile['id'],
-		          'budget' => 0
-			]);
-		}
 
 		Flash::success('profile est enregistré avec succès.');
 
@@ -93,9 +77,7 @@ class ProfileController extends Controller
 	 */
 	public function show($id)
 	{
-		//$profile = $this->profileRepository->find($id);
-		$profile = DB::table('roles')
-               ->Join('profiles', 'profiles.idRole', '=', 'roles.id')->where('profiles.id','=',$id)->first();
+		$profile = $this->profileRepository->find($id);
 		if(empty($profile))
 		{
 			Flash::error('profile que vous cherchez n est pas disponible');

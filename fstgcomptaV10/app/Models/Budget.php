@@ -37,4 +37,19 @@ class Budget extends Model
 		"idTypebudget" => "required"
 	];
 
+	public function anneebudgetaire()
+	{
+		return $this->belongsTo('App\Models\Anneebudgetaire','idAnnee','id');
+	}
+	public function typebudget()
+	{
+		return $this->belongsTo('App\Models\TypeBudget','idTypebudget','id');
+	}
+	public function repartitions()
+    {
+        return $this->hasMany('App\Models\Repartition','idBudget','id');
+    }
+
+   
+
 }

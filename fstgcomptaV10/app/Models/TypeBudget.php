@@ -25,4 +25,9 @@ class Typebudget extends Model
 	    "type" => "required"
 	];
 
+    public function budgets()
+    {
+        return $this->hasMany('App\Models\Budget','idTypebudget','id');
+    }
+
 }

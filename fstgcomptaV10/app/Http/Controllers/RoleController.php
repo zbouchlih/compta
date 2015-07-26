@@ -112,11 +112,6 @@ class RoleController extends Controller
 		$checked= array();
 		
 		$checked=$this->rightRepository->selected($role,$rights);
-		
-
-
-
-		$role = $this->roleRepository->find($id);
 
 		if(empty($role))
 		{

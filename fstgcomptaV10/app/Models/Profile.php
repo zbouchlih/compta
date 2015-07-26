@@ -34,9 +34,13 @@ class Profile extends Model
 		return $this->hasMany('User');
 	}*/
 
-	public function role()
+	public function roles()
 	{
 		return $this->belongsTo('App\Models\Role','idRole','id');
 	}
+	public function repartitions()
+    {
+        return $this->hasMany('App\Models\Repartition','idProfile','id');
+    }
 
 }

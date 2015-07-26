@@ -3,24 +3,20 @@
                         <thead>
                             <th>Année</th>
                             <th>Type de budget</th>
-                        <th>Prévisionnel</th>
-			<th>Initial</th>
-			<th>Modificatif</th>
-			
-                        
-                            <th></th>
-                        
+                            <th>Prévisionnel</th>
+		          	        <th>Initial</th>
+			                <th>Modificatif</th>
+                            <th></th>                        
                         </thead>
 
                         <tbody>
                         @foreach($budgets as $budget)
                         <tr>
-                            <td>{!! $budget->annee !!}</td>
-                            <td>{!! $budget->type !!}</td>
+                            <td>{!! $budget->anneebudgetaire->annee!!}</td>
+                            <td>{!! $budget->typebudget->type !!}</td>
                             <td>{!! $budget->previsionnel !!}</td>
-			<td>{!! $budget->initial !!}</td>
-			<td>{!! $budget->modificatif !!}</td>
-			
+                			<td>{!! $budget->initial !!}</td>
+                			<td>{!! $budget->modificatif !!}</td>
                             <td>
                                 <div class="pull-right">
                                 <!--<a href="{!! route('budgets.show', [$budget->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-eye-open"  aria-hidden="true"></span> Voir</a> -->

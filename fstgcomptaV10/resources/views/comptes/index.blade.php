@@ -40,7 +40,7 @@
                         </br>
                         <div class="form-group col-md-4">
                              {!! Form::open(['route' => ['comptes.index'], 'method' => 'get']) !!}
-                                {!! Form::select('idTypebudget',$typebudgets, $var, ['class' => 'form-control']) !!}
+                                {!! Form::select('idTypebudget',$typebudgets, $idTypebudget, ['class' => 'form-control']) !!}
                                 {!! Form::submit('Afficher', ['class' => 'btn btn-standard']) !!}
                              {!! Form::close() !!}  
                         </div>

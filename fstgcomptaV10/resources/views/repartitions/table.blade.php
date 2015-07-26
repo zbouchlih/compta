@@ -14,8 +14,9 @@
                         <tbody>
                         @foreach($repartitions as $repartition)
                         <tr>
-                            <td>{!! $repartition->name !!}</td>
-                            <td>{!! $repartition->type!!}</td>
+                            <td>{!! $repartition->profile->name !!}</td>
+                            
+                            <td>{!! $repartition->budgett->typebudget->type !!}</td>
                             <td>{!! $repartition->budget!!}</td>
                             <td>
                                 <div class="pull-right">

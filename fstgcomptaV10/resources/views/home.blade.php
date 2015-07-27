@@ -3,7 +3,7 @@
 @section('content')
 <div>
             <h3>BIENVENUE SUR LA PLATFORME COMPTABILITE <b>FSTG MARRAKECH</b></h3>
-            @if(Session::get('user')->profile->role->id==1)
+            @if(Session::get('user')->profile->roles->id==1)
                 <p>haaaadaaa admin adjoint</p>
             @endif
             <div class="tile-container">

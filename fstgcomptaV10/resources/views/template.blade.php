@@ -120,7 +120,7 @@
                    
                     {!! Session::get('user')->firstName;!!}
                     {!! Session::get('user')->lastName;!!}
-                    @foreach(Session::get('user')->profile->role->rights as $right  )
+                    @foreach(Session::get('user')->profile->roles->rights as $right  )
                            {!!$right->pivot->right_id;!!}
                     @endforeach
                     

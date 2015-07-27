@@ -35,7 +35,7 @@ class HomeController extends Controller {
 	    Session::put('user',Auth::user());
 
         $right_session=array();
-        foreach(Session::get('user')->profile->role->rights as $right  )
+        foreach(Session::get('user')->profile->roles->rights as $right  )
         {
             $right_session[$right->pivot->right_id]=$right->pivot->right_id;
         }

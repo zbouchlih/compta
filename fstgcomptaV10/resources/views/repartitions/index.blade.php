@@ -8,11 +8,11 @@
                 <div class="panel-body">
 
                     <div class="row">
-                        <div class="col-md-4">
-                            <!--a href="{!! route('repartitions.create') !!}" class="btn btn-default btn-sm">
+                        <!--div class="col-md-4">
+                            <a href="{!! route('repartitions.create') !!}" class="btn btn-default btn-sm">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter Repartition
-                            </a-->
-                        </div>
+                            </a>
+                        </div-->
 
                         <!--div class="col-md-offset-4 col-md-4">
 

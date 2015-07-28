@@ -16,7 +16,7 @@
 
 
      @foreach($rights as $right)
-         {!! Form::checkbox('rights[]', $right->id,$checked[$right->id]) !!}
+         {!! Form::checkbox('rightz[]', $right->id,$checked[$right->id]) !!}
         {!! Form::label('droit', $right->right) !!} 
        </br>
      @endforeach

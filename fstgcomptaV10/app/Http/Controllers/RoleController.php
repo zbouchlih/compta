@@ -110,7 +110,7 @@ class RoleController extends Controller
 		$checked= array();
 		
 		$checked=$this->rightRepository->selected($role,$rights);
-
+		var_dump($checked);
 		if(empty($role))
 		{
 			Flash::error('Le rôle que vous cherchez n\'est pas disponible');
@@ -139,9 +139,9 @@ class RoleController extends Controller
 
 			return redirect(route('roles.index'));
 		}
-		if(isset($input['rights'])) 
+		if(isset($input['rightz'])) 
 		{
-			$rightRepository->modify($role, $input['rights']);
+			$rightRepository->modify($role, $input['rightz']);
 		}
 		
 		$role = $this->roleRepository->updateRich($request->all(), $id);

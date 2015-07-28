@@ -16,8 +16,10 @@
 
 @if($anneebudgetaire->etat == 1)
 En cours
+@elseif($anneebudgetaire->etat == -1)
+Année Fermée
 @else
-
+Prochaine année
 @endif
 
 
@@ -25,7 +27,7 @@ En cours
                             <td>
                                 <div class="pull-right">
                                     @if(in_array(16,Session::get('right_session')) )
-                                        <a href="{!! route('anneebudgetaires.show', [$anneebudgetaire->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-eye-open"  aria-hidden="true"></span> Voir</a>
+                                        <!--a href="{!! route('anneebudgetaires.show', [$anneebudgetaire->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-eye-open"  aria-hidden="true"></span> Voir</a-->
                                     @endif
                                     @if(in_array(17,Session::get('right_session')) )
                                         <a href="{!! route('anneebudgetaires.edit', [$anneebudgetaire->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span> Modifier</a>

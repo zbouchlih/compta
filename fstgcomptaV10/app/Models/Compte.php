@@ -31,4 +31,9 @@ class Compte extends Model
 		"idTypebudget" => "required"
 	];
 
+	public function repartitions()
+    {
+        return $this->belongsToMany('App\Models\Repartition');
+    }
+
 }

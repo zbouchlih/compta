@@ -31,15 +31,7 @@ class HomeController extends Controller {
 	 * @return Response
 	 */
 	public function index()
-	{
-	    Session::put('user',Auth::user());
-
-        $right_session=array();
-        foreach(Session::get('user')->profile->roles->rights as $right  )
-        {
-            $right_session[$right->pivot->right_id]=$right->pivot->right_id;
-        }
-        Session::put('right_session',$right_session);
+	{        
 		return view('home');
 	}
 

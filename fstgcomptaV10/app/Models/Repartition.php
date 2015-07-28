@@ -39,5 +39,9 @@ class Repartition extends Model
     {
         return $this->belongsTo('App\Models\Profile','idProfile','id');
     }
+    public function comptes()
+    {
+        return $this->belongsToMany('App\Models\Compte');
+    }
 
 }

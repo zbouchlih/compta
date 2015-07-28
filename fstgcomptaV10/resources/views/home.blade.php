@@ -3,17 +3,16 @@
 @section('content')
 <div>
             <h3>BIENVENUE SUR LA PLATFORME COMPTABILITE <b>FSTG MARRAKECH</b></h3>
-            @if(Session::get('user')->profile->roles->id==1)
-                <p>haaaadaaa admin adjoint</p>
-            @endif
             <div class="tile-container">
                 
+                <a href="{{ url('compterepartitions') }}">
                 <div class="tile-wide bg-darkOrange fg-white" data-role="tile">
                     <div class="tile-content iconic">
                         <span class="icon mif-money"></span>
                         <span class="tile-label">Gestion de Budget</span>
                     </div>
                 </div>
+                </a>
 
                 <div class="tile-wide bg-red fg-white" data-role="tile">
                     <div class="tile-content iconic">

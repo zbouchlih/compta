@@ -62,8 +62,6 @@ class RoleController extends Controller
 	{
 		$input = $request->all();
 
-		//var_dump($input);
-
 		$role = $this->roleRepository->create($input);
 
 		if(isset($input['rights'])) 

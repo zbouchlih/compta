@@ -120,9 +120,6 @@
                    
                     {!! Session::get('user')->firstName;!!}
                     {!! Session::get('user')->lastName;!!}
-                    @foreach(Session::get('user')->profile->roles->rights as $right  )
-                           {!!$right->pivot->right_id;!!}
-                    @endforeach
                     
 
                     <a class="dropdown-toggle fg-white"><span class="mif-cog"></span> Paramètres</a>

@@ -131,3 +131,16 @@ Route::get('comptes/{id}/delete', [
     'as' => 'comptes.delete',
     'uses' => 'CompteController@destroy',
 ]);
+
+
+Route::resource('compterepartitions', 'CompterepartitionController');
+
+Route::get('compterepartitions/{id}/delete', [
+    'as' => 'compterepartitions.delete',
+    'uses' => 'CompterepartitionController@destroy',
+]);
+
+Route::get('compterepartitions/{idAnnee}/create', [
+    'as' => 'compterepartitions.creer',
+    'uses' => 'CompterepartitionController@create',
+]);

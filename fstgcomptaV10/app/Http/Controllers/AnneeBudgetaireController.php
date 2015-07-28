@@ -46,6 +46,10 @@ class AnneebudgetaireController extends Controller
 		$annee=DB::table('anneebudgetaires')->max('annee')+1;
 		$input['annee']=$annee;
 		$input['etat']=0;
+		$anneebudgetaire = $this->anneebudgetaireRepository->create($input);
+		Flash::success('La nouvelle année budgétaire est créée avec succès.');
+
+		return redirect(route('anneebudgetaires.index'));
 		//return view('anneebudgetaires.create');
 	}
 

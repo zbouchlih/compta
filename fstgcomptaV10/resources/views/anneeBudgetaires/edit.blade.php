@@ -8,7 +8,17 @@
             <div class="panel-body">
    				 {!! Form::model($anneebudgetaire, ['route' => ['anneebudgetaires.update', $anneebudgetaire->id], 'method' => 'patch']) !!}
 
-        @include('anneebudgetaires.fields')
+   
+<div class="form-group col-md-6">
+    {!! Form::label('annee', 'Année:') !!}
+    {!! Form::text('annee', null, ['class' => 'form-control']) !!}
+</div>
+
+
+<div class="form-group col-md-6">
+    {!! Form::label('etat', 'Etat:') !!}
+    {!! Form::select('etat', ['-1' => 'Fermée','0' => 'Prochaine','1' => 'En cours'] , '0' ,['class' => 'form-control']) !!}
+</div>
 
         
         <div class="col-md-12">

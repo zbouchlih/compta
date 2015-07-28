@@ -22,9 +22,9 @@
                                 <!--<a href="{!! route('budgets.show', [$budget->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-eye-open"  aria-hidden="true"></span> Voir</a> -->
 
                                 @if(in_array(20,Session::get('right_session')) )
-                                    @if( $budget->etat == 1)
+                                    @if( $budget->anneebudgetaire->etat != -1)
                                     <a href="{!! route('budgets.edit', [$budget->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span> Modifier</a>
-                                    @elseif($budget->etat == -1)
+                                    @elseif($budget->anneebudgetaire->etat == -1)
                                     Année fermée
                                     @endif
                                 @endif

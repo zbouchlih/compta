@@ -42,7 +42,11 @@ class AnneebudgetaireController extends Controller
 	 */
 	public function create()
 	{
-		return view('anneebudgetaires.create');
+		$input= array();
+		$annee=DB::table('anneebudgetaires')->max('annee')+1;
+		$input['annee']=$annee;
+		$input['etat']=0;
+		//return view('anneebudgetaires.create');
 	}
 
 	/**

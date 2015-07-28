@@ -22,7 +22,10 @@ class UpdateAnneebudgetaireRequest extends Request {
 	 */
 	public function rules()
 	{
-		return Anneebudgetaire::$rules;
+		return [
+            'etat' => 'required',
+            'annee' => 'required',
+        ];
 	}
 
 }

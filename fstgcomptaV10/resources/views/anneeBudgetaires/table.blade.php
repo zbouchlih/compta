@@ -33,7 +33,7 @@ Prochaine année
                                         <a href="{!! route('anneebudgetaires.edit', [$anneebudgetaire->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span> Modifier</a>
                                     @endif
                                     @if(in_array(18,Session::get('right_session')) )
-                                        <a href="{!! route('anneebudgetaires.delete', [$anneebudgetaire->id]) !!}" onclick="return confirm('Etes-vous sur de vouloir supprimer cette année budgétaire?')" class="btn btn-danger btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-trash"  aria-hidden="true"></span> Supprimer</a>
+                                        <!--a href="{!! route('anneebudgetaires.delete', [$anneebudgetaire->id]) !!}" onclick="return confirm('Etes-vous sur de vouloir supprimer cette année budgétaire?')" class="btn btn-danger btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-trash"  aria-hidden="true"></span> Supprimer</a-->
                                     @endif
                                 </div>
                             </td>

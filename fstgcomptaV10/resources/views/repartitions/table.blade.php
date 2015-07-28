@@ -21,7 +21,7 @@
                             <td>
                                 <div class="pull-right">
                                 <!--a href="{!! route('repartitions.show', [$repartition->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-eye-open"  aria-hidden="true"></span></a-->
-                                @if($repartition->etat!=-1)
+                                @if($repartition->budgett->anneebudgetaire->etat!=-1)
                                     @if(in_array(23,Session::get('right_session')) )
                                        <a href="{!! route('repartitions.edit', [$repartition->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span> Modifier</a>
                                     @endif

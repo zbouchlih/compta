@@ -47,6 +47,8 @@ class AnneebudgetaireController extends Controller
 		$input['annee']=$annee;
 		$input['etat']=0;
 		$anneebudgetaire = $this->anneebudgetaireRepository->create($input);
+		$this->anneebudgetaireRepository->createbudgets();
+		$this->anneebudgetaireRepository->createrepartitions();
 		Flash::success('La nouvelle année budgétaire est créée avec succès.');
 
 		return redirect(route('anneebudgetaires.index'));

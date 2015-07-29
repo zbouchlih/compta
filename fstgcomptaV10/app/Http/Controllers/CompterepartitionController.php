@@ -37,10 +37,10 @@ class CompterepartitionController extends Controller
 			$idAnnee=35;
 		}
 		$annees = DB::table('anneebudgetaires')->lists('annee','id');
-		$repartitions=Repartition::whereIn('idBudget',Anneebudgetaire::find($idAnnee)->getBudgetListAttribute())->where('idProfile',Session::get('user')->idProfile)->paginate(40);
+		$repartitions=Repartition::whereIn('idBudget',Anneebudgetaire::find($idAnnee)->budgets->lists('id'))->where('idProfile',Session::get('user')->idProfile)->paginate(40);
 		$compterepartitions = Compterepartition::whereIn('repartition_id',$repartitions->lists('id'))->paginate(7);
 		
-			$links = str_replace('/?', '?', $compterepartitions->render());
+		$links = str_replace('/?', '?', $compterepartitions->render());
 
         return view('compterepartitions.index', compact('compterepartitions', 'links','annees','repartitions','idAnnee'));
 	}

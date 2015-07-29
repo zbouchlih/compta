@@ -144,3 +144,15 @@ Route::get('compterepartitions/{idAnnee}/create', [
     'as' => 'compterepartitions.creer',
     'uses' => 'CompterepartitionController@create',
 ]);
+
+
+Route::get('repartitions/{idAnnee}/editall', [
+    'as' => 'repartitions.editall',
+    'uses' => 'RepartitionController@editall',
+]);
+
+Route::post('repartitions/{idAnnee}/updateall', [
+    'as' => 'repartitions.updateall',
+    'uses' => 'RepartitionController@updateall',
+]);
+

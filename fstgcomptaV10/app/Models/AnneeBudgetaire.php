@@ -34,11 +34,5 @@ class Anneebudgetaire extends Model
 		return $this->hasMany('App\Models\Budget','idAnnee','id');
 	}
 
-	 public function getBudgetListAttribute()
-    {
-
-        return $this->budgets->lists('id');
-
-    }
 
 }

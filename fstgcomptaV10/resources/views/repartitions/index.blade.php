@@ -7,14 +7,14 @@
                 <div class="panel-heading">Liste des répartitions</div>
                 <div class="panel-body">
 
-                    <div class="row">
-                        <!--div class="col-md-4">
+                    <!--div class="row">
+                        <div class="col-md-4">
                             <a href="{!! route('repartitions.create') !!}" class="btn btn-default btn-sm">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter Repartition
                             </a>
-                        </div-->
+                        </div>
 
-                        <!--div class="col-md-offset-4 col-md-4">
+                        <div class="col-md-offset-4 col-md-4">
 
                             <form class="form-inline pull-right">
                                 <div class="form-group">
@@ -26,8 +26,17 @@
                                 <button type="submit" class="btn btn-standard btn-sm">OK</button>
                             </form>
 
-                        </div-->
+                        </div>
+                    </div-->
+                    @if(in_array(23,Session::get('right_session')) )
+                    <div class="row">
+                        <div class="col-md-4">
+                            <a href="{!! route('repartitions.editall', [$idAnnee]) !!}" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Modifier les répartitions
+                            </a>
+                        </div>
                     </div>
+                    @endif
                     <div class="resultat">
                      @if($repartitions->isEmpty())
                         <div class="well text-center">Aucune répartition trouvée.</div>

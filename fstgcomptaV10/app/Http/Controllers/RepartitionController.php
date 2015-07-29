@@ -36,7 +36,7 @@ class RepartitionController extends Controller
 		}
 		$budgets = Anneebudgetaire::find($idAnnee)->budgets;
 		$annees = DB::table('anneebudgetaires')->lists('annee','id');
-		$repartitions=Repartition::whereIn('idBudget',Anneebudgetaire::find($idAnnee)->getBudgetListAttribute())->orderBy('idProfile', 'asc')->paginate(40);
+		$repartitions=Repartition::whereIn('idBudget',$budgets->lists('id'))->orderBy('idProfile', 'asc')->paginate(40);
 
 			$links =str_replace('/?', '?', $repartitions->render());
 
@@ -113,6 +113,17 @@ class RepartitionController extends Controller
 		return view('repartitions.edit')->with('repartition', $repartition);
 	}
 
+	public function editall($idAnnee)
+	{
+		$budgets = Anneebudgetaire::find($idAnnee)->budgets;
+		
+		$repartitions=Repartition::whereIn('idBudget',$budgets->lists('id'))->orderBy('idProfile', 'asc')->paginate(40);
+
+			$links =str_replace('/?', '?', $repartitions->render());
+
+        return view('repartitions.editall', compact('repartitions', 'links' ,'budgets','idAnnee'));
+	}
+
 	/**
 	 * Update the specified Repartition in storage.
 	 *
@@ -124,7 +135,7 @@ class RepartitionController extends Controller
 	public function update($id, UpdateRepartitionRequest $request)
 	{
 		$repartition = $this->repartitionRepository->find($id);
-
+		
 		if(empty($repartition))
 		{
 			Flash::error('Repartition que vous cherchez n\'est pas disponible');
@@ -134,6 +145,24 @@ class RepartitionController extends Controller
 
 		$repartition = $this->repartitionRepository->updateRich($request->all(), $id);
 
+		Flash::success('Repartition est modifié avec succés.');
+
+		return redirect(route('repartitions.index'));
+	}
+
+	public function updateall($idAnnee, UpdateRepartitionRequest $request)
+	{
+		$inputs=$request->all();
+
+		for ($i=0; $i < count($inputs['id']); $i++) { 
+		$input['_method']='PATCH';
+		$input['_token']=$inputs['_token'];
+		$input['budget']=$inputs['budget'][$i];
+		$repartition = $this->repartitionRepository->find($inputs['id'][$i]);
+		$repartition = $this->repartitionRepository->updateRich($input, $inputs['id'][$i]);
+		
+		}
+	
 		Flash::success('Repartition est modifié avec succés.');
 
 		return redirect(route('repartitions.index'));

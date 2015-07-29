@@ -43,7 +43,7 @@ class Budget extends Model
 	}
 	public function typebudget()
 	{
-		return $this->belongsTo('App\Models\TypeBudget','idTypebudget','id');
+		return $this->belongsTo('App\Models\Typebudget','idTypebudget','id');
 	}
 	public function repartitions()
     {

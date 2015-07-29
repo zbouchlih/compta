@@ -110,7 +110,7 @@ class RoleController extends Controller
 		$checked= array();
 		
 		$checked=$this->rightRepository->selected($role,$rights);
-		var_dump($checked);
+
 		if(empty($role))
 		{
 			Flash::error('Le rôle que vous cherchez n\'est pas disponible');

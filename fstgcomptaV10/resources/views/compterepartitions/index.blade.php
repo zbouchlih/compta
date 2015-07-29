@@ -6,7 +6,15 @@
 <div class="panel panel-default panel-model">
                 <div class="panel-heading">Liste des Compterepartitions</div>
                 <div class="panel-body">
+                    <div>
+                    Votre Budget accordé<br>
+                    @foreach($repartitions as $repartition)
+                        {!! $repartition->budgett->typebudget->type !!}: valeur  : {!! $repartition->budget !!}
+                        <br>
+                    @endforeach
+                  </div>
 
+                  <br><br><br>
                     <div class="row">
                         <div class="col-md-4">
                             <a href="{!! route('compterepartitions.creer', [$idAnnee]) !!}" class="btn btn-default btn-sm">
@@ -28,6 +36,7 @@
 
                         </div-->
                     </div>
+
                     <div class="resultat">
                      @if($compterepartitions->isEmpty())
                         <div class="well text-center">Pas de Compterepartitions trouvé.</div>
@@ -41,13 +50,7 @@
 
                     </div>
                     <br> <br> <br> <br><br><br><br>
-                  <div>
-                    Votre Budget accordé<br>
-                    @foreach($repartitions as $repartition)
-                        {!! $repartition->budgett->typebudget->type !!}: valeur  : {!! $repartition->budget !!}
-                        <br>
-                    @endforeach
-                  </div>
+                  
                         @include('compterepartitions.table')
                      @endif
                    

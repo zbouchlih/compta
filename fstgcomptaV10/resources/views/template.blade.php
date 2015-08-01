@@ -69,11 +69,21 @@
                     <li><a href="{{ url('budgets') }}">Budgets</a></li>
                     @endif
                     @if(in_array(22,Session::get('right_session')) )
-                    <li><a href="{{ url('repartitions') }}">répartition</a></li>
+                    <li><a href="{{ url('repartitions') }}">répartition par profil</a></li>
+                    <li><a href="{{ url('compterepartitions') }}">répartition par compte</a></li>
                     @endif
                     @if(in_array(25,Session::get('right_session')) )
                     <li><a href="{{ url('comptes') }}">Comptes</a></li>
                     @endif
+                </ul>
+            </li>
+            <li>
+                <a class="dropdown-toggle" href="#"><span class="mif-money icon"></span>Gestion des dépenses</a>
+                <ul class="d-menu" data-role="dropdown">
+                    
+                    <li><a href="{{ url('typedepenses') }}">Type de dépense</a></li>
+                     <li><a href="#">Gestion des dépenses</a></li>
+                   
                 </ul>
             </li>
             <li><a href="#"><span class="mif-shopping-basket icon"></span>Gestion des Commandes</a></li>

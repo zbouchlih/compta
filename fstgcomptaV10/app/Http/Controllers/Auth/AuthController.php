@@ -67,6 +67,9 @@ class AuthController extends Controller
             $right_session[$right->pivot->right_id]=$right->pivot->right_id;
         }
         Session::put('right_session',$right_session);
+
+        $idAnnee=35;
+        Session::put('idAnnee',$idAnnee);
             return $this->handleUserWasAuthenticated($request, $throttles);
         }
 

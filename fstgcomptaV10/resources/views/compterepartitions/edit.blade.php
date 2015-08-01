@@ -4,15 +4,25 @@
 
     @include('common.errors')
     <div class="panel panel-default panel-model">
-        <div class="panel-heading">Modifier Compterepartition</div>
+        <div class="panel-heading">Modifier la répartition</div>
             <div class="panel-body">
    				 {!! Form::model($compterepartition, ['route' => ['compterepartitions.update', $compterepartition->id], 'method' => 'patch']) !!}
 
        
 
 <div class="form-group col-md-6">
-    {!! Form::label('valeur', 'Valeur:') !!}
-    {!! Form::number('valeur', null, ['class' => 'form-control']) !!}
+    {!! Form::label('credit_ouvert', 'credit_ouvert:') !!}
+    {!! Form::number('credit_ouvert', null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group col-md-6">
+    {!! Form::label('engagement', 'engagement:') !!}
+    {!! Form::number('engagement', null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group col-md-6">
+    {!! Form::label('paiement', 'paiement:') !!}
+    {!! Form::number('paiement', null, ['class' => 'form-control']) !!}
 </div>
 
         <div class="col-md-12">

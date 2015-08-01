@@ -5,11 +5,11 @@
     @include('common.errors')
 
     <div class="panel panel-default panel-model">
-                <div class="panel-heading">Ajouter une nouvelle répartition par compte</div>
+                <div class="panel-heading">Ajouter une nouvelle dépense</div>
                 <div class="panel-body">
-   					{!! Form::open(['route' => 'compterepartitions.store']) !!}
-     				   @include('compterepartitions.fields')
-     				 
+   					{!! Form::open(['route' => 'depenses.store']) !!}
+     				   @include('depenses.fields')
+     				   <!--- Submit Field --->
                        <div class="col-md-12">
                            {!! Form::submit('Ajouter', ['class' => 'btn btn-standard']) !!}
                        </div>

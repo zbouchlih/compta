@@ -21,6 +21,16 @@
 
 
 <div class="form-group col-md-6">
-    {!! Form::label('valeur', 'Valeur:') !!}
-	{!! Form::number('valeur', null, ['class' => 'form-control']) !!}
+    {!! Form::label('credit_ouvert', 'Crédit ouvert:') !!}
+    {!! Form::number('credit_ouvert', null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group col-md-6">
+    {!! Form::label('engagement', 'Engagement:') !!}
+    {!! Form::number('engagement', null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group col-md-6">
+    {!! Form::label('paiement', 'Paiement:') !!}
+    {!! Form::number('paiement', null, ['class' => 'form-control']) !!}
 </div>

@@ -39,10 +39,10 @@ class CompterepartitionController extends Controller
 		$annees = DB::table('anneebudgetaires')->lists('annee','id');
 		$repartitions=Repartition::whereIn('idBudget',Anneebudgetaire::find($idAnnee)->budgets->lists('id'))->where('idProfile',Session::get('user')->idProfile)->paginate(40);
 		$compterepartitions = Compterepartition::whereIn('repartition_id',$repartitions->lists('id'))->paginate(7);
-		
+		$annee=Anneebudgetaire::find($idAnnee)->annee;
 		$links = str_replace('/?', '?', $compterepartitions->render());
 
-        return view('compterepartitions.index', compact('compterepartitions', 'links','annees','repartitions','idAnnee'));
+        return view('compterepartitions.index', compact('compterepartitions', 'links','annees','repartitions','idAnnee','annee'));
 	}
 
 	/**
@@ -50,8 +50,9 @@ class CompterepartitionController extends Controller
 	 *
 	 * @return Response
 	 */
-	public function create($idAnnee)
+	public function create($annee)
 	{
+		$idAnnee=Anneebudgetaire::where('annee',$annee)->first()->id;
 		$comptes = DB::table('comptes')->lists('compte','id');
 		$typebudgets = DB::table('typebudgets')->lists('type','id');
 		return view('compterepartitions.create')->with('comptes', $comptes)->with('idAnnee', $idAnnee)->with('typebudgets', $typebudgets);
@@ -74,7 +75,7 @@ class CompterepartitionController extends Controller
 		$repartition=Repartition::where('idBudget',$idBudget)->where('idProfile',Session::get('user')->idProfile)->first();
 		
 
-        $repartition->comptes()->attach($input['compte_id'],['valeur' => $input['valeur']]);
+        $repartition->comptes()->attach($input['compte_id'],['credit_ouvert' => $input['credit_ouvert'],'engagement'=> $input['engagement'], 'paiement'=>$input['paiement']]);
 
 		Flash::success('Compterepartition est enregistré avec succès.');
 

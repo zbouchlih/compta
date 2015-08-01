@@ -11,9 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 
 /*
@@ -146,6 +143,8 @@ Route::get('compterepartitions/{idAnnee}/create', [
 ]);
 
 
+
+
 Route::get('repartitions/{idAnnee}/editall', [
     'as' => 'repartitions.editall',
     'uses' => 'RepartitionController@editall',
@@ -156,3 +155,37 @@ Route::post('repartitions/{idAnnee}/updateall', [
     'uses' => 'RepartitionController@updateall',
 ]);
 
+
+
+Route::resource('typedepenses', 'TypedepenseController');
+
+Route::get('typedepenses/{id}/delete', [
+    'as' => 'typedepenses.delete',
+    'uses' => 'TypedepenseController@destroy',
+]);
+
+
+Route::resource('depenses', 'DepenseController');
+
+Route::get('depenses/{id}/delete', [
+    'as' => 'depenses.delete',
+    'uses' => 'DepenseController@destroy',
+]);
+
+Route::get('depenses/{id}/index', [
+    'as' => 'depenses.index',
+    'uses' => 'DepenseController@index',
+]);
+
+Route::get('depenses/{id}/create', [
+    'as' => 'depenses.create',
+    'uses' => 'DepenseController@create',
+]);
+
+
+Route::resource('tests', 'TestController');
+
+Route::get('tests/{id}/delete', [
+    'as' => 'tests.delete',
+    'uses' => 'TestController@destroy',
+]);

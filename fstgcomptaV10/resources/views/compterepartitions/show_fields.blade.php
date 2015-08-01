@@ -10,9 +10,19 @@
     <p>{!! $compterepartition->compte_id !!}</p>
 </div>
 
-<!-- Valeur Field -->
+<!-- credit_ouvert Field -->
 <div class="form-group col-md-6">
-    {!! Form::label('valeur', 'Valeur:') !!}
-    <p>{!! $compterepartition->valeur !!}</p>
+    {!! Form::label('credit_ouvert', 'credit_ouvert:') !!}
+    <p>{!! $compterepartition->credit_ouvert !!}</p>
+</div>
+
+<div class="form-group col-md-6">
+    {!! Form::label('engagement', 'engagement:') !!}
+    <p>{!! $compterepartition->engagement !!}</p>
+</div>
+
+<div class="form-group col-md-6">
+    {!! Form::label('paiement', 'paiement:') !!}
+    <p>{!! $compterepartition->paiement !!}</p>
 </div>
 

@@ -1,9 +1,9 @@
 <?php namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
-use App\Models\Compterepartition;
+use App\Models\Typedepense;
 
-class UpdateCompterepartitionRequest extends Request {
+class CreateTypedepenseRequest extends Request {
 
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -22,11 +22,7 @@ class UpdateCompterepartitionRequest extends Request {
 	 */
 	public function rules()
 	{
-		return [
-            'credit_ouvert' => 'required',
-            'engagement' => 'required',
-            'paiement' => 'required'
-        ];
+		return Typedepense::$rules;
 	}
 
 }

@@ -11,7 +11,9 @@ class Compterepartition extends Model
 	public $fillable = [
 	    "repartition_id",
 		"compte_id",
-		"valeur"
+		"credit_ouvert",
+        "engagement",
+        "paiement"
 	];
 
     /**
@@ -22,13 +24,15 @@ class Compterepartition extends Model
     protected $casts = [
         "repartition_id" => "integer",
 		"compte_id" => "integer",
-		"valeur" => "integer"
+		"credit_ouvert" => "integer",
+        "engagement" => "integer",
+        "paiement" => "integer"
     ];
 
 	public static $rules = [
 	    
 		"compte_id" => "required",
-		"valeur" => "required"
+		"credit_ouvert" => "required"
 	];
 
 	public function comptes()
@@ -38,6 +42,11 @@ class Compterepartition extends Model
     public function repartitions()
     {
         return $this->belongsTo('App\Models\repartition','repartition_id','id');
+    }
+
+    public function depenses()
+    {
+        return $this->hasMany('App\Models\Depense','idCompterepartition','id');
     }
 
 }

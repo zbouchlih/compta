@@ -24,7 +24,9 @@ class CreateCompterepartitionsTable extends Migration
 			$table->foreign('compte_id')->references('id')->on('comptes')
 						->onDelete('restrict')
 						->onUpdate('restrict');
-			$table->integer('valeur');
+			$table->integer('credit_ouvert');
+			$table->integer('engagement');
+			$table->integer('paiement');
 			$table->timestamps();
 		});
 	}

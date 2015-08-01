@@ -29,17 +29,19 @@ class CompterepartitionController extends Controller
 	 *
 	 * @return Response
 	 */
-	public function index()
+
+	public function index($annee)
 	{
-		extract($_GET);
+		extract($_POST);
 		if(!isset($idAnnee))
 		{
-			$idAnnee=35;
+			$idAnnee=Anneebudgetaire::where('annee',$annee)->first()->id;
 		}
+		//$annee=Anneebudgetaire::find($idAnnee)->annee;
 		$annees = DB::table('anneebudgetaires')->lists('annee','id');
 		$repartitions=Repartition::whereIn('idBudget',Anneebudgetaire::find($idAnnee)->budgets->lists('id'))->where('idProfile',Session::get('user')->idProfile)->paginate(40);
 		$compterepartitions = Compterepartition::whereIn('repartition_id',$repartitions->lists('id'))->paginate(7);
-		$annee=Anneebudgetaire::find($idAnnee)->annee;
+		
 		$links = str_replace('/?', '?', $compterepartitions->render());
 
         return view('compterepartitions.index', compact('compterepartitions', 'links','annees','repartitions','idAnnee','annee'));
@@ -73,13 +75,13 @@ class CompterepartitionController extends Controller
 		$idBudget=Budget::where('idAnnee',$input['idAnnee'])->where('idTypebudget',$input['idTypebudget'])->first()->id;
 	
 		$repartition=Repartition::where('idBudget',$idBudget)->where('idProfile',Session::get('user')->idProfile)->first();
-		
+		$annee=Anneebudgetaire::find($input['idAnnee'])->annee;
 
         $repartition->comptes()->attach($input['compte_id'],['credit_ouvert' => $input['credit_ouvert'],'engagement'=> $input['engagement'], 'paiement'=>$input['paiement']]);
 
 		Flash::success('Compterepartition est enregistré avec succès.');
 
-		return redirect(route('compterepartitions.index'))->with('idAnnee', $input['idAnnee']);
+		return redirect(route('compterepartitions.index',$annee))->with('idAnnee', $input['idAnnee']);
 	}
 
 	/**
@@ -135,7 +137,7 @@ class CompterepartitionController extends Controller
 	public function update($id, UpdateCompterepartitionRequest $request)
 	{
 		$compterepartition = $this->compterepartitionRepository->find($id);
-
+		$annee=$compterepartition->repartitions->budgett->anneebudgetaire->annee;
 		if(empty($compterepartition))
 		{
 			Flash::error('Compterepartition que vous cherchez n\'est pas disponible');
@@ -147,7 +149,7 @@ class CompterepartitionController extends Controller
 
 		Flash::success('Compterepartition est modifié avec succés.');
 
-		return redirect(route('compterepartitions.index'));
+		return redirect(route('compterepartitions.index',$annee));
 	}
 
 	/**
@@ -160,7 +162,7 @@ class CompterepartitionController extends Controller
 	public function destroy($id)
 	{
 		$compterepartition = $this->compterepartitionRepository->find($id);
-
+		$annee=$compterepartition->repartitions->budgett->anneebudgetaire->annee;
 		if(empty($compterepartition))
 		{
 			Flash::error('Compterepartition que vous cherchez n\'est pas disponible');
@@ -173,6 +175,6 @@ $this->compterepartitionRepository->delete($id);
 
 		Flash::success('Compterepartition est supprimé avec succès.');
 
-		return redirect(route('compterepartitions.index'));
+		return redirect(route('compterepartitions.index',$annee));
 	}
 }

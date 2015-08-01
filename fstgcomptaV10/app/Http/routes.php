@@ -142,8 +142,15 @@ Route::get('compterepartitions/{idAnnee}/create', [
     'uses' => 'CompterepartitionController@create',
 ]);
 
+Route::get('compterepartitions/{annee}/index', [
+    'as' => 'compterepartitions.index',
+    'uses' => 'CompterepartitionController@index',
+]);
 
-
+Route::post('compterepartitions/{annee}/index', [
+    'as' => 'compterepartitions.index',
+    'uses' => 'CompterepartitionController@index',
+]);
 
 Route::get('repartitions/{idAnnee}/editall', [
     'as' => 'repartitions.editall',

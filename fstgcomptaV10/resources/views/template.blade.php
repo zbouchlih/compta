@@ -70,7 +70,7 @@
                     @endif
                     @if(in_array(22,Session::get('right_session')) )
                     <li><a href="{{ url('repartitions') }}">répartition par profil</a></li>
-                    <li><a href="{{ url('compterepartitions') }}">répartition par compte</a></li>
+                    <li><a href="{!! route('compterepartitions.index', [2014]) !!}">répartition par compte</a></li>
                     @endif
                     @if(in_array(25,Session::get('right_session')) )
                     <li><a href="{{ url('comptes') }}">Comptes</a></li>

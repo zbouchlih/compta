@@ -30,14 +30,14 @@ class CompterepartitionController extends Controller
 	 * @return Response
 	 */
 
-	public function index($annee)
+	public function index($idAnnee)
 	{
 		extract($_POST);
-		if(!isset($idAnnee))
-		{
-			$idAnnee=Anneebudgetaire::where('annee',$annee)->first()->id;
-		}
-		//$annee=Anneebudgetaire::find($idAnnee)->annee;
+		//if(!isset($idAnnee))
+		//{
+		//	$idAnnee=Anneebudgetaire::where('annee',$annee)->first()->id;
+		//}
+		$annee=Anneebudgetaire::find($idAnnee)->annee;
 		$annees = DB::table('anneebudgetaires')->lists('annee','id');
 		$repartitions=Repartition::whereIn('idBudget',Anneebudgetaire::find($idAnnee)->budgets->lists('id'))->where('idProfile',Session::get('user')->idProfile)->paginate(40);
 		$compterepartitions = Compterepartition::whereIn('repartition_id',$repartitions->lists('id'))->paginate(7);
@@ -81,7 +81,7 @@ class CompterepartitionController extends Controller
 
 		Flash::success('Compterepartition est enregistré avec succès.');
 
-		return redirect(route('compterepartitions.index',$annee))->with('idAnnee', $input['idAnnee']);
+		return redirect(route('compterepartitions.index',$input['idAnnee']))->with('idAnnee', $input['idAnnee']);
 	}
 
 	/**
@@ -137,7 +137,7 @@ class CompterepartitionController extends Controller
 	public function update($id, UpdateCompterepartitionRequest $request)
 	{
 		$compterepartition = $this->compterepartitionRepository->find($id);
-		$annee=$compterepartition->repartitions->budgett->anneebudgetaire->annee;
+		$idAnnee=$compterepartition->repartitions->budgett->idAnnee;
 		if(empty($compterepartition))
 		{
 			Flash::error('Compterepartition que vous cherchez n\'est pas disponible');
@@ -149,7 +149,7 @@ class CompterepartitionController extends Controller
 
 		Flash::success('Compterepartition est modifié avec succés.');
 
-		return redirect(route('compterepartitions.index',$annee));
+		return redirect(route('compterepartitions.index',$idAnnee));
 	}
 
 	/**
@@ -162,7 +162,7 @@ class CompterepartitionController extends Controller
 	public function destroy($id)
 	{
 		$compterepartition = $this->compterepartitionRepository->find($id);
-		$annee=$compterepartition->repartitions->budgett->anneebudgetaire->annee;
+		$idAnnee=$compterepartition->repartitions->budgett->idAnnee;
 		if(empty($compterepartition))
 		{
 			Flash::error('Compterepartition que vous cherchez n\'est pas disponible');
@@ -175,6 +175,6 @@ $this->compterepartitionRepository->delete($id);
 
 		Flash::success('Compterepartition est supprimé avec succès.');
 
-		return redirect(route('compterepartitions.index',$annee));
+		return redirect(route('compterepartitions.index',$idAnnee));
 	}
 }

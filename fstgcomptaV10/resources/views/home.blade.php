@@ -5,7 +5,7 @@
             <h3>BIENVENUE SUR LA PLATFORME COMPTABILITE <b>FSTG MARRAKECH</b></h3>
             <div class="tile-container">
                 
-                <a href="{{ url('compterepartitions') }}">
+                <a href="{!! route('compterepartitions.index', [35]) !!}">
                 <div class="tile-wide bg-darkOrange fg-white" data-role="tile">
                     <div class="tile-content iconic">
                         <span class="icon mif-money"></span>

@@ -142,12 +142,12 @@ Route::get('compterepartitions/{idAnnee}/create', [
     'uses' => 'CompterepartitionController@create',
 ]);
 
-Route::get('compterepartitions/{annee}/index', [
+Route::get('compterepartitions/{idAnnee}/index', [
     'as' => 'compterepartitions.index',
     'uses' => 'CompterepartitionController@index',
 ]);
 
-Route::post('compterepartitions/{annee}/index', [
+Route::post('compterepartitions/{idAnnee}/index', [
     'as' => 'compterepartitions.index',
     'uses' => 'CompterepartitionController@index',
 ]);

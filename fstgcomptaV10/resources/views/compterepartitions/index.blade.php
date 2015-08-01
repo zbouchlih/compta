@@ -43,7 +43,7 @@
                      @else
                      <div class="form-group col-md-2">
 
-                         {!! Form::open(['route' => ['compterepartitions.index',App\Models\Anneebudgetaire::find($idAnnee)->annee], 'method' => 'post']) !!}
+                         {!! Form::open(['route' => ['compterepartitions.index',$idAnnee], 'method' => 'post']) !!}
                             {!! Form::select('idAnnee',$annees, $idAnnee, ['class' => 'form-control']) !!}
                             {!! Form::submit('Afficher', ['class' => 'btn btn-standard']) !!}
                          {!! Form::close() !!}  

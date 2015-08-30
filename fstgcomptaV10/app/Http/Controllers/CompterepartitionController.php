@@ -56,6 +56,7 @@ class CompterepartitionController extends Controller
 	{
 		$idAnnee=Anneebudgetaire::where('annee',$annee)->first()->id;
 		$comptes = DB::table('comptes')->lists('compte','id');
+		//$comptes = DB::table('comptes')->where('idTypebudget',1)->lists('compte','id');
 		$typebudgets = DB::table('typebudgets')->lists('type','id');
 		return view('compterepartitions.create')->with('comptes', $comptes)->with('idAnnee', $idAnnee)->with('typebudgets', $typebudgets);
 	}

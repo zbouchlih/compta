@@ -9,7 +9,6 @@
                 <div class="panel-body">
    					{!! Form::open(['route' => 'compterepartitions.store']) !!}
      				   @include('compterepartitions.fields')
-     				 
                        <div class="col-md-12">
                            {!! Form::submit('Ajouter', ['class' => 'btn btn-standard']) !!}
                        </div>

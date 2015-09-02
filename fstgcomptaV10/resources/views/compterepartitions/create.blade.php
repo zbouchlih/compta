@@ -3,6 +3,36 @@
 @section('content')
 
     @include('common.errors')
+    <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            $(".Type_budget").change(function () {
+                var id_type=$('.Type_budget option:selected').val();
+                $.ajax({
+                    url:'{{URL::to("compterepartitions/storeAjax")}}',
+                    dataType:'json',
+                    type:'post',
+                    data:{id_type:id_type,_token:'{!! csrf_token() !!}',compte_id:0,credit_ouvert:0},
+                    beforeSend: function(){
+                    },success: function(data)
+                    {
+//                        $('.Compte11 option[value!="0"]').remove();
+                        $(".type_Compte").find('option').remove();
+                        $.each(data,function(key, value)
+                        {
+                            $(".type_Compte").append('<option value=' + key + '>' + value + '</option>');
+                        });
+                    },error: function(data)
+                    {
+                        alert(data);
+                    }
+                });
+            });
+
+        })
+    </script>
+    </select>
 
     <div class="panel panel-default panel-model">
                 <div class="panel-heading">Ajouter une nouvelle répartition par compte</div>

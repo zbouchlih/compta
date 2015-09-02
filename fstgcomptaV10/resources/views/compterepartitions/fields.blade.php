@@ -11,12 +11,12 @@
 
 <div class="form-group col-md-6">
     {!! Form::label('idTypebudget', 'Type de budget:') !!}
-	{!! Form::select('idTypebudget', $typebudgets, '1', ['class' => 'form-control']) !!}
+	{!! Form::select('idTypebudget', $typebudgets, '1', ['class' => 'form-control Type_budget']) !!}
 </div>
 
 <div class="form-group col-md-6">
     {!! Form::label('compte_id', 'Compte:') !!}
-	{!! Form::select('compte_id', $comptes, '1', ['class' => 'form-control']) !!}
+	{!! Form::select('compte_id', $comptes, '1', ['class' => 'form-control type_Compte']) !!}
 </div>
 
 

@@ -34,13 +34,14 @@ class RepartitionController extends Controller
 		{
 			$idAnnee=35;
 		}
+		$budget = Anneebudgetaire::find($idAnnee)->budgets->first();
 		$budgets = Anneebudgetaire::find($idAnnee)->budgets;
 		$annees = DB::table('anneebudgetaires')->lists('annee','id');
 		$repartitions=Repartition::whereIn('idBudget',$budgets->lists('id'))->orderBy('idProfile', 'asc')->paginate(40);
 
 			$links =str_replace('/?', '?', $repartitions->render());
 
-        return view('repartitions.index', compact('repartitions', 'links' ,'annees' ,'budgets','idAnnee'));
+        return view('repartitions.index', compact('repartitions', 'links' ,'annees' ,'budgets','idAnnee','budget'));
 	}
 
 	/**
@@ -116,6 +117,7 @@ class RepartitionController extends Controller
 	public function editall($idAnnee)
 	{
 		$budgets = Anneebudgetaire::find($idAnnee)->budgets;
+		
 		
 		$repartitions=Repartition::whereIn('idBudget',$budgets->lists('id'))->orderBy('idProfile', 'asc')->paginate(40);
 

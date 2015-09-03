@@ -30,11 +30,17 @@
                     </div-->
                     @if(in_array(23,Session::get('right_session')) )
                     <div class="row">
+                         @if( $budget->anneebudgetaire->etat != -1)
                         <div class="col-md-4">
                             <a href="{!! route('repartitions.editall', [$idAnnee]) !!}" class="btn btn-default btn-sm">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Modifier les répartitions
                             </a>
                         </div>
+                        @elseif($budget->anneebudgetaire->etat == -1)
+                        <div class="col-md-4">
+                                 Modification fermée
+                        </div>
+                        @endif
                     </div>
                     @endif
                     <div class="resultat">
@@ -50,13 +56,25 @@
                          {!! Form::close() !!}  
 
                     </div>
-                    <br> <br> <br> <br>
-                  <div>
-                    @foreach($budgets as $budget)
-                        {!! $budget->typebudget->type !!}, previsionnel  : {!! $budget->previsionnel !!}, initial : {!! $budget->initial !!}, modificatif : {!! $budget->modificatif !!}
+                    <br> <br> <br> <br><br> <br> <br> <br>
+                    Budgets Actuels: <br>
+                     @foreach($budgets as $budget)
+                    
+                                    
+                        <div>
+                        {!! $budget->typebudget->type !!}
+
+                        @if($budget->modificatif > 0)
+                            modificatif : {!! $budget->modificatif !!}
+                        @elseif($budget->initial >0)
+                            initial : {!! $budget->initial !!}
+                        @else
+                            previsionnel  : {!! $budget->previsionnel !!}
+                        @endif
+                         
                         <br>
+                        </div>
                     @endforeach
-                  </div>
                         @include('repartitions.table')
                     @endif
                                        

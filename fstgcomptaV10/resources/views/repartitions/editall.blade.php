@@ -7,11 +7,31 @@
         <div class="panel-heading">Modifier la répartition</div>
             <div class="panel-body">     
                       {!! Form::open(['route' => ['repartitions.updateall', $idAnnee]]) !!}
-
+                    
                     <div class="col-md-12">
                         {!! Form::submit('Modifier', ['class' => 'btn btn-standard']) !!}
                     </div>
+             
+                    
+                    Budgets Actuels: <br>
+                     @foreach($budgets as $budget)
+                    
+                                    
+                        <div>
+                        {!! $budget->typebudget->type !!}
 
+                        @if($budget->modificatif > 0)
+                            modificatif : {!! $budget->modificatif !!}
+                        @elseif($budget->initial >0)
+                            initial : {!! $budget->initial !!}
+                        @else
+                            previsionnel  : {!! $budget->previsionnel !!}
+                        @endif
+                         
+                        <br>
+                        </div>
+                    @endforeach
+                    
      
                <table class="table table-hover">
                         <thead>

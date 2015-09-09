@@ -22,7 +22,6 @@
                 },error: function(data)
                 {
                     alert("Probleme serveur FSTG!!");
-
                 }
             });
         });

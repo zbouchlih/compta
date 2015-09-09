@@ -9,6 +9,7 @@ use Response;
 use DB;
 use App\Models\Anneebudgetaire;
 use App\Models\Repartition;
+use App\Models\Budget;
 
 class RepartitionController extends Controller
 {
@@ -34,15 +35,93 @@ class RepartitionController extends Controller
 		{
 			$idAnnee=35;
 		}
-		$budgets = Anneebudgetaire::find($idAnnee)->budgets;
-		$annees = DB::table('anneebudgetaires')->lists('annee','id');
-		$repartitions=Repartition::whereIn('idBudget',$budgets->lists('id'))->orderBy('idProfile', 'asc')->paginate(40);
 
-			$links =str_replace('/?', '?', $repartitions->render());
+        $budgets = Anneebudgetaire::find($idAnnee)->budgets;
+        if($budgets->where('idTypebudget',1)->first()->modificatif!=0)
+            {
+                $actuelFon=$budgets->where('idTypebudget',1)->first()->modificatif;
+            }
+            else if($budgets->where('idTypebudget',1)->first()->initial!=0)
+            {
+                $actuelFon=$budgets->where('idTypebudget',1)->first()->initial;
+            }
+            else{
+                $actuelFon=$budgets->where('idTypebudget',1)->first()->previsionnel;
+            }
+            if($budgets->where('idTypebudget',2)->first()->modificatif!=0)
+            {
+                $actuelInv=$budgets->where('idTypebudget',2)->first()->modificatif;
+            }
+            else if($budgets->where('idTypebudget',2)->first()->initial!=0)
+            {
+                $actuelInv=$budgets->where('idTypebudget',2)->first()->initial;
+            }
+            else{
+                $actuelInv=$budgets->where('idTypebudget',2)->first()->previsionnel;
+            }
 
-        return view('repartitions.index', compact('repartitions', 'links' ,'annees' ,'budgets','idAnnee'));
+
+            $annees = DB::table('anneebudgetaires')->lists('annee','id');
+            $repartitions=Repartition::whereIn('idBudget',$budgets->lists('id'))->orderBy('idProfile', 'asc')->paginate(40);
+            $repFon=Repartition::whereIn('idBudget',$budgets->lists('id'))->whereIn('idBudget',Budget::where('idTypeBudget',1)->lists('id'))->sum('budget');
+            $repInv=Repartition::whereIn('idBudget',$budgets->lists('id'))->whereIn('idBudget',Budget::where('idTypeBudget',2)->lists('id'))->sum('budget');
+			$restFon=$actuelFon-$repFon;
+			$restInv=$actuelInv-$repInv;
+
+            $etat = Anneebudgetaire::find($idAnnee)->etat;
+            $links =str_replace('/?', '?', $repartitions->render());
+
+        return view('repartitions.index', compact('repartitions', 'links' ,'etat','annees' ,'budgets','idAnnee','actuelFon','actuelInv','restFon','restInv'));
 	}
 
+
+    public function indexajax()
+    {
+        extract($_GET);
+        if(!isset($idAnnee))
+        {
+            $idAnnee=35;
+        }
+
+        $budgets = Anneebudgetaire::find($idAnnee)->budgets;
+        if($budgets->where('idTypebudget',1)->first()->modificatif!=0)
+        {
+            $actuelFon=$budgets->where('idTypebudget',1)->first()->modificatif;
+        }
+        else if($budgets->where('idTypebudget',1)->first()->initial!=0)
+        {
+            $actuelFon=$budgets->where('idTypebudget',1)->first()->initial;
+        }
+        else{
+            $actuelFon=$budgets->where('idTypebudget',1)->first()->previsionnel;
+        }
+        if($budgets->where('idTypebudget',2)->first()->modificatif!=0)
+        {
+            $actuelInv=$budgets->where('idTypebudget',2)->first()->modificatif;
+        }
+        else if($budgets->where('idTypebudget',2)->first()->initial!=0)
+        {
+            $actuelInv=$budgets->where('idTypebudget',2)->first()->initial;
+        }
+        else{
+            $actuelInv=$budgets->where('idTypebudget',2)->first()->previsionnel;
+        }
+
+
+        $annees = DB::table('anneebudgetaires')->lists('annee','id');
+        $repartitions=Repartition::whereIn('idBudget',$budgets->lists('id'))->orderBy('idProfile', 'asc')->paginate(40);
+        $repFon=Repartition::whereIn('idBudget',$budgets->lists('id'))->whereIn('idBudget',Budget::where('idTypeBudget',1)->lists('id'))->sum('budget');
+        $repInv=Repartition::whereIn('idBudget',$budgets->lists('id'))->whereIn('idBudget',Budget::where('idTypeBudget',2)->lists('id'))->sum('budget');
+        $restFon=$actuelFon-$repFon;
+        $restInv=$actuelInv-$repInv;
+
+        $etat = Anneebudgetaire::find($idAnnee)->etat;
+        $links =str_replace('/?', '?', $repartitions->render());
+
+        $data=view('repartitions.table', compact('repartitions', 'links' ,'etat','annees' ,'budgets','idAnnee','actuelFon','actuelInv','restFon','restInv'))->render();
+
+        return response()->json($data);
+    }
 	/**
 	 * Show the form for creating a new Repartition.
 	 *

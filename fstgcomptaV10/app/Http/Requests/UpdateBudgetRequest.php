@@ -22,12 +22,12 @@ class UpdateBudgetRequest extends Request {
 	 */
 	public function rules()
 	{
-		
-		$id = $this->segment(2);
+
+//		$id = $this->segment(2);
         return [
              "previsionnel" => "required",
-		"initial" => "required",
-		"modificatif" => "required",
+		     "initial" => "required",
+		     "modificatif" => "required",
 		
         ];
 	}

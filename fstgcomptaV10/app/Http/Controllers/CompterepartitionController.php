@@ -31,21 +31,34 @@ class CompterepartitionController extends Controller
 	 */
 
 	public function index($idAnnee)
-	{
-		extract($_POST);
-		//if(!isset($idAnnee))
-		//{
-		//	$idAnnee=Anneebudgetaire::where('annee',$annee)->first()->id;
-		//}
-		$annee=Anneebudgetaire::find($idAnnee)->annee;
-		$annees = DB::table('anneebudgetaires')->lists('annee','id');
-		$repartitions=Repartition::whereIn('idBudget',Anneebudgetaire::find($idAnnee)->budgets->lists('id'))->where('idProfile',Session::get('user')->idProfile)->paginate(40);
-		$compterepartitions = Compterepartition::whereIn('repartition_id',$repartitions->lists('id'))->paginate(7);
-		
-		$links = str_replace('/?', '?', $compterepartitions->render());
+{
+    extract($_POST);
+    //if(!isset($idAnnee))
+    //{
+    //	$idAnnee=Anneebudgetaire::where('annee',$annee)->first()->id;
+    //}
+    $annee=Anneebudgetaire::find($idAnnee)->annee;
+    $annees = DB::table('anneebudgetaires')->lists('annee','id');
+    $repartitions=Repartition::whereIn('idBudget',Anneebudgetaire::find($idAnnee)->budgets->lists('id'))->where('idProfile',Session::get('user')->idProfile)->paginate(40);
+    $compterepartitions = Compterepartition::whereIn('repartition_id',$repartitions->lists('id'))->paginate(7);
 
-        return view('compterepartitions.index', compact('compterepartitions', 'links','annees','repartitions','idAnnee','annee'));
-	}
+    $links = str_replace('/?', '?', $compterepartitions->render());
+
+    return view('compterepartitions.index', compact('compterepartitions', 'links','annees','repartitions','idAnnee','annee'));
+}
+    public function indexajax()
+    {
+        $idAnnee = $_GET['idAnnee'];
+
+        $annee=Anneebudgetaire::find($idAnnee)->annee;
+        $annees = DB::table('anneebudgetaires')->lists('annee','id');
+        $repartitions=Repartition::whereIn('idBudget',Anneebudgetaire::find($idAnnee)->budgets->lists('id'))->where('idProfile',Session::get('user')->idProfile)->paginate(40);
+        $compterepartitions = Compterepartition::whereIn('repartition_id',$repartitions->lists('id'))->paginate(7);
+
+        $links = str_replace('/?', '?', $compterepartitions->render());
+        $data = view('compterepartitions.table', compact('compterepartitions', 'links','annees','repartitions','idAnnee','annee'))->render();
+        return response()->json($data);
+    }
 
 	/**
 	 * Show the form for creating a new Compterepartition.

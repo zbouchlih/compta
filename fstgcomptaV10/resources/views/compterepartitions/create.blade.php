@@ -15,6 +15,8 @@
                     type:'post',
                     data:{id_type:id_type,_token:'{!! csrf_token() !!}',compte_id:0,credit_ouvert:0},
                     beforeSend: function(){
+                        $(".type_Compte").find('option').remove();
+                        $(".type_Compte").append('<option>loading...</option>');
                     },success: function(data)
                     {
 //                        $('.Compte11 option[value!="0"]').remove();

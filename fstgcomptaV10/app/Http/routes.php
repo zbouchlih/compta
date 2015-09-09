@@ -132,6 +132,7 @@ Route::get('comptes/{id}/delete', [
 
 Route::resource('compterepartitions', 'CompterepartitionController');
 Route::post('compterepartitions/storeAjax','CompterepartitionController@storeAjax');
+Route::get('indexajax','CompterepartitionController@indexajax');
 
 
 Route::get('compterepartitions/{id}/delete', [

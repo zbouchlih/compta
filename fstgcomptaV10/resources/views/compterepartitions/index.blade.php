@@ -41,7 +41,7 @@
                      @if($compterepartitions->isEmpty())
                         <div class="well text-center">Pas de répartitions trouvé.</div>
                      @else
-                     <div class="form-group col-md-2">
+                     <div class="form-group col-md-2 margine-div">
 
                          {!! Form::open(['route' => ['compterepartitions.index',$idAnnee], 'method' => 'post']) !!}
                             {!! Form::select('idAnnee',$annees, $idAnnee, ['class' => 'form-control']) !!}

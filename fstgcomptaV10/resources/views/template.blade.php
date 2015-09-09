@@ -27,7 +27,14 @@
 
     <script src="{{ url('js/jquery-2.1.3.min.js') }}"></script>
     <script src="{{ url('js/metro.js') }}"></script>
-    <script src="{{ url('js/docs.js')}}"></script>
+
+    <script src="{{ url('js/tableExport/tableExport.js')}}"></script>
+    <script src="{{ url('js/tableExport/jquery.base64.js')}}"></script>
+    <script src="{{ url('js/tableExport/jspdf/libs/sprintf.js')}}"></script>
+    <script src="{{ url('js/tableExport/html2canvas.js')}}"></script>
+    <script src="{{ url('js/tableExport/jspdf/jspdf.js')}}"></script>
+    <script src="{{ url('js/tableExport/jspdf/libs/base64.js')}}"></script>
+
     <!--script src="{{ url('js/prettify/run_prettify.js')}}"></script-->
     <!--script src="{{ url('js/ga.js')}}"></script-->
 

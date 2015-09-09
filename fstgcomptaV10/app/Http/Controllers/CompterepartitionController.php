@@ -55,7 +55,8 @@ class CompterepartitionController extends Controller
 	public function create($annee)
 	{
 		$idAnnee=Anneebudgetaire::where('annee',$annee)->first()->id;
-		$comptes = DB::table('comptes')->lists('compte','id');
+//		$comptes = DB::table('comptes')->lists('compte','id');
+		$comptes = DB::table('comptes')->where('idTypebudget',1)->lists('compte','id');
 		$typebudgets = DB::table('typebudgets')->lists('type','id');
 		return view('compterepartitions.create')->with('comptes', $comptes)->with('idAnnee', $idAnnee)->with('typebudgets', $typebudgets);
 	}
@@ -67,13 +68,25 @@ class CompterepartitionController extends Controller
 	 *
 	 * @return Response
 	 */
+    public function storeAjax(CreateCompterepartitionRequest $request){
+
+        if($request->ajax()){
+            if($request->has('id_type')){
+                $comptes = DB::table('comptes')->where('idTypebudget',$request->input('id_type'))->lists('compte','id');
+                return response()->json($comptes);
+            }else{
+                return response()->json('probleme serveur FSTG');
+            }
+        }
+
+    }
 	public function store(CreateCompterepartitionRequest $request)
 	{
 		$input = $request->all();
-		
-		
+
+
 		$idBudget=Budget::where('idAnnee',$input['idAnnee'])->where('idTypebudget',$input['idTypebudget'])->first()->id;
-	
+
 		$repartition=Repartition::where('idBudget',$idBudget)->where('idProfile',Session::get('user')->idProfile)->first();
 		$annee=Anneebudgetaire::find($input['idAnnee'])->annee;
 

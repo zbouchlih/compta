@@ -8,21 +8,21 @@
             <div class="panel-body">
    				 {!! Form::model($budget, ['route' => ['budgets.update', $budget->id], 'method' => 'patch']) !!}
 
-<div class="form-group col-md-6">
-    {!! Form::label('previsionnel', 'Prévisionnel:') !!}
-    {!! Form::number('previsionnel', null, ['class' => 'form-control']) !!}
-</div>
+            <div class="form-group col-md-6">
+                {!! Form::label('previsionnel', 'Prévisionnel:') !!}
+                {!! Form::number('previsionnel', null, ['class' => 'form-control']) !!}
+            </div>
 
 
-<div class="form-group col-md-6">
-    {!! Form::label('initial', 'Initial:') !!}
-    {!! Form::number('initial', null, ['class' => 'form-control']) !!}
-</div>
+            <div class="form-group col-md-6">
+                {!! Form::label('initial', 'Initial:') !!}
+                {!! Form::number('initial', null, ['class' => 'form-control']) !!}
+            </div>
 
-<div class="form-group col-md-6">
-    {!! Form::label('modificatif', 'Modificatif:') !!}
-    {!! Form::number('modificatif', null, ['class' => 'form-control']) !!}
-</div>
+            <div class="form-group col-md-6">
+                {!! Form::label('modificatif', 'Modificatif:') !!}
+                {!! Form::number('modificatif', null, ['class' => 'form-control']) !!}
+            </div>
 
 
 <!--<div class="form-group col-md-6">

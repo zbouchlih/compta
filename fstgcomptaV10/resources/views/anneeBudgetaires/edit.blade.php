@@ -9,15 +9,15 @@
    				 {!! Form::model($anneebudgetaire, ['route' => ['anneebudgetaires.update', $anneebudgetaire->id], 'method' => 'patch']) !!}
 
    
-<div class="form-group col-md-6">
+<div class="form-group col-md-6 ">
     {!! Form::label('annee', 'Année:') !!}
-    {!! Form::text('annee', null, ['class' => 'form-control']) !!}
+    {!! Form::text('annee', null, ['class' => 'form-control','disabled' => 'disabled']) !!}
 </div>
 
 
 <div class="form-group col-md-6">
     {!! Form::label('etat', 'Etat:') !!}
-    {!! Form::select('etat', ['-1' => 'Fermée','0' => 'Prochaine','1' => 'En cours'] , '0' ,['class' => 'form-control']) !!}
+    {!! Form::select('etat', ['-1' => 'Fermée','1' => 'En cours'] ,$anneebudgetaire->etat ,['class' => 'form-control']) !!}
 </div>
 
         

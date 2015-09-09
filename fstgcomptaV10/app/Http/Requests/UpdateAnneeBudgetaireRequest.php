@@ -24,7 +24,6 @@ class UpdateAnneebudgetaireRequest extends Request {
 	{
 		return [
             'etat' => 'required',
-            'annee' => 'required',
         ];
 	}
 

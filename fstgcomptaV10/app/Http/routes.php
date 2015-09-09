@@ -97,6 +97,7 @@ Route::get('anneebudgetaires/{id}/delete', [
 
 
 Route::resource('repartitions', 'RepartitionController');
+Route::get('indexajaxRepartition','RepartitionController@indexajax');
 
 Route::get('repartitions/{id}/delete', [
     'as' => 'repartitions.delete',

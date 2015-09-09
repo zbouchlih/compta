@@ -5,16 +5,25 @@
     <script type="text/javascript">
         $(document).ready(function(){
 
+
             /*******************************test ?**previsionnel initial modificatif******/
-            if({!!$budgets->where('idTypebudget',1)->first()->previsionnel!!}!=0)
+            if({!!$budgets->where('idTypebudget',1)->first()->modificatif!!}!=0)
             {
               var totaleFon={!!$budgets->where('idTypebudget',1)->first()->modificatif!!};
               var totaleInv={!!$budgets->where('idTypebudget',2)->first()->modificatif!!};
             }
-            else {
-              var totaleFon={!!$budgets->where('idTypebudget',1)->first()->modificatif!!};
-              var totaleInv={!!$budgets->where('idTypebudget',2)->first()->modificatif!!};
+            else if({!!$budgets->where('idTypebudget',1)->first()->initial!!}!=0)
+            {
+              var totaleFon={!!$budgets->where('idTypebudget',1)->first()->initial!!};
+              var totaleInv={!!$budgets->where('idTypebudget',2)->first()->initial!!};
+
+
             }
+            else{
+                var totaleFon={!!$budgets->where('idTypebudget',1)->first()->previsionnel!!};
+                var totaleInv={!!$budgets->where('idTypebudget',2)->first()->previsionnel!!};
+            }
+
             /******************************************************************************/
 
         $(".budget").keyup(function(){

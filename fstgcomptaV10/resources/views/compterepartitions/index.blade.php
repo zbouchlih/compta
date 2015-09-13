@@ -9,16 +9,17 @@
 
         $(".select-annee").change(function () {
             var idAnnee=$('.select-annee option:selected').val();
+            $(".ajax-table").html('<div class="ajax-image"><img src="{{ url('images/ajax3.GIF') }}" lt=""/><div>');
+            
             $.ajax({
                 url:'{{URL::to("indexajax")}}',
                 dataType:'json',
                 type:'get',
                 data:{idAnnee:idAnnee},
                 beforeSend: function(){
-
                 },success: function(data)
                 {
-                  $(".ajax-table").html(data);
+                    $(".ajax-table").html(data);
                 },error: function(data)
                 {
                     alert("Probleme serveur FSTG!!");

@@ -7,6 +7,7 @@
 
             $(".select-annee").change(function () {
                 var idAnnee=$('.select-annee option:selected').val();
+                $(".ajax-table").html('<div class="ajax-image"><img src="{{ url('images/ajax3.GIF') }}" lt=""/><div>');
                 $.ajax({
                     url:'{{URL::to("indexajaxTraitements")}}',
                     dataType:'json',

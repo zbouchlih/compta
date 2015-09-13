@@ -27,14 +27,17 @@ class DepenseController extends Controller
 	 *
 	 * @return Response
 	 */
-	public function index($idCompterepartition)
+	public function index($idCompterepartition,$etat)
 	{
 		$depenses=Depense::where('idCompterepartition',$idCompterepartition)->paginate(20);
 		//$depenses = $this->depenseRepository->paginate(20);
 		$compte=Compterepartition::find($idCompterepartition)->comptes->compte;
+        $depensesSum=Depense::where('idCompterepartition',$idCompterepartition)->sum('valeur');
+        $compterepartition=Compterepartition::find($idCompterepartition);
+
 			$links = str_replace('/?', '?', $depenses->render());
 
-        return view('depenses.index', compact('depenses', 'links'))->with('idCompterepartition',$idCompterepartition)->with('compte',$compte);
+        return view('depenses.index', compact('depenses','depensesSum', 'links','etat','compterepartition'))->with('idCompterepartition',$idCompterepartition)->with('compte',$compte);
 	}
 
 	/**
@@ -63,8 +66,7 @@ class DepenseController extends Controller
 		$depense = $this->depenseRepository->create($input);
 		$idCompterepartition=$input['idCompterepartition'];
 		Flash::success('Depense est enregistré avec succès.');
-
-		return redirect(route('depenses.index',$idCompterepartition));
+		return redirect(route('depenses.index',[$idCompterepartition,1]));
 	}
 
 	/**
@@ -132,7 +134,7 @@ class DepenseController extends Controller
 		 
 		Flash::success('Depense est modifié avec succés.');
 
-		return redirect(route('depenses.index',$idCompterepartition));
+		return redirect(route('depenses.index',[$idCompterepartition,1]));
 	}
 
 	/**
@@ -156,7 +158,6 @@ class DepenseController extends Controller
 		$this->depenseRepository->delete($id);
 
 		Flash::success('Depense est supprimé avec succès.');
-
-			return redirect(route('depenses.index',$idCompterepartition));
+			return redirect(route('depenses.index',[$idCompterepartition,1]));
 	}
 }

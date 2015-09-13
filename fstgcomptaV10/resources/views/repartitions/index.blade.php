@@ -57,8 +57,10 @@
                      @if($repartitions->isEmpty())
                         <div class="well text-center">Aucune répartition trouvée.</div>
                      @else
-                            <div class="form-groupmargine-div">
-                                {!! Form::select('idAnnee',$annees, $idAnnee, ['class' => 'form-control select-annee']) !!}
+                            <div class="row">
+                                <div class="form-group col-md-2">
+                                    {!! Form::select('idAnnee',$annees, $idAnnee, ['class' => 'form-control select-annee']) !!}
+                                </div>
                             </div>
                             <div class="ajax-table">
                                 @include('repartitions.table')

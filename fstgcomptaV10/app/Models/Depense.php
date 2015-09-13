@@ -12,6 +12,7 @@ class Depense extends Model
 	    "idCompterepartition",
 		"idTypedepense",
 		"valeur",
+		"etat",
 		"details"
 	];
 
@@ -24,7 +25,8 @@ class Depense extends Model
         "idCompterepartition" => "integer",
 		"idTypedepense" => "integer",
 		"details" => "string",
-		"valeur" => "integer"
+		"valeur" => "integer",
+		"etat" => "integer",
     ];
 
 	public static $rules = [

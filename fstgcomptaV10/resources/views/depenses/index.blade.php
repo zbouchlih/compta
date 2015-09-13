@@ -9,10 +9,24 @@
 
                     <div class="row">
                         <div class="col-md-4">
-                            <a href="{!! route('depenses.create', [$idCompterepartition]) !!}" class="btn btn-default btn-sm">
-                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter une dépense
-                            </a>
+                            @if($etat!=-1)
+                                <a href="{!! route('depenses.create', [$idCompterepartition]) !!}" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter une dépense
+                                </a>
+                            @else
+                                Modification fermée
+                            @endif
                         </div>
+                        <br/>
+                        <br/>
+                        <div>
+                            Budget du compte :<b>  {!!$compterepartition->credit_ouvert!!} dh</b><br/>
+                            Reste :<b>{!!$compterepartition->credit_ouvert - $depensesSum!!} dh</b>
+
+
+                        </div>
+
+
 
                         <!-- div class="col-md-offset-4 col-md-4">
 

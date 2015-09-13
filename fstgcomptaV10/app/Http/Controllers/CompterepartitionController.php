@@ -9,6 +9,7 @@ use App\Models\Repartition;
 use App\Models\Compterepartition; 
 use App\Models\Anneebudgetaire;
 use App\Models\Budget;
+use App\Models\Compte;
 use Response;
 use Illuminate\Support\Facades\Session;
 use DB;
@@ -37,14 +38,19 @@ class CompterepartitionController extends Controller
     //{
     //	$idAnnee=Anneebudgetaire::where('annee',$annee)->first()->id;
     //}
+
     $annee=Anneebudgetaire::find($idAnnee)->annee;
     $annees = DB::table('anneebudgetaires')->lists('annee','id');
     $repartitions=Repartition::whereIn('idBudget',Anneebudgetaire::find($idAnnee)->budgets->lists('id'))->where('idProfile',Session::get('user')->idProfile)->paginate(40);
     $compterepartitions = Compterepartition::whereIn('repartition_id',$repartitions->lists('id'))->paginate(7);
-
+    $resteCoFon=Compterepartition::whereIn('repartition_id',$repartitions->lists('id'))->whereIn('compte_id',Compte::where('idTypeBudget',1)->lists('id'))->sum('credit_ouvert');
+    $resteCoInv=Compterepartition::whereIn('repartition_id',$repartitions->lists('id'))->whereIn('compte_id',Compte::where('idTypeBudget',2)->lists('id'))->sum('credit_ouvert');
+    $resteEngFon=Compterepartition::whereIn('repartition_id',$repartitions->lists('id'))->whereIn('compte_id',Compte::where('idTypeBudget',1)->lists('id'))->sum('engagement');
+    $resteEngInv=Compterepartition::whereIn('repartition_id',$repartitions->lists('id'))->whereIn('compte_id',Compte::where('idTypeBudget',2)->lists('id'))->sum('engagement');
+    $etat = Anneebudgetaire::find($idAnnee)->etat;
     $links = str_replace('/?', '?', $compterepartitions->render());
 
-    return view('compterepartitions.index', compact('compterepartitions', 'links','annees','repartitions','idAnnee','annee'));
+    return view('compterepartitions.index', compact('compterepartitions', 'links','annees','repartitions','idAnnee','annee','etat','resteCoFon','resteCoInv','resteEngFon','resteEngInv'));
 }
     public function indexajax()
     {
@@ -54,9 +60,14 @@ class CompterepartitionController extends Controller
         $annees = DB::table('anneebudgetaires')->lists('annee','id');
         $repartitions=Repartition::whereIn('idBudget',Anneebudgetaire::find($idAnnee)->budgets->lists('id'))->where('idProfile',Session::get('user')->idProfile)->paginate(40);
         $compterepartitions = Compterepartition::whereIn('repartition_id',$repartitions->lists('id'))->paginate(7);
+        $resteCoFon=Compterepartition::whereIn('repartition_id',$repartitions->lists('id'))->whereIn('compte_id',Compte::where('idTypeBudget',1)->lists('id'))->sum('credit_ouvert');
+        $resteCoInv=Compterepartition::whereIn('repartition_id',$repartitions->lists('id'))->whereIn('compte_id',Compte::where('idTypeBudget',2)->lists('id'))->sum('credit_ouvert');
+        $resteEngFon=Compterepartition::whereIn('repartition_id',$repartitions->lists('id'))->whereIn('compte_id',Compte::where('idTypeBudget',1)->lists('id'))->sum('engagement');
+        $resteEngInv=Compterepartition::whereIn('repartition_id',$repartitions->lists('id'))->whereIn('compte_id',Compte::where('idTypeBudget',2)->lists('id'))->sum('engagement');
 
         $links = str_replace('/?', '?', $compterepartitions->render());
-        $data = view('compterepartitions.table', compact('compterepartitions', 'links','annees','repartitions','idAnnee','annee'))->render();
+        $etat = Anneebudgetaire::find($idAnnee)->etat;
+        $data = view('compterepartitions.table', compact('compterepartitions', 'links','annees','repartitions','idAnnee','annee','etat','resteCoFon','resteCoInv','resteEngFon','resteEngInv'))->render();
         return response()->json($data);
     }
 

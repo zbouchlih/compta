@@ -28,7 +28,6 @@
 
     })
 </script>
-</select>
 <div class="panel panel-default panel-model">
                 <div class="panel-heading">Liste des répartitons par compte</div>
                 <div class="panel-body">

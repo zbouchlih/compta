@@ -107,6 +107,7 @@ Route::get('repartitions/{id}/delete', [
 
 Route::resource('budgets', 'BudgetController');
 
+
 Route::get('budgets/{id}/delete', [
     'as' => 'budgets.delete',
     'uses' => 'BudgetController@destroy',
@@ -116,6 +117,7 @@ Route::get('budgets/{id}/delete', [
 
 
 Route::resource('comptes', 'CompteController');
+Route::get('indexajaxcomptes','CompteController@indexajax');
 
 Route::get('comptes/{id}/delete', [
     'as' => 'comptes.delete',

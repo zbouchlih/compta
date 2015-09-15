@@ -3,6 +3,31 @@
 @section('content')
 @if(in_array(25,Session::get('right_session')) )
 @include('flash::message')
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $(".select-type").change(function () {
+            var idTypebudget=$('.select-type option:selected').val();
+            $(".ajax-table").html('<div class="ajax-image"><img src="{{ url('images/ajax3.GIF') }}" lt=""/><div>');
+            $.ajax({
+                url:'{{URL::to("indexajaxcomptes")}}',
+                dataType:'json',
+                type:'get',
+                data:{idTypebudget:idTypebudget},
+                beforeSend: function(){
+
+                },success: function(data)
+                {
+                    $(".ajax-table").html(data);
+                },error: function(data)
+                {
+                    alert("Probleme serveur FSTG!!");
+                }
+            });
+        });
+
+    })
+</script>
 <div class="panel panel-default panel-model">
                 <div class="panel-heading">Liste des comptes</div>
                 <div class="panel-body">
@@ -38,14 +63,12 @@
 
                      @else
                         </br>
-                        <div class="form-group col-md-4">
-                             {!! Form::open(['route' => ['comptes.index'], 'method' => 'get']) !!}
-                                {!! Form::select('idTypebudget',$typebudgets, $idTypebudget, ['class' => 'form-control']) !!}
-                                {!! Form::submit('Afficher', ['class' => 'btn btn-standard']) !!}
-                             {!! Form::close() !!}  
+                        <div >
+                            {!! Form::select('idTypebudget',$typebudgets, $idTypebudget, ['class' => 'form-control select-type']) !!}
                         </div>
-
-                        @include('comptes.table')
+                        <div class="ajax-table">
+                            @include('comptes.table')
+                        </div>
 
                      @endif
                    

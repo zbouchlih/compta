@@ -19,11 +19,9 @@
                         </div>
                         <br/>
                         <br/>
-                        <div>
+                        <div style="padding: 2% 0 2% 2%">
                             Budget du compte :<b>  {!!$compterepartition->credit_ouvert!!} dh</b><br/>
                             Reste :<b>{!!$compterepartition->credit_ouvert - $depensesSum!!} dh</b>
-
-
                         </div>
 
 

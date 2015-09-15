@@ -97,6 +97,7 @@
             </li>
             <li><a href="#"><span class="mif-shopping-basket icon"></span>Gestion des Commandes</a></li>
             <li><a href="#"><span class="mif-shop icon"></span>Gestion des Fournisseurs</a></li>
+            <li><a href="{{ url('traitements') }}"><span class="mif-shop icon"></span>Traitements</a></li>
             <li>
                 <a class="dropdown-toggle" href="#"><span class="mif-users icon"></span>Gestion des Utilisateurs</a>
                 <ul class="d-menu" data-role="dropdown">

@@ -25,6 +25,7 @@ class CreateDepensesTable extends Migration
 						->onDelete('restrict')
 						->onUpdate('restrict');
 			$table->integer('valeur');
+			$table->integer('etat');
 			$table->string('details');
 			$table->timestamps();
 		});

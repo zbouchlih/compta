@@ -183,7 +183,7 @@ Route::get('depenses/{id}/delete', [
     'uses' => 'DepenseController@destroy',
 ]);
 
-Route::get('depenses/{id}/index', [
+Route::get('depenses/{id}/{etat}/index', [
     'as' => 'depenses.index',
     'uses' => 'DepenseController@index',
 ]);
@@ -199,4 +199,19 @@ Route::resource('tests', 'TestController');
 Route::get('tests/{id}/delete', [
     'as' => 'tests.delete',
     'uses' => 'TestController@destroy',
+]);
+
+
+Route::resource('traitements', 'TraitementController');
+Route::get('indexajaxTraitements','TraitementController@indexajax');
+
+
+Route::get('traitements/{id}/delete', [
+    'as' => 'traitements.delete',
+    'uses' => 'TraitementController@destroy',
+]);
+
+Route::get('traitements/{idProfile}/{idAnnee}/edit', [
+    'as' => 'traitements.edit',
+    'uses' => 'TraitementController@edit',
 ]);

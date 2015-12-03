@@ -190,6 +190,11 @@ Route::get('depenses/{id}/valider', [
     'uses' => 'DepenseController@valider',
 ]);
 
+Route::get('depenses/{id}/devis', [
+    'as' => 'depenses.devis',
+    'uses' => 'DepenseController@devis',
+]);
+
 Route::get('depenses/{id}/demander', [
     'as' => 'depenses.demander',
     'uses' => 'DepenseController@demander',

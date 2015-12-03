@@ -10,147 +10,150 @@ use Mitul\Generator\Utils\GeneratorUtils;
 
 class CommandData
 {
-	public $modelName;
-	public $modelNamePlural;
-	public $modelNameCamel;
-	public $modelNamePluralCamel;
-	public $modelNamespace;
+    public $modelName;
+    public $modelNamePlural;
+    public $modelNameCamel;
+    public $modelNamePluralCamel;
+    public $modelNamespace;
 
-	public $tableName;
-	public $fromTable;
-	public $skipMigration;
-	public $inputFields;
+    public $tableName;
+    public $fromTable;
+    public $skipMigration;
+    public $inputFields;
 
-	/** @var  string */
-	public $commandType;
+    /** @var  string */
+    public $commandType;
 
-	/** @var  APIGeneratorCommand */
-	public $commandObj;
+    /** @var  APIGeneratorCommand */
+    public $commandObj;
 
-	/** @var FileHelper */
-	public $fileHelper;
+    /** @var FileHelper */
+    public $fileHelper;
 
-	/** @var TemplatesHelper */
-	public $templatesHelper;
+    /** @var TemplatesHelper */
+    public $templatesHelper;
 
-	/** @var  bool */
-	public $useSoftDelete;
+    /** @var  bool */
+    public $useSoftDelete;
 
-	/** @var  bool */
-	public $paginate;
+    /** @var  bool */
+    public $paginate;
 
-	/** @var  string */
-	public $fieldsFile;
+    /** @var  string */
+    public $rememberToken;
 
-	/** @var array */
-	public $dynamicVars = [];
+    /** @var  string */
+    public $fieldsFile;
 
-	public static $COMMAND_TYPE_API = 'api';
-	public static $COMMAND_TYPE_SCAFFOLD = 'scaffold';
-	public static $COMMAND_TYPE_SCAFFOLD_API = 'scaffold_api';
+    /** @var array */
+    public $dynamicVars = [];
 
-	function __construct($commandObj, $commandType)
-	{
-		$this->commandObj = $commandObj;
-		$this->commandType = $commandType;
-		$this->fileHelper = new FileHelper();
-		$this->templatesHelper = new TemplatesHelper();
-	}
+    public static $COMMAND_TYPE_API = 'api';
+    public static $COMMAND_TYPE_SCAFFOLD = 'scaffold';
+    public static $COMMAND_TYPE_SCAFFOLD_API = 'scaffold_api';
 
-	public function initVariables()
-	{
-		$this->modelNamePlural = Str::plural($this->modelName);
-		$this->modelNameCamel = Str::camel($this->modelName);
-		$this->modelNamePluralCamel = Str::camel($this->modelNamePlural);
-		$this->initDynamicVariables();
-	}
+    public function __construct($commandObj, $commandType)
+    {
+        $this->commandObj = $commandObj;
+        $this->commandType = $commandType;
+        $this->fileHelper = new FileHelper();
+        $this->templatesHelper = new TemplatesHelper();
+    }
 
-	public function getInputFields()
-	{
-		$fields = [];
+    public function initVariables()
+    {
+        $this->modelNamePlural = Str::plural($this->modelName);
+        $this->modelNameCamel = Str::camel($this->modelName);
+        $this->modelNamePluralCamel = Str::camel($this->modelNamePlural);
+        $this->initDynamicVariables();
+    }
 
-		$this->commandObj->info("Specify fields for the model (skip id & timestamp fields, will be added automatically)");
-		$this->commandObj->info("Enter exit to finish");
+    public function getInputFields()
+    {
+        $fields = [];
 
-		while(true)
-		{
-			$fieldInputStr = $this->commandObj->ask("Field:", '');
+        $this->commandObj->info('Specify fields for the model (skip id & timestamp fields, will be added automatically)');
+        $this->commandObj->info('Enter exit to finish');
 
-			if(empty($fieldInputStr) || $fieldInputStr == false || $fieldInputStr == "exit")
-				break;
+        while (true) {
+            $fieldInputStr = $this->commandObj->ask('Field: (field_name:field_database_type)', '');
 
-			if(!GeneratorUtils::validateFieldInput($fieldInputStr))
-			{
-				$this->commandObj->error("Invalid Input. Try again");
-				continue;
-			}
+            if (empty($fieldInputStr) || $fieldInputStr == false || $fieldInputStr == 'exit') {
+                break;
+            }
 
-			$type = $this->commandObj->ask("Enter field type (text): ", "text");
+            if (!GeneratorUtils::validateFieldInput($fieldInputStr)) {
+                $this->commandObj->error('Invalid Input. Try again');
+                continue;
+            }
 
-			$validations = $this->commandObj->ask("Enter validations: ", false);
+            $type = $this->commandObj->ask('Enter field html input type (text): ', 'text');
 
-			$validations = ($validations == false) ? '' : $validations;
+            $validations = $this->commandObj->ask('Enter validations: ', false);
 
-			$fields[] = GeneratorUtils::processFieldInput($fieldInputStr, $type, $validations);
-		}
+            $validations = ($validations == false) ? '' : $validations;
 
-		return $fields;
-	}
+            $fields[] = GeneratorUtils::processFieldInput($fieldInputStr, $type, $validations);
+        }
 
-	public function initDynamicVariables()
-	{
-		$this->dynamicVars = self::getConfigDynamicVariables();
+        return $fields;
+    }
 
-		$this->dynamicVars = array_merge($this->dynamicVars, [
-			'$MODEL_NAME$'              => $this->modelName,
+    public function initDynamicVariables()
+    {
+        $this->dynamicVars = self::getConfigDynamicVariables();
 
-			'$MODEL_NAME_CAMEL$'        => $this->modelNameCamel,
+        $this->dynamicVars = array_merge($this->dynamicVars, [
+            '$MODEL_NAME$'              => $this->modelName,
 
-			'$MODEL_NAME_PLURAL$'       => $this->modelNamePlural,
+            '$MODEL_NAME_CAMEL$'        => $this->modelNameCamel,
 
-			'$MODEL_NAME_PLURAL_CAMEL$' => $this->modelNamePluralCamel
-		]);
+            '$MODEL_NAME_PLURAL$'       => $this->modelNamePlural,
 
-		if($this->tableName)
-			$this->dynamicVars['$TABLE_NAME$'] = $this->tableName;
-		else
-			$this->dynamicVars['$TABLE_NAME$'] = $this->modelNamePluralCamel;
-	}
+            '$MODEL_NAME_PLURAL_CAMEL$' => $this->modelNamePluralCamel,
+        ]);
 
-	public function addDynamicVariable($name, $val)
-	{
-		$this->dynamicVars[$name] = $val;
-	}
+        if ($this->tableName) {
+            $this->dynamicVars['$TABLE_NAME$'] = $this->tableName;
+        } else {
+            $this->dynamicVars['$TABLE_NAME$'] = $this->modelNamePluralCamel;
+        }
+    }
 
-	public static function getConfigDynamicVariables()
-	{
-		return [
+    public function addDynamicVariable($name, $val)
+    {
+        $this->dynamicVars[$name] = $val;
+    }
 
-			'$BASE_CONTROLLER$'          => Config::get('generator.base_controller', 'Mitul\Controller\AppBaseController'),
+    public static function getConfigDynamicVariables()
+    {
+        return [
 
-			'$NAMESPACE_CONTROLLER$'     => Config::get('generator.namespace_controller', 'App\Http\Controllers'),
+            '$BASE_CONTROLLER$'          => Config::get('generator.base_controller', 'Mitul\Controller\AppBaseController'),
 
-			'$NAMESPACE_API_CONTROLLER$' => Config::get('generator.namespace_api_controller', 'App\Http\Controllers\API'),
+            '$NAMESPACE_CONTROLLER$'     => Config::get('generator.namespace_controller', 'App\Http\Controllers'),
 
-			'$NAMESPACE_REQUEST$'        => Config::get('generator.namespace_request', 'App\Http\Requests'),
+            '$NAMESPACE_API_CONTROLLER$' => Config::get('generator.namespace_api_controller', 'App\Http\Controllers\API'),
 
-			'$NAMESPACE_REPOSITORY$'     => Config::get('generator.namespace_repository', 'App\Libraries\Repositories'),
+            '$NAMESPACE_REQUEST$'        => Config::get('generator.namespace_request', 'App\Http\Requests'),
 
-			'$NAMESPACE_MODEL$'          => Config::get('generator.namespace_model', 'App\Models'),
+            '$NAMESPACE_REPOSITORY$'     => Config::get('generator.namespace_repository', 'App\Libraries\Repositories'),
 
-			'$NAMESPACE_MODEL_EXTEND$'   => Config::get('generator.model_extend_class', 'Illuminate\Database\Eloquent\Model'),
+            '$NAMESPACE_MODEL$'          => Config::get('generator.namespace_model', 'App\Models'),
 
-			'$SOFT_DELETE_DATES$'        => "\n\tprotected \$dates = ['deleted_at'];\n",
+            '$NAMESPACE_MODEL_EXTEND$'   => Config::get('generator.model_extend_class', 'Illuminate\Database\Eloquent\Model'),
 
-			'$SOFT_DELETE$'              => "use SoftDeletes;\n",
+            '$SOFT_DELETE_DATES$'        => "\n\tprotected \$dates = ['deleted_at'];\n",
 
-			'$SOFT_DELETE_IMPORT$'       => "use Illuminate\\Database\\Eloquent\\SoftDeletes;\n",
+            '$SOFT_DELETE$'              => "use SoftDeletes;\n",
 
-			'$API_PREFIX$'               => Config::get('generator.api_prefix', "api"),
+            '$SOFT_DELETE_IMPORT$'       => "use Illuminate\\Database\\Eloquent\\SoftDeletes;\n",
 
-			'$API_VERSION$'              => Config::get('generator.api_version', "v1"),
+            '$API_PREFIX$'               => Config::get('generator.api_prefix', 'api'),
 
-			'$PRIMARY_KEY$'              => 'id'
-		];
-	}
+            '$API_VERSION$'              => Config::get('generator.api_version', 'v1'),
+
+            '$PRIMARY_KEY$'              => 'id',
+        ];
+    }
 }

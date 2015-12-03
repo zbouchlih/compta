@@ -2,6 +2,8 @@ Laravel API/Scaffold/CRUD Generator (Laravel5.1)
 =======================
 [![Latest Stable Version](https://poser.pugx.org/mitulgolakiya/laravel-api-generator/v/stable)](https://packagist.org/packages/mitulgolakiya/laravel-api-generator) [![Total Downloads](https://poser.pugx.org/mitulgolakiya/laravel-api-generator/downloads)](https://packagist.org/packages/mitulgolakiya/laravel-api-generator) [![Monthly Downloads](https://poser.pugx.org/mitulgolakiya/laravel-api-generator/d/monthly)](https://packagist.org/packages/mitulgolakiya/laravel-api-generator) [![Daily Downloads](https://poser.pugx.org/mitulgolakiya/laravel-api-generator/d/daily)](https://packagist.org/packages/mitulgolakiya/laravel-api-generator) [![Latest Unstable Version](https://poser.pugx.org/mitulgolakiya/laravel-api-generator/v/unstable)](https://packagist.org/packages/mitulgolakiya/laravel-api-generator) [![License](https://poser.pugx.org/mitulgolakiya/laravel-api-generator/license)](https://packagist.org/packages/mitulgolakiya/laravel-api-generator)
 
+### For Laravel 5.0, check out [1.3 branch](https://github.com/mitulgolakiya/laravel-api-generator/tree/1.3)
+
 I enjoy creating API's and I have worked on many projects that required them. But the problem I always faced was setting up all the boilerplate code. For example each end point needs a migration, model, controller, repository, and on and on. I wanted a way to streamline this process and that is how this package was born.
 
 This API generator allows you to use artisan commands to automatically generate all these files saving you time. Not only does it auto generate the files but it will set the namespaces. 
@@ -47,6 +49,7 @@ Documentation
 	3. [Fields From File](#fields-from-file)
 	4. [Custom Table Name](#custom-table-name)
 	5. [Skip Migration](#skip-migration)
+	6. [Remember Token](#remember-token)
 7. [Generator from existing tables](#generator-from-existing-tables)
 
 ## Installation
@@ -153,7 +156,9 @@ e.g.
     php artisan mitul.generator:scaffold_api Project
     php artisan mitul.generator:scaffold_api Post
 
-## Supported Field Types
+Here is the sample [fields input json](https://github.com/mitulgolakiya/laravel-api-generator/blob/master/samples/fields.json)
+
+## Supported HTML Field Types
 
 Here is the list of supported field types with options:
   * text
@@ -193,10 +198,6 @@ To use your own custom templates,
 
 2. Leave only those templates that you want to change. Remove the templates that do not plan to change.
 
-### Dingo API Integration
-
-Coming soon...
-
 ## Options
 
 ### Paginate Records
@@ -232,6 +233,12 @@ You can also specify your own custom table name by,
 You can also skip migration generation,
 
         php artisan mitul.generator:api Post --skipMigration
+
+### Remember Token
+
+To generate rememberToken field in migration file,
+
+        php artisan mitul.generator:api Post --rememberToken
 
 ## Generator from existing tables
 

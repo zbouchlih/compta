@@ -10,7 +10,8 @@
         "laracasts/flash": "dev-master",
         "laravelcollective/html": "5.1.*",
         "bosnadev/repositories": "dev-master",
-        "mitulgolakiya/laravel-api-generator": "dev-master"
+        "mitulgolakiya/laravel-api-generator": "dev-master",
+        "barryvdh/laravel-dompdf": "0.6.*"
     },
 
     "require-dev": {

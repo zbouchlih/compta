@@ -27,6 +27,11 @@
                             Budget du compte :<b>  {!!$compterepartition->credit_ouvert!!} dh</b><br/>
                             Reste :<b>{!!$compterepartition->credit_ouvert - $depensesSum!!} dh</b>
                         </div>
+                           
+                          
+                           <a href="{!! route('depenses.devis', [$idCompterepartition]) !!}" class="btn btn-default btn-sm">
+                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Demande de devis
+                            </a>
 
 
 

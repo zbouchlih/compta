@@ -35,12 +35,14 @@
                                     <td>
                                         <div class="pull-right">
                                             <!--a href="{!! route('compterepartitions.show', [$compterepartition->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-eye-open"  aria-hidden="true"></span></a-->
+                                            @if(in_array(31,Session::get('right_session')) )
+                                            @else
 
                                                 <a href="{!! route('compterepartitions.edit', [$compterepartition->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span> Modifier</a>
 
                                                 <a href="{!! route('compterepartitions.delete', [$compterepartition->id]) !!}" onclick="return confirm('Etes-vous sur de vouloir supprimer cette répartition?')" class="btn btn-danger btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-trash"  aria-hidden="true"></span> Supprimer</a>
 
-
+                                            @endif
 
                                             <a href="{!! route('depenses.index', [$compterepartition->id,1]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-plus"  aria-hidden="true"></span> Dépense</a>
                                         </div>

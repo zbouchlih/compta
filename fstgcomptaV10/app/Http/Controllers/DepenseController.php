@@ -136,6 +136,23 @@ class DepenseController extends Controller
 
 		return redirect(route('depenses.index',[$idCompterepartition,1]));
 	}
+	public function valider($id)
+	{
+		$depense = $this->depenseRepository->find($id);
+		$idCompterepartition=$depense->idCompterepartition;
+		if(empty($depense))
+		{
+			Flash::error('Depense que vous cherchez n\'est pas disponible');
+
+			return redirect(route('depenses.index'));
+		}
+		$depense->update(['etat' =>'1']);
+		//$depense = $this->depenseRepository->updateRich($request->all(), $id);
+		 
+		Flash::success('Depense est modifiée avec succés.');
+
+		return redirect(route('depenses.index',[$idCompterepartition,1]));
+	}
 
 	/**
 	 * Remove the specified Depense from storage.

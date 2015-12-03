@@ -1,4 +1,6 @@
-                    <table class="table table-hover">
+
+
+                    <table class="table table-hover" id="customers">
 
                         <thead>
                         
@@ -26,15 +28,21 @@
                             </td>
                             <td>
                                 <div class="pull-right">
-                                <a href="{!! route('depenses.show', [$depense->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-eye-open"  aria-hidden="true"></span></a>
-                                    @if($etat!=-1)
-                                        <a href="{!! route('depenses.edit', [$depense->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span></a>
-
-                                        <a href="{!! route('depenses.delete', [$depense->id]) !!}" onclick="return confirm('Etes-vous sur de vouloir supprimer Depense?')" class="btn btn-danger btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-trash"  aria-hidden="true"></span></a>
+                               
+                                    @if(in_array(31,Session::get('right_session')) )
+                                            <a href="{!! route('depenses.valider', [$depense->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align">Valider <span class="glyphicon glyphicon-eye-open"  aria-hidden="true"></span></a>
+                                            <a href="#" onClick ="$('#customers').tableExport({type:'pdf',pdfFontSize:'7',escape:'false'});" class="btn btn-default btn-xs" aria-label="Left Align">Demande de devis</a>
                                     @else
-                                        Modification fermée
-                                    @endif
 
+                                        @if($etat!=-1)
+                                             <a href="{!! route('depenses.show', [$depense->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-eye-open"  aria-hidden="true"></span></a>
+                                            <a href="{!! route('depenses.edit', [$depense->id]) !!}" class="btn btn-default btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-pencil"  aria-hidden="true"></span></a>
+
+                                            <a href="{!! route('depenses.delete', [$depense->id]) !!}" onclick="return confirm('Etes-vous sur de vouloir supprimer Depense?')" class="btn btn-danger btn-xs" aria-label="Left Align"><span class="glyphicon glyphicon-trash"  aria-hidden="true"></span></a>
+                                        @else
+                                        Modification fermée
+                                        @endif
+                                    @endif
                                 </div>
                             </td>
                         </tr>

@@ -9,12 +9,16 @@
 
                     <div class="row">
                         <div class="col-md-4">
-                            @if($etat!=-1)
-                                <a href="{!! route('depenses.create', [$idCompterepartition]) !!}" class="btn btn-default btn-sm">
-                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter une dépense
-                                </a>
+                            @if(in_array(31,Session::get('right_session')) )
+                                            
                             @else
-                                Modification fermée
+                                @if($etat!=-1)
+                                    <a href="{!! route('depenses.create', [$idCompterepartition]) !!}" class="btn btn-default btn-sm">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter une dépense
+                                    </a>
+                                @else
+                                    Modification fermée
+                                @endif
                             @endif
                         </div>
                         <br/>

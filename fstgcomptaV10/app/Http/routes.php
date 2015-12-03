@@ -185,6 +185,16 @@ Route::get('depenses/{id}/delete', [
     'uses' => 'DepenseController@destroy',
 ]);
 
+Route::get('depenses/{id}/valider', [
+    'as' => 'depenses.valider',
+    'uses' => 'DepenseController@valider',
+]);
+
+Route::get('depenses/{id}/demander', [
+    'as' => 'depenses.demander',
+    'uses' => 'DepenseController@demander',
+]);
+
 Route::get('depenses/{id}/{etat}/index', [
     'as' => 'depenses.index',
     'uses' => 'DepenseController@index',
@@ -216,4 +226,12 @@ Route::get('traitements/{id}/delete', [
 Route::get('traitements/{idProfile}/{idAnnee}/edit', [
     'as' => 'traitements.edit',
     'uses' => 'TraitementController@edit',
+]);
+
+
+Route::resource('fournisseurs', 'FournisseurController');
+
+Route::get('fournisseurs/{id}/delete', [
+    'as' => 'fournisseurs.delete',
+    'uses' => 'FournisseurController@destroy',
 ]);

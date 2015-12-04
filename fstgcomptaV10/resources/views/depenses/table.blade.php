@@ -4,9 +4,10 @@
 
                         <thead>
                         
-			<th>Type de dépense</th>
+			
 			<th>Détails</th>
             <th>Valeur</th>
+            <th>Quantité</th>
             <th>Etat</th>
                         
                             <th></th>
@@ -17,9 +18,10 @@
                         @foreach($depenses as $depense)
                         <tr>
                          
-                            <td>{!! $depense->typedepense->type !!}</td>
+                           
                             <td>{!! $depense->details !!}</td>
                             <td>{!! $depense->valeur !!}</td>
+                             <td>{!! $depense->quantite !!}</td>
                             <td>
                                 @if($depense->etat == -1) refusée @endif
                                 @if($depense->etat == 0) Pas encore consultée @endif

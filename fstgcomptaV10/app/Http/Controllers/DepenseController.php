@@ -49,8 +49,7 @@ class DepenseController extends Controller
 	public function create($idCompterepartition)
 	{
 		
-		$typedepenses = DB::table('typedepenses')->lists('type','id');
-		return view('depenses.create')->with('typedepenses',$typedepenses)->with('idCompterepartition',$idCompterepartition);
+		return view('depenses.create')->with('idCompterepartition',$idCompterepartition);
 	}
 
 	/**
@@ -101,7 +100,7 @@ class DepenseController extends Controller
 	public function edit($id)
 	{
 		$depense = $this->depenseRepository->find($id);
-		$typedepenses = DB::table('typedepenses')->lists('type','id');
+		
 		if(empty($depense))
 		{
 			Flash::error('Depense que vous cherchez n\'est pas disponible');
@@ -109,7 +108,7 @@ class DepenseController extends Controller
 			return redirect(route('depenses.index'));
 		}
 		$idCompterepartition=$depense->idCompterepartition;
-		return view('depenses.edit')->with('depense', $depense)->with('idCompterepartition',$idCompterepartition)->with('typedepenses',$typedepenses);
+		return view('depenses.edit')->with('depense', $depense)->with('idCompterepartition',$idCompterepartition);
 	}
 
 	/**
@@ -154,10 +153,10 @@ class DepenseController extends Controller
 
 		return redirect(route('depenses.index',[$idCompterepartition,1]));
 	}
-
+//impression de devis
 	public function devis($idCompterepartition)
 	{
- $depensesSum=Depense::where('idCompterepartition',$idCompterepartition)->sum('valeur');
+ $depenses=Depense::where('idCompterepartition',$idCompterepartition)->paginate(20);
 
 		$html="<h1>Objet: demande d'articles</h1> <br>
 Prière de nous faire parvenir dans les meilleurs délais votre offre concernant les articles cités dans le tableau  ci-joint.
@@ -166,9 +165,6 @@ Prière de nous faire parvenir dans les meilleurs délais votre offre concernant
 
 $html.="<h1>Devis Estimatif</h1> <br>";
 
-		// lister les détails d'une dépense
-			
-		// on recupere les données de chaque détail et les afficher dans un tableau
 			$html.="<style>table {
 	font-family:Arial, Helvetica, sans-serif;
 	color:#666;
@@ -259,22 +255,16 @@ table tr:hover td {
 			</thead> <tbody>";
 
 	
- 
-		$html.="<tr><td></td><td>". $depensesSum."</td><td></td><td></td></tr>";
-
+ 		foreach($depenses as $depense)
+ 		{
+			$html.="<tr><td></td><td>". $depense->details."</td><td></td><td>".$depense->quantite."</td></tr>";
+		}
 			
 			
 			$html.="</tbody></table> <br>";
-			$html.="<img src='https://lh6.googleusercontent.com/-C58UvNEaPPY/AAAAAAAAAAI/AAAAAAAAAD8/fmzMBMWNYCA/w800-h800/photo.jpg'>";
 		$pdf = PDF::loadHTML($html);
         return $pdf->stream();
 
-
-		//$depenseSum=Depense::where('idCompterepartition',$idCompterepartition)->sum('valeur');
-		
-		 
-		
-		//return view('depenses.devis')->with('depenseSum', $depenseSum);
 		
 	}
 

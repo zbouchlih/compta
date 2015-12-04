@@ -4,14 +4,16 @@
 	{!! Form::number('idCompterepartition', $idCompterepartition, ['class' => 'form-control']) !!}
 </div>
 
-<div class="form-group col-md-6">
-    {!! Form::label('idTypedepense', 'Type de dépense:') !!}
-	{!! Form::select('idTypedepense', $typedepenses, '1', ['class' => 'form-control']) !!}
-</div>
+
 
 <div class="form-group col-md-6">
     {!! Form::label('details', 'Détails:') !!}
     {!! Form::text('details', null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group col-md-6">
+    {!! Form::label('quantite', 'Quantité:') !!}
+	{!! Form::number('quantite', null, ['class' => 'form-control']) !!}
 </div>
 
 <div class="form-group col-md-6">

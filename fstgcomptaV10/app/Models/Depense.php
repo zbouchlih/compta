@@ -10,7 +10,7 @@ class Depense extends Model
 
 	public $fillable = [
 	    "idCompterepartition",
-		"idTypedepense",
+		"quantite",
 		"valeur",
 		"etat",
 		"details"
@@ -23,7 +23,7 @@ class Depense extends Model
      */
     protected $casts = [
         "idCompterepartition" => "integer",
-		"idTypedepense" => "integer",
+		"quantite" => "integer",
 		"details" => "string",
 		"valeur" => "integer",
 		"etat" => "integer",
@@ -31,15 +31,12 @@ class Depense extends Model
 
 	public static $rules = [
 	    "idCompterepartition" => "required",
-		"idTypedepense" => "required",
+		"quantite" => "required",
 		"details" => "required",
 		"valeur" => "required"
 	];
 
-	public function typedepense()
-	{
-		return $this->belongsTo('App\Models\Typedepense','idTypedepense','id');
-	}
+	
 	public function compterepartition()
 	{
 		return $this->belongsTo('App\Models\Compterepartition','idCompterepartition','id');
